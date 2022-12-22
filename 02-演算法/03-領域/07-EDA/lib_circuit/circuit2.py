@@ -1,0 +1,15 @@
+from circuit import *
+
+c = circuit(signature([2], [1]))
+g0 = c.gate(op.id_, is_input=True)
+g1 = c.gate(op.id_, is_input=True)
+g2 = c.gate(op.not_, [g0])
+g3 = c.gate(op.not_, [g1])
+g4 = c.gate(op.xor_, [g2, g3])
+g5 = c.gate(op.not_, [g4])
+g6 = c.gate(op.id_, [g4], is_output=True)
+print('truth table:', [list(c.evaluate([bs])) for bs in [[0, 0], [0, 1], [1, 0], [1, 1]]])
+print('c.count()=', c.count())
+c.prune_and_topological_sort_stable()
+print('c.prune_and_topological_sort_stable()')
+print('c.count()=', c.count())

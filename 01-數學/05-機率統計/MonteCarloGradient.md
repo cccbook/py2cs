@@ -1,0 +1,6 @@
+# Calculus
+
+* [Monte Carlo Gradient Estimation in Machine Learning (PDF, ArXiv)](https://arxiv.org/pdf/1906.10652.pdf)
+    * https://www.facebook.com/c3h3tw/posts/10226302965419202
+    * Chia-Chi Chang 最近因為推薦給朋友，又自己重看了一次.深深覺得，這真的是近代微積分的精華都在裡面了.高次多變量和泛函都已經在這篇裡面了.如果有機會開課教近代微積分的話.感覺應該要拿這篇來當課本才對 
+

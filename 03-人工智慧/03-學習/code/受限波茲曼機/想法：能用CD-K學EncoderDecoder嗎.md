@@ -1,0 +1,2 @@
+
+![](./img/encoder-decoder.png)

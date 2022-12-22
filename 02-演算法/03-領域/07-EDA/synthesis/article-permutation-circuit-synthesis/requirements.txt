@@ -1,0 +1,5 @@
+jupyterlab
+tqdm
+parts
+circuit
+circuitry

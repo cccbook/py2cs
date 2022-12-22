@@ -1,0 +1,21 @@
+<html>
+<body>
+  <input type="text" id="name" value="ccc"/>
+  <button onclick="sendName()">Send Name</button>
+  <script>
+    function sendName() {
+      var name = document.querySelector('#name').value
+      socket.send(name)
+    }
+    var socket = new WebSocket("ws://"+window.location.hostname+":8765")
+    socket.onopen = function (event) { console.log('socket:onopen()...') }
+    socket.onerror = function (event) { console.log('socket:onerror()...') }
+    socket.onclose = function (event) { console.log('socket:onclose()...') }
+    socket.onmessage = function(event){
+      console.log(event.data);
+      // var json = JSON.parse(event.data);
+      // console.log('json=', json)
+    }
+  </script>
+</body>
+</html>

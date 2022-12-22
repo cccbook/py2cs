@@ -1,0 +1,13 @@
+from trie import BinaryTrie
+t = 
+>>> t.root_hash
+b"\xc5\xd2F\x01\x86\xf7#<\x92~}\xb2\xdc\xc7\x03\xc0\xe5\x00\xb6S\xca\x82';{\xfa\xd8\x04]\x85\xa4p"
+>>> t.set(b'key1', b'value1')
+>>> t.set(b'key2', b'value2')
+# Create a new tree
+trie = BinaryTrie(db={})
+DNA1 = b"GTCTCTAAGAGTGAAGCGCAGACCTGGACGGACTACACCA"
+for i in range(len(DNA1)):
+    radix.add(DNA1[i:])
+for rnode in rtree:
+        print(rnode.prefix)

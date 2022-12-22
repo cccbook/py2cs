@@ -1,0 +1,36 @@
+<html>
+<style>
+textarea { width:300; height:100 }
+</style>
+<body>
+  <textarea id="code">
+x=1
+y=2
+z=x+y
+print('x=',x,'y=', y,'z=', z)
+  </textarea>
+  <br/><br/>
+  <button onclick="runCode()">Run</button>
+  <br/><br/>
+  <textarea id="out"></textarea>
+  <script>
+    var codeNode = document.querySelector('#code')
+    var outNode = document.querySelector('#out')
+    function runCode() {
+      var code = codeNode.value
+      var obj = { code }
+      socket.send(JSON.stringify(obj))
+    }
+    var socket = new WebSocket("ws://"+window.location.hostname+":8765")
+    socket.onopen = function (event) { console.log('socket:onopen()...') }
+    socket.onerror = function (event) { console.log('socket:onerror()...') }
+    socket.onclose = function (event) { console.log('socket:onclose()...') }
+    socket.onmessage = function(event){
+      console.log(event.data);
+      var json = JSON.parse(event.data)
+      console.log('json=', json)
+      outNode.value = json.out
+    }
+  </script>
+</body>
+</html>
