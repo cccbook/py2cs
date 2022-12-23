@@ -4,6 +4,7 @@ import keras
 import numpy as np
 
 (x_train,y_train),(x_test,y_test) = mnist.load_data()
+'''
 train_images = np.asarray(x_train, dtype=np.float32) / 255.0
 test_images = np.asarray(x_test, dtype=np.float32) / 255.0
 train_images = train_images.reshape(60000,784)
@@ -40,3 +41,4 @@ print(f'loss in final step {step+1} is {loss}')
      
 from sklearn.metrics import accuracy_score
 print(f'accuracy on test data is {accuracy_score(np.argmax(np.matmul(test_images,Wb.data),axis = 1),y_test)*100} %')
+'''
