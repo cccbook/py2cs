@@ -2,8 +2,8 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-from ..nn import Value
-from ..nn import Neuron, Layer, MLP
+from nn import Value
+from nn import Neuron, Layer, MLP
 
 np.random.seed(1337)
 random.seed(1337)

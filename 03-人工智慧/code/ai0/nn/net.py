@@ -10,6 +10,14 @@ class Module:
     def parameters(self):
         return []
 
+class Vars(Module):
+
+    def __init__(self, params):
+        self.params = params
+
+    def parameters(self):
+        return self.params
+
 class Neuron(Module):
 
     def __init__(self, nin, nonlin=True):

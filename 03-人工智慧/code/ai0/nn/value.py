@@ -1,3 +1,4 @@
+# from -- https://github.com/newcodevelop/micrograd/blob/master/mnist.ipynb
 
 class Value: # 含有梯度的值節點
     """ stores a single scalar value and its gradient """
@@ -39,7 +40,6 @@ class Value: # 含有梯度的值節點
         def _backward(): # 次方的反向傳遞
             self.grad += (other * self.data**(other-1)) * out.grad
         out._backward = _backward
-
         return out
 
     def relu(self): # relu 的正向傳遞
@@ -47,6 +47,48 @@ class Value: # 含有梯度的值節點
 
         def _backward(): # relu 的反向傳遞
             self.grad += (out.data > 0) * out.grad
+        out._backward = _backward
+        return out
+
+    def matmul(self,other):
+        other = other if isinstance(other, Value) else Value(other)
+        out = Value(np.matmul(self.data , other.data), (self, other), 'matmul')
+        def _backward():
+            self.grad += np.dot(out.grad,other.data.T)
+            other.grad += np.dot(self.data.T,out.grad)
+            
+        out._backward = _backward
+        return out
+
+    def softmax(self):
+
+        out =  Value(np.exp(self.data) / np.sum(np.exp(self.data), axis=1)[:, None], (self,), 'softmax')
+        softmax = out.data
+        def _backward():
+            self.grad += (out.grad - np.reshape(
+            np.sum(out.grad * softmax, 1),
+            [-1, 1]
+              )) * softmax
+        out._backward = _backward
+        return out
+
+    def log(self):
+        out = Value(np.log(self.data),(self,),'log')
+        def _backward():
+            self.grad += out.grad/self.data
+        out._backward = _backward
+        return out
+    
+    def reduce_sum(self,axis = None):
+        out = Value(np.sum(self.data,axis = axis), (self,), 'REDUCE_SUM')
+        
+        def _backward():
+            output_shape = np.array(self.data.shape)
+            output_shape[axis] = 1
+            tile_scaling = self.data.shape // output_shape
+            grad = np.reshape(out.grad, output_shape)
+            self.grad += np.tile(grad, tile_scaling)
+            
         out._backward = _backward
 
         return out
