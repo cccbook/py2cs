@@ -38,9 +38,6 @@ __pycache__
 _book
 
 # eBook build output
-*.epub
-*.mobi
-*.pdf
 
 *.zip
 *.rar
