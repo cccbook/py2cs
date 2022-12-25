@@ -15,6 +15,9 @@ class Vars(Module):
     def __init__(self, params):
         self.params = params
 
+    def __call__(self, x):
+        pass
+
     def parameters(self):
         return self.params
 

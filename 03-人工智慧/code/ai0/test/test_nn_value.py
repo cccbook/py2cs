@@ -59,6 +59,7 @@ def test_more_ops():
     apt, bpt, gpt = a, b, g
 
     assert(near(gmg.data, gpt.data.item()))
+
     '''
     tol = 1e-6
     # forward pass went well
