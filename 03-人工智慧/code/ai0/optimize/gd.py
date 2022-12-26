@@ -1,22 +1,9 @@
-import math
-import numpy as np
+from math0 import grad
 from numpy.linalg import norm
-
-# 函數 f 對變數 k 的偏微分: df / dk
-def df(f, p, k, step=0.01):
-    p1 = p.copy()
-    p1[k] = p[k]+step
-    return (f(p1) - f(p)) / step
-
-# 函數 f 在點 p 上的梯度
-def grad(f, p, step=0.01):
-    gp = p.copy()
-    for k in range(len(p)):
-        gp[k] = df(f, p, k, step)
-    return gp
+import numpy as np
 
 # 使用梯度下降法尋找函數最低點
-def gradientDescendent(f, p, step=0.01, max_loops=100000, dump_period=1000):
+def gd(f, p, step=0.01, max_loops=100000, dump_period=1000):
     for i in range(max_loops):
         fp = f(p)
         gp = grad(f, p) # 計算梯度 gp

@@ -50,47 +50,11 @@ class Value: # 含有梯度的值節點
         out._backward = _backward
         return out
 
-    def matmul(self,other):
-        other = other if isinstance(other, Value) else Value(other)
-        out = Value(np.matmul(self.data , other.data), (self, other), 'matmul')
-        def _backward():
-            self.grad += np.dot(out.grad,other.data.T)
-            other.grad += np.dot(self.data.T,out.grad)
-            
-        out._backward = _backward
-        return out
-
-    def softmax(self):
-
-        out =  Value(np.exp(self.data) / np.sum(np.exp(self.data), axis=1)[:, None], (self,), 'softmax')
-        softmax = out.data
-        def _backward():
-            self.grad += (out.grad - np.reshape(
-            np.sum(out.grad * softmax, 1),
-            [-1, 1]
-              )) * softmax
-        out._backward = _backward
-        return out
-
     def log(self):
         out = Value(np.log(self.data),(self,),'log')
         def _backward():
             self.grad += out.grad/self.data
         out._backward = _backward
-        return out
-    
-    def reduce_sum(self,axis = None):
-        out = Value(np.sum(self.data,axis = axis), (self,), 'REDUCE_SUM')
-        
-        def _backward():
-            output_shape = np.array(self.data.shape)
-            output_shape[axis] = 1
-            tile_scaling = self.data.shape // output_shape
-            grad = np.reshape(out.grad, output_shape)
-            self.grad += np.tile(grad, tile_scaling)
-            
-        out._backward = _backward
-
         return out
 
     def backward(self):
@@ -110,6 +74,7 @@ class Value: # 含有梯度的值節點
         self.grad = 1
         for v in reversed(topo): # 反向排列
             v._backward()
+
     # 以下這些運算，由於 + * 已被 override ，所以反向傳遞會自動建構，不需再自己加入反向傳遞函數
     def __neg__(self): # -self
         return self * -1
