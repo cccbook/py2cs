@@ -30,6 +30,7 @@ models
 # deepLearning data
 data
 .data
+out
 processed
 raw
 node_modules
