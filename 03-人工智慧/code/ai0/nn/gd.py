@@ -1,9 +1,10 @@
-def gd(p, loss, model, max_loops=100000, dump_period=1000, step=0.01):
+def gd(p, loss, model, max_loops=100000, dump_period=1000): # step=0.01
     for i in range(max_loops):
         ploss = loss(p)
         model.zero_grad()
         ploss.backward()
-        learning_rate = step # learning_rate = 1.0 - 0.9*i/100
+        # learning_rate = step # learning_rate = 1.0 - 0.9*i/100
+        learning_rate = 1.0 - 0.9*i/max_loops
         for n in model.parameters():
             n.data -= learning_rate * n.grad
 

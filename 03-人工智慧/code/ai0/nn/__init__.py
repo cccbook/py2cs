@@ -1,3 +1,3 @@
-from .value import *
-from .net import *
+from .micrograd import *
 from .gd import *
+from .batch import *

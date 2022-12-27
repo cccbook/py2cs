@@ -7,5 +7,5 @@ def f(p):
 
 def test_gd():
     p = [0.0, 0.0, 0.0]
-    opt.gd(f, p)
+    opt.gd(p, f, max_loops=1000, dump_period=10)
     assert np.allclose(p, [0.0]*len(p))

@@ -3,7 +3,7 @@ from numpy.linalg import norm
 import numpy as np
 
 # 使用梯度下降法尋找函數最低點
-def gd(f, p, step=0.01, max_loops=100000, dump_period=1000):
+def gd(p, f, step=0.01, max_loops=100000, dump_period=1000):
     for i in range(max_loops):
         fp = f(p)
         gp = grad(f, p) # 計算梯度 gp
