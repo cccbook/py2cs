@@ -1,5 +1,11 @@
 # 陳鍾誠的『人工智慧』課程 
 
+## AIMA
+
+* https://github.com/aimacode/aima-python/
+    * https://github.com/aimacode/aima-python/blob/master/probability.ipynb
+    * https://github.com/aimacode/aima-python/blob/master/mdp.ipynb
+    
 ## 書籍 d2l
 
 學深度學習技術，用下列這本書就對了

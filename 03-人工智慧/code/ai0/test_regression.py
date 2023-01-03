@@ -18,7 +18,8 @@ def loss(p):
 if len(sys.argv) > 1 and sys.argv[1] == "micrograd":
     import nn
     p = [nn.Value(0.0), nn.Value(0.0)]
-    model = nn.Vars(p)
+    ploss = loss(p)
+    model = nn.Vars([p[0], p[1], ploss])
     plearn = nn.gd(p, loss, model, max_loops=3000, dump_period=1)
 else:        
     p = [0.0, 0.0]
