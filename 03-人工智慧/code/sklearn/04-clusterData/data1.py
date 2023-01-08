@@ -2,8 +2,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from sklearn.datasets import make_blobs
-X, y_true = make_blobs(n_samples=300, centers=4,
-                       cluster_std=0.60, random_state=0)
-plt.scatter(X[:, 0], X[:, 1], s=50)
+# from sklearn.datasets import make_blobs
+import sklearn.datasets as skdt
+n = 300
+# X, y = skdt.make_blobs(n_samples=n, centers=4, cluster_std=0.60, random_state=0)
+X, y = skdt.make_moons(n_samples=n, noise=0.1)
+# X, y = skdt.make_circles(n_samples=n, noise=0.1, factor=0.5)
+# X, y = skdt.make_classification(n_samples=n, n_features=10, n_informative=5, n_redundant=5, n_classes=2)
+# X, y = skdt.make_regression(n_samples=n, n_features=10)
+plt.scatter(X[:, 0], X[:, 1]) # , s=50
 plt.show()
