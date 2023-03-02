@@ -15,8 +15,9 @@ def distance(a,b):
 
 def circle_length(s):
     d = 0.0
-    for i in range(len(s)):
-        d += distance(xy[s[i]], xy[s[(i+1)%len(s)]])
+    n = len(s)
+    for i in range(n):
+        d += distance(xy[s[i]], xy[s[(i+1)%n]])
     return d
 
 print('s0=', s0)
