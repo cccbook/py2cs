@@ -23,5 +23,5 @@ if __name__=="__main__":
 
     x = 0.0
     print('init:x=', x)
-    x = hill_climbing(x, neighbor, height)
+    x = climbing(x, neighbor, height)
     print('best:x=', x)

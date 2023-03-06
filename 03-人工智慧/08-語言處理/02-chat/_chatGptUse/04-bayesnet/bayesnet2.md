@@ -1,2 +1,0 @@
-# bayesnet2.py
-
