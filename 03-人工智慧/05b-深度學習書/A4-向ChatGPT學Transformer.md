@@ -1,5 +1,16 @@
 # 向ChatGPT學Transformer
 
+ccc:
+
+Transformer 的結構如下圖所示
+
+![](img/Transformer.png)
+
+這是由 Google 的團隊在 
+
+* Attention Is All You Need
+    * https://arxiv.org/pdf/1706.03762.pdf
+
 ## ccc: 你能用 pytorch 內建模組，寫一個精簡的 Transformer 框架，並說明其意義嗎？
 
 ChatGPT:

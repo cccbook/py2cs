@@ -1,5 +1,11 @@
 # 第五章 GPT
 
+* ccc: GPT 的第一篇論文 (OpenAI)
+    * [Improving Language Understanding
+by Generative Pre-Training](https://gwern.net/doc/www/s3-us-west-2.amazonaws.com/d73fdc5ffa8627bce44dcda2fc012da638ffb158.pdf)
+
+![](./img/GPT.png)
+
 ## 5.1 GPT的發展史
 
 GPT（Generative Pre-trained Transformer）是由OpenAI開發的一種基於Transformer模型的自然語言生成模型。GPT系列模型的發展歷程如下：

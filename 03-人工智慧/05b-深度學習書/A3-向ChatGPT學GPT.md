@@ -1,5 +1,14 @@
 # 向ChatGPT學GPT
 
+
+* ccc: GPT 的第一篇論文 (OpenAI)
+    * [Improving Language Understanding
+by Generative Pre-Training](https://gwern.net/doc/www/s3-us-west-2.amazonaws.com/d73fdc5ffa8627bce44dcda2fc012da638ffb158.pdf)
+
+![](./img/GPT.png)
+
+論文 2: [The Illustrated GPT-2 (Visualizing Transformer Language Models)](http://jalammar.github.io/illustrated-gpt2/)
+
 ## ccc: 你能用 pytorch 內建模組，寫一個精簡的 GPT 框架，並說明其意義嗎？
 
 ChatGPT:
