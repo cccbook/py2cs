@@ -4,6 +4,29 @@
 
 Transformer 是一種革命性的深度學習模型，主要用於自然語言處理等序列數據的處理。其最初由 Google 在 2017 年提出，旨在解決 RNN 模型的長期依賴問題，並通過自注意力機制（self-attention mechanism）實現了比以往更好的效果。Transformer 的核心是注意力機制，它通過將輸入序列中的每個位置與其他位置進行比較，以計算出輸出序列中每個位置應該關注的重要性，從而實現輸入序列到輸出序列的映射。
 
+----
+ccc 說明:
+
+Transformer 的結構如下圖所示
+
+![](Transformer.png)
+
+這是由 Google 的團隊在 [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf) 這篇論文中出來的架構。
+
+後來演化為 BERT / GPT 等架構。
+
+2018 年到 2022 年之間，BERT 聲勢較強，但在 2022 年底 ChatGPT 出來之後，我們才發現 GPT 非常厲害。
+
+BERT 和上述的 Transformer 圖形類似，只是改為雙向，很適合用來做各種《問答，翻譯》等任務。 
+
+GPT 只使用 Transformer 的 Encoder ，但沒用 Decoder ，因此是著重生成，而不需要標準答案。 
+
+GPT 採用克漏字 (MLM: Masked Language Model) 和 下一句預測 (NSP: Next Sentence Prediction) 的方式訓練，只要有語料就可以了，不需要特別準備答案。
+
+這是為何可以規模化的原因，GPT 3 有 175B 個參數，也就是 1750 億個參數，而且訓練語料超級大。
+
+----
+
 Transformer 的基本結構包含以下幾個部分：
 
 1. 輸入嵌入（Input Embedding）：將輸入序列中的每個單詞轉換為向量表示。
@@ -58,6 +81,10 @@ NSP 任務的輸入包括一對句子 $S = [s_1, s_2]$，其中 $s_1$ 和 $s_2$ 
 具體來說，模型會將最後一個位置的輸出 $h_{n+1}$ 傳遞到一個二元分類器中，這個分類器會輸出一個 0 或 1 的標籤，表示第二個句子是否為第一個句子的下一個句子。在訓練過程中，模型會通過最小化交叉熵損失來學習 NSP 任務。
 
 ## 4.4 Python + Pytorch實現
+
+ccc: 以下這段，ChatGPT 寫得不好，後來我用問答的方式，得到比較好的結果，請參考下列文章。
+
+* [A4-向ChatGPT學Transformer](A4-向ChatGPT學Transformer.md)
 
 在 Python + Pytorch 中實現 Transformer，需要使用 Pytorch 的 nn 模塊中提供的相關類別和方法。以下是實現 Transformer 的主要步驟：
 
