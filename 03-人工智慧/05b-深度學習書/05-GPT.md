@@ -55,3 +55,11 @@ ccc: 算了，我覺得 ChatGPT 在亂寫，就別貼了 ....
 後來我用問答的方式，得到很好的結果，請參考下列文章：
 
 * [A3-向ChatGPT學GPT](A3-向ChatGPT學GPT.md)
+
+然後就可以跑下列程式專案
+
+* https://github.com/graykode/gpt-2-Pytorch
+
+或直接看 colab 的結果
+
+* https://colab.research.google.com/github/graykode/gpt-2-Pytorch/blob/master/GPT2_Pytorch.ipynb
