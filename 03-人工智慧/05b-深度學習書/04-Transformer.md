@@ -9,9 +9,14 @@ ccc 說明:
 
 Transformer 的結構如下圖所示
 
-![](Transformer.png)
+![](img/Transformer.png)
 
-這是由 Google 的團隊在 [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf) 這篇論文中出來的架構。
+這是由 Google 的團隊在 
+
+* Attention Is All You Need
+    * https://arxiv.org/pdf/1706.03762.pdf
+
+這篇論文中出來的架構。
 
 後來演化為 BERT / GPT 等架構。
 
