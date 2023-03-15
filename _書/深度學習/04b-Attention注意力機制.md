@@ -114,3 +114,57 @@ class Attention(nn.Module):
 
 這個實現中，K、Q、V 的計算方式是比較標準的，可應用於 Transformer 等深度學習模型中。
 
+## ccc: 那如何建構 multi head attention 呢?
+
+ChatGPT:
+
+Multi-head Attention 是一種常用的注意力機制，它能夠提高模型對輸入序列的建模能力，以及對不同特徵子空間的建模能力。下面是使用 PyTorch 實現 Multi-head Attention 的範例程式碼：
+
+```py
+import torch
+import torch.nn as nn
+
+class MultiHeadAttention(nn.Module):
+    def __init__(self, hidden_dim, num_heads):
+        super(MultiHeadAttention, self).__init__()
+        self.hidden_dim = hidden_dim
+        self.num_heads = num_heads
+        self.head_dim = hidden_dim // num_heads
+        
+        self.W_q = nn.Linear(hidden_dim, hidden_dim, bias=False)
+        self.W_k = nn.Linear(hidden_dim, hidden_dim, bias=False)
+        self.W_v = nn.Linear(hidden_dim, hidden_dim, bias=False)
+        self.W_o = nn.Linear(hidden_dim, hidden_dim, bias=False)
+        
+    def forward(self, encoder_outputs, hidden_state):
+        # encoder_outputs: [batch_size, seq_len, hidden_dim]
+        # hidden_state: [batch_size, hidden_dim]
+        
+        batch_size = encoder_outputs.size(0)
+        
+        Q = self.W_q(hidden_state).view(batch_size, -1, self.num_heads, self.head_dim).transpose(1, 2) 
+        K = self.W_k(encoder_outputs).view(batch_size, -1, self.num_heads, self.head_dim).transpose(1, 2) 
+        V = self.W_v(encoder_outputs).view(batch_size, -1, self.num_heads, self.head_dim).transpose(1, 2) 
+        
+        attn_scores = torch.matmul(Q, K.transpose(-2, -1)) / torch.sqrt(torch.tensor(self.head_dim, dtype=torch.float32))
+        attn_scores = torch.softmax(attn_scores, dim=-1)
+        
+        context = torch.matmul(attn_scores, V)
+        context = context.transpose(1, 2).contiguous().view(batch_size, -1, self.hidden_dim)
+        
+        output = self.W_o(context)
+        
+        return output, attn_scores
+
+```
+
+在此實現中，我們首先使用三個線性層來計算注意力機制的 K、Q、V。然後，我們使用 view() 函數將矩陣重塑為形狀 (batch_size, num_heads, seq_len, head_dim)，然後將第二和第三個維度進行轉置。這樣做是為了讓每個頭獨立地學習對輸入序列進行注意力機制。
+
+接下來，我們使用矩陣乘法計算注意力分數，並透過 softmax 函數歸一化。然後，我們用注意力權重加權值矩陣 V，以生成上下文向量。最後，我們將上下文向量重塑為 (batch_size, seq_len, hidden_dim) 的形狀，並通過另一個線性層進行轉換。
+
+這個實現中，K、Q、V 的計算方式與基本的注意力機制相同，只是將輸入序列分為了 num_heads 個子空間，並獨立地對每個子空間進行 K、Q、V 的計算。這樣可以提高模型對輸入序列的建模能力，特別是當輸入序列非常長時。
+
+值得注意的是，在 Multi-head Attention 中，注意力機制的輸出是每個頭的注意力權重和對應的值向量的加權和。因此，我們需要將獨立計算的每個頭的結果進行連接(concatenate)。
+
+最後，返回輸出向量和注意力權重。注意力權重可以用於可視化模型對輸入序列的關注。
+
