@@ -49,6 +49,8 @@ Transformer 模型通常由多個 Transformer 模塊組成，每個 Transformer 
 
 Transformer 模型中的注意力機制是其中一個最重要的結構，它允許模型能夠選擇性地關注輸入序列中的不同部分，以便有效地進行序列建模任務。在 Transformer 中，注意力機制使用的是自注意力機制，也就是說，模型在計算注意力權重時，是基於輸入序列的不同位置計算的。
 
+![](./img/Attention.png)
+
 具體來說，自注意力機制會根據輸入序列中不同位置的詞彙向量，計算它們之間的相似度，然後使用這些相似度來計算注意力權重。在 Transformer 中，計算注意力權重的公式如下：
 
 $$ \text{Attention}(Q,K,V)=\text{softmax}(\frac{QK^T}{\sqrt{d_k}})V $$
