@@ -29,7 +29,6 @@ GPT 只使用 Transformer 的 Encoder ，但沒用 Decoder ，因此是著重生
 GPT 採用克漏字 (MLM: Masked Language Model) 和 下一句預測 (NSP: Next Sentence Prediction) 的方式訓練，只要有語料就可以了，不需要特別準備答案。
 
 這是為何可以規模化的原因，GPT 3 有 175B 個參數，也就是 1750 億個參數，而且訓練語料超級大。
-
 ----
 
 Transformer 的基本結構包含以下幾個部分：
