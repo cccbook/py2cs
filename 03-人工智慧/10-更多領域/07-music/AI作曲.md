@@ -6,6 +6,7 @@
 * AI 作曲家
     * AIVA -- [SoundCloud](https://soundcloud.com/user-95265362/sets/genesis) / [YouTube](https://www.youtube.com/playlist?list=PLv7BOfa4CxsHAMHQj0ScPXSbgBlLglRPo)
     * OpenAI:MuseNet -- https://openai.com/blog/musenet/
+    * Google:MusicLM -- https://google-research.github.io/seanet/musiclm/examples/
 * AI 作詞家
     * [微软小冰](https://zh.wikipedia.org/wiki/%E5%B0%8F%E5%86%B0)
 
