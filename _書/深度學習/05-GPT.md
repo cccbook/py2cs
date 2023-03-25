@@ -1,9 +1,5 @@
 # 第五章 GPT
 
-* [YouTube: (鄭國威) GPT-4 登場！先理解 ChatGPT 原理，才知道怎麼利用 AI 幫你輸入！](https://www.youtube.com/watch?v=sL1BNTU-4PI)
-* [ChatGPT 原理剖析 (1/3) — 對 ChatGPT 的常見誤解](https://www.youtube.com/watch?v=yiY4nPOzJEg)
-* [ChatGPT 原理剖析 (2/3) — 預訓練 (Pre-train)](https://www.youtube.com/watch?v=1ah7Qsri_c8)
-* [ChatGPT 原理剖析 (3/3) — ChatGPT 所帶來的研究問題](https://www.youtube.com/watch?v=UsaZhQ9bY2k)
 
 ccc: 
 
