@@ -16,7 +16,7 @@ Q-Learning算法的基本流程如下：
     Q(s,a) \leftarrow Q(s,a) + \alpha \left(R(s,a,s') + \gamma \max_{a'} Q(s',a') - Q(s,a)\right)
     $$
     
-    其中，$\alpha$是學習率，$\gamma$是折扣因子，用於調整未來獎勵的價值，$\max_{a'} Q(s',a')$表示下一個狀態$s'$下最大的動作值函數值；
+    其中，$\alpha$ 是學習率， $\gamma$ 是折扣因子，用於調整未來獎勵的價值，$\max_{a'} Q(s',a')$ 表示下一個狀態 $s'$ 下最大的動作值函數值；
     
 6. 重複執行步驟3至5，直到達到終止狀態。
 
