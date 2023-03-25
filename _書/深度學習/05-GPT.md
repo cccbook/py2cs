@@ -1,8 +1,26 @@
 # 第五章 GPT
 
-* ccc: GPT 的第一篇論文 (OpenAI)
-    * [Improving Language Understanding
-by Generative Pre-Training](https://gwern.net/doc/www/s3-us-west-2.amazonaws.com/d73fdc5ffa8627bce44dcda2fc012da638ffb158.pdf)
+* [YouTube: (鄭國威) GPT-4 登場！先理解 ChatGPT 原理，才知道怎麼利用 AI 幫你輸入！](https://www.youtube.com/watch?v=sL1BNTU-4PI)
+* [ChatGPT 原理剖析 (1/3) — 對 ChatGPT 的常見誤解](https://www.youtube.com/watch?v=yiY4nPOzJEg)
+* [ChatGPT 原理剖析 (2/3) — 預訓練 (Pre-train)](https://www.youtube.com/watch?v=1ah7Qsri_c8)
+* [ChatGPT 原理剖析 (3/3) — ChatGPT 所帶來的研究問題](https://www.youtube.com/watch?v=UsaZhQ9bY2k)
+
+ccc: 
+
+我以為 GPT 是用 MLM + NSP 當 loss，結果搞錯了
+BERT 才是 MLM + NSP 
+GPT1 除語言模型外，有4 種 Task
+1. Classification
+2. Entailment
+3. Similarity 
+4. Multiple Choice
+...
+
+1. https://paperswithcode.com/method/gpt
+    * OpenAI GPT1: [Improving Language Understanding by Generative Pre-Training](https://gwern.net/doc/www/s3-us-west-2.amazonaws.com/d73fdc5ffa8627bce44dcda2fc012da638ffb158.pdf)
+    * OpenAI GPT2: [Language Models are Unsupervised Multitask Learners](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
+    * OpenAI GPT3: [Language models are few shot learners) ](https://arxiv.org/pdf/2005.14165.pdf)
+2. [The Journey of Open AI GPT models](https://medium.com/walmartglobaltech/the-journey-of-open-ai-gpt-models-32d95b7b7fb)
 
 ![](./img/GPT.png)
 
@@ -63,3 +81,26 @@ ccc: 算了，我覺得 ChatGPT 在亂寫，就別貼了 ....
 或直接看 colab 的結果
 
 * https://colab.research.google.com/github/graykode/gpt-2-Pytorch/blob/master/GPT2_Pytorch.ipynb
+
+## 呼叫 GPT
+
+1. pipeline for text generation
+
+```py
+from transformers import pipeline, set_seed
+generator = pipeline('text-generation', model='gpt2')
+set_seed(42)
+generator("Hello, I'm a language model,", max_length=30, num_return_sequences=5)
+```
+
+2. Get the features of a given text in PyTorch:
+
+```py
+from transformers import GPT2Tokenizer, GPT2Model
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2Model.from_pretrained('gpt2')
+text = "Replace me by any text you'd like."
+encoded_input = tokenizer(text, return_tensors='pt')
+output = model(**encoded_input)
+
+```
