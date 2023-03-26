@@ -1,5 +1,22 @@
 # 第四章 Transformer
 
+
+* [YouTube: The A.I. Hacker - Michael Phi: Illustrated Guide to Transformers Neural Network: A step by step explanation](https://www.youtube.com/watch?v=4Bdc55j80l8) (超讚)
+* [YouTube: CodeEmporium](https://www.youtube.com/@CodeEmporium/playlists) (超棒的AI教學頻道)
+    * [YouTube: Transformer Neural Networks - EXPLAINED! (Attention is all you need)](https://www.youtube.com/watch?v=TQQlZhbC5ps) (讚，補充前一個影片)
+    * [GPT - Explained!](https://www.youtube.com/watch?v=3IweGfgytgY)
+    * [Blowing up the Transformer Encoder!](https://www.youtube.com/watch?v=QwfuoNhjbkI)
+    * [Layer Normalization - EXPLAINED (in Transformer Neural Networks)](https://www.youtube.com/watch?v=G45TuC6zRf4)
+    * [Blowing up Transformer Decoder architecture](https://www.youtube.com/watch?v=ekg-hoob0SM)
+    * [Positional Encoding in Transformer Neural Networks Explained](https://www.youtube.com/watch?v=ZMxVe-HK174)
+
+* [YouTube: Transformers, explained: Understand the model behind GPT, BERT, and T5](https://www.youtube.com/watch?v=SZorAJ4I-sA)
+
+* [TRANSFORMERS FROM SCRATCH](https://peterbloem.nl/blog/transformers)
+    * Code: https://github.com/pbloem/former
+    * Video: https://www.youtube.com/playlist?list=PLIXJ-Sacf8u60G1TwcznBmK6rEL3gmZmV
+    * [Pytorch Transformers from Scratch (Attention is all you need)](https://www.youtube.com/watch?v=U0s0f995w14)
+
 ## 4.1 Transformer的基本結構
 
 Transformer 是一種革命性的深度學習模型，主要用於自然語言處理等序列數據的處理。其最初由 Google 在 2017 年提出，旨在解決 RNN 模型的長期依賴問題，並通過自注意力機制（self-attention mechanism）實現了比以往更好的效果。Transformer 的核心是注意力機制，它通過將輸入序列中的每個位置與其他位置進行比較，以計算出輸出序列中每個位置應該關注的重要性，從而實現輸入序列到輸出序列的映射。

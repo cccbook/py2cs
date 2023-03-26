@@ -25,6 +25,9 @@ Attention机制其实就是一系列注意力分配系数，也就是一系列�
 
 ## ccc: 請用 pytorch 實作一個注意力機制的 Attention 層
 
+* https://github.com/pbloem/former/blob/master/former/transformers.py
+* https://github.com/pbloem/former/blob/master/former/modules.py
+
 ChatGPT:
 
 以下是使用 PyTorch 實現注意力機制的 Attention 層的示例程式碼：
