@@ -1,0 +1,1 @@
+GPT是"Generative Pre-trained Transformer"的縮寫，是一種基於Transformer模型的自然語言處理模型，由OpenAI開發。GPT模型是一個具有自學能力的預訓練模型，可以進行自然語言生成、語言理解、文本生成等多種NLP任務，表現出色。
