@@ -34,12 +34,12 @@ def writefile(fname, text):
     
 def fchat(fname, question):
     response = chat(question)
-    writefile(fname, f'\n\nUser:\n{question}\n\nChatGPT:\n{response}')
+    # writefile(fname, f'\n\nUser:\n{question}\n\nChatGPT:\n{response}')
+    writefile(fname, response)
     return response
 
 def expand(prompt):
     tokens = prompt.split()
-    # print('tokens=', tokens)
     elist = []
     for token in tokens:
         if token.startswith('$'):
@@ -48,7 +48,7 @@ def expand(prompt):
                 elist.append(token)
             else:
                 elist.append(etoken)
-        elif token.startswith('$file:'):
+        elif token.startswith('file:'):
             fname = token[5:]
             text = readfile(fname)
             if text is None:
@@ -63,16 +63,20 @@ def expand(prompt):
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 keys = {
-    'tw': '繁體中文',
-    'en': 'English',
-    'md': 'Markdown+LaTex,  add space before and after $..$'
+    'mt': '翻譯下列文章',
+    'tw': '以 繁體中文 格式輸出',
+    'en': 'output in English',
+    'jp': 'output in Japanese',
+    'md': 'format in Markdown+LaTex, add space before and after $..$'
 }
 
-narg = len(sys.argv)
-user = sys.argv[1] if narg > 1 else 'user'
-lang = sys.argv[2] if narg > 2 else '繁體中文'
-format = sys.argv[3] if narg > 3 else 'Markdown+LaTex, add space before and after $..$'
-print(f'Welcome {user} to shortgpt. You may use $key for short')
+print('Welcome to shortgpt. You may use the following commands')
+print('1. quit')
+print('2. history')
+print('3. shell <command>')
+print('4. chat <prompt>')
+print('5. fchat <file> <prompt>\n')
+print('You may use the following $key for short')
 print(json.dumps(keys, indent=2, ensure_ascii=False))
 
 response = None

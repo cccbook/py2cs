@@ -1,5 +1,0 @@
-Stochastic calculus is a branch of mathematics concerned with modeling and analyzing random processes. It extends the methods of calculus and probability theory to the study of systems with randomness, such as financial markets, statistical physics, and other complex systems.
-
-One of the key tools in stochastic calculus is Brownian motion, which is a random process with certain properties. Another important tool is Ito's Lemma, which allows us to compute the differential of a stochastic process and to apply calculus to stochastic integrals.
-
-Stochastic calculus has many applications in finance, where it is used to model and analyze financial instruments and to price derivatives such as options. It is also used in physics to describe the behavior of systems with random fluctuations, and in engineering to design control systems that can adapt to uncertain inputs.
