@@ -7,11 +7,14 @@ import openai
 # from multiprocessing import Process
 import threading
 
+META = ''
+
 def chat(question):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a chatbot"},
+            {"role": "system", "content": f"{META}"},
             {"role": "user", "content": f"{question}"}
         ]
     )
@@ -34,8 +37,7 @@ def writefile(fname, text):
     
 def fchat(fname, question):
     response = chat(question)
-    # writefile(fname, f'\n\nUser:\n{question}\n\nChatGPT:\n{response}')
-    writefile(fname, response)
+    writefile(fname, f'## {question}\n\n{response}')
     return response
 
 def expand(prompt):
@@ -76,6 +78,7 @@ print('2. history')
 print('3. shell <command>')
 print('4. chat <prompt>')
 print('5. fchat <file> <prompt>\n')
+print('6. meta <prompt>\n')
 print('You may use the following $key for short')
 print(json.dumps(keys, indent=2, ensure_ascii=False))
 
@@ -88,14 +91,18 @@ while True:
 
     if command == 'quit':
         break
-    if command.startswith('shell '):
+    elif command.startswith('meta '):
+        META = expand(command[5:])
+        print("META=", META)
+        continue
+    elif command.startswith('shell '):
         os.system(command[6:])
         continue
-    if command.startswith('history'):
+    elif command.startswith('history'):
         for i in range(len(commandList)):
             print(f'{i}:{commandList[i]}')
         continue
-    if command.startswith('chat '):
+    elif command.startswith('chat '):
         prompt = command[5:]
         question = expand(prompt)
         print('========question=======')
@@ -103,7 +110,8 @@ while True:
         response = chat(question)
         print('========response=======')
         print(response)
-    if command.startswith('fchat '):
+        continue
+    elif command.startswith('fchat '):
         tokens = command[6:].split()
         fname = tokens[0]
         prompt = ' '.join(tokens[1:])
@@ -115,3 +123,5 @@ while True:
         thread = threading.Thread(target=fchat, args=(fname, question, ))
         thread.start()
         continue
+    else:
+        print('Command error, try again!')
