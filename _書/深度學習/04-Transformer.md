@@ -1,5 +1,13 @@
 # 第四章 Transformer
 
+![](./img/TransformerSplit.jpg)
+
+https://www.facebook.com/photo/?fbid=10218547033106478&set=a.2104140142503
+
+* https://github.com/dair-ai/Transformers-Recipe
+    * [LANGUAGE MODELING WITH NN.TRANSFORMER AND TORCHTEXT](https://pytorch.org/tutorials/beginner/transformer_tutorial.html)
+    * [Transformers from Scratch](https://e2eml.school/transformers.html)
+    * [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
 
 * [YouTube: The A.I. Hacker - Michael Phi: Illustrated Guide to Transformers Neural Network: A step by step explanation](https://www.youtube.com/watch?v=4Bdc55j80l8) (超讚)
 * [YouTube: CodeEmporium](https://www.youtube.com/@CodeEmporium/playlists) (超棒的AI教學頻道)
