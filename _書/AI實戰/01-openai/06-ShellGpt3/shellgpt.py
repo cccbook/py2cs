@@ -8,7 +8,8 @@ import threading
 
 PSTACK = [
     {"role": "system", "content": "You are a chatbot"},
-    {"role": "system", "content": "以 繁體中文 格式輸出"},
+    {"role": "system", "content": "輸出為 繁體中文"},
+    {"role": "system", "content": "盡量寫詳細點，每次至少輸出 2000 字，以 markdown 格式輸出"},
 ]
 
 keys = {
