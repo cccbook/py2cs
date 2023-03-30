@@ -7,7 +7,8 @@ import openai
 import threading
 
 PSTACK = [
-    {"role": "system", "content": "You are a chatbot"}
+    {"role": "system", "content": "You are a chatbot"},
+    {"role": "system", "content": "以 繁體中文 格式輸出"},
 ]
 
 keys = {
@@ -17,13 +18,13 @@ keys = {
     'jp': 'output in Japanese',
     'md': 'format in Markdown+LaTex, add space before and after $..$',
     'mail': '寫一封標題為 $title 的 email，語言為 $lang',
-    'book': '請寫一本主題為 $title 的書，章節盡量細分，先寫目錄',
+    'book': '請寫一本主題為 $title 的書，用 $lang 書寫，章節盡量細分，每章至少要有 5 個小節，章用 第 x 章，小節前面用 1.1, 1.2 這樣的編號，先寫目錄',
     'lang': '繁體中文', 
-    'title': 'python AI 實戰',
+    'title': '腦神經心理學與多巴胺',
 }
 
 def printStack():
-    for i, p in enumerate(printStack):
+    for i, p in enumerate(PSTACK):
         print(f"{i}:{p['content']}")
 
 def printKeys():
@@ -80,35 +81,13 @@ def expand1(prompt):
 def expand(prompt):
     return expand1(expand1(prompt))
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-print('Welcome to shortgpt. You may use the following commands')
-print('* quit')
-print('* history')
-print('* shell <command>')
-print('* chat <prompt>')
-print('* fchat <file> <prompt>\n')
-print('* plist\n')
-print('* pclear\n')
-print('* ppush <prompt>\n')
-print('* ppop\n')
-print('* pinsert <i> <prompt>\n')
-print('* pdelete <i>\n')
-print('* kset <key> <value>')
-print('You may use the following $key for short')
-printKeys()
-
-response = None
-question = None
-commandList = []
-while True:
-    command = input('\ncommand> ')
-    commandList.append(command)
+def handleCommand(command):
+    global commandList, PSTACK
     tokens = command.strip().split(' ')
     op = tokens[0]
 
     if op == 'quit':
-        break
+        return
     elif op == 'plist':
         printStack()
     elif op == 'pclear':
@@ -160,6 +139,35 @@ while True:
         print(f'Response will write to file:{fname}')
         thread = threading.Thread(target=fchat, args=(fname, question, ))
         thread.start()
-        continue
     else:
         print('Command error, try again!')
+
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+print('Welcome to shortgpt. You may use the following commands')
+print('* quit')
+print('* history')
+print('* shell <command>')
+print('* chat <prompt>')
+print('* fchat <file> <prompt>\n')
+print('* plist\n')
+print('* pclear\n')
+print('* ppush <prompt>\n')
+print('* ppop\n')
+print('* pinsert <i> <prompt>\n')
+print('* pdelete <i>\n')
+print('* kset <key> <value>')
+print('You may use the following $key for short')
+printKeys()
+
+commandList = []
+while True:
+    command = input('\ncommand> ')
+    if command == 'quit': break
+    commandList.append(command)
+    try:
+        handleCommand(command)
+    except Exception as err:
+        print(f"Error: {err}, {type(err)}")
+
