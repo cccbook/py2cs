@@ -1,5 +1,23 @@
 # AI 技術的改變
 
+## ChatGPT 正為元宇宙鋪路
+
+雖然元宇宙感覺已經快死透了
+
+而 AI 正在火山噴發 ...
+
+但是最近的 AI 技術
+
+感覺很可能為元宇宙鋪好技術的康莊大道
+
+例如:
+
+1. 具有像人類智能與行為一樣的 NPC
+2. 能讓任何人以 AI 擬真身分 (2D+3D)，活在元宇宙的技術正在成形
+3. 擁有現實世界不存在，卻又異常逼真的背景世界 
+4. 能模擬任何存在或不存在的生物，包含 2D/3D 模型與動作行為
+5. AI 能自行創造故事線，一個沒有人知道過程和結果會怎樣的虛擬宇宙
+
 ## 大模型智慧湧現?
 
 * https://www.facebook.com/ccckmit/posts/pfbid02cAQHdy5kLaEwkXYBMEeTPBojKLp7XQ3FXEjkWS1orfjMZ6W2Tm4wVnc6iMhAdVDcl
