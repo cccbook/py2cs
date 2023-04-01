@@ -12,20 +12,18 @@ header, nav, footer, main {
     height: 500px;
 }
 
-select {
-    border: 1px solid #cccccc;
-    color: #666666;
-    padding: 5px;
+span, button, select, input, textarea {
     border-radius: 5px;
+    color: #666666;
+    border: 1px solid #cccccc;
+    padding: 5px;
 }
 
 textarea {
     display:block;
     width:100%;
     margin:10px auto;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    height: 200px;
+    height: 10em;
     padding: 10px;
 }
 
@@ -33,13 +31,11 @@ div {
     display:block;
     width:100%;
     margin:10px auto;
-    /*border: 1px solid #cccccc;*/
-    border-radius: 5px;
     height: 200px;
     padding: 10px;
 }
 
 #question {
-    height: 40px;
+    height: 5em;
 }
 
