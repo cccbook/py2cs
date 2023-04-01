@@ -1,0 +1,68 @@
+header, nav, footer, main {
+    width: 95%;
+    display: block;
+    margin:10px auto;
+}
+
+button, select, input {
+    color: #666666;
+    border: 1px solid #cccccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+textarea, div {
+    display: block;
+    width: 95%;
+    margin:5px auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+textarea {
+    height:5em;
+}
+
+table {
+    width:95%;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+    border-radius: 5px;
+}
+
+th {
+    padding-top: 12px 3px;
+    text-align: left;
+    background-color: #555555;
+    color: white;  
+}
+
+tr, td, th {
+    padding:5px 10px;
+    border:1px solid #cccccc;
+}
+/*
+tr:hover {
+    background-color: #f0f0f0;
+}
+*/
+#menu {
+    float:right;
+}
+
+#template {
+    height: 20em;
+}
+
+#question {
+    width: 70%;
+}
+/*
+textarea {
+    display:block;
+    width:95%;
+    margin:10px auto;
+    height: 10em;
+    padding: 10px;
+}
+*/
