@@ -1,16 +1,19 @@
-[中文版](./CREADME.md)
+# 深度學習模型的比較研究 -- 以 MNIST 為例
 
-# A Comparative Study of Neural Network Model
-
-## Experiments
+## 實驗結果 (只跑 3 個 epoch)
 
 ```
+fc1    92%
+fc2    91.97%
+fc2relu 94.71%
+fc2sig  91.26%
 lenet  11%
-fc2net 95%
-fc2    10%  // overflow error!
-fc2s   92%
-fc1    74%
-fc1s   92%
+lenetRelu 95.56%
+lenetReluDrop 95.55%
+lenetSimplify 96.81%
+lenetSimplify2 97.17%
+lenetSimplify3 97.81%
+lenetSimplify4 97.32%
 ```
 
 <!--

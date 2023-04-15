@@ -6,6 +6,11 @@
     * https://github.com/aimacode/aima-python/blob/master/probability.ipynb
     * https://github.com/aimacode/aima-python/blob/master/mdp.ipynb
     
+## 書籍
+
+* Understanding Deep Learning, Simon J.D. Prince
+    * https://udlbook.github.io/udlbook/
+
 ## 書籍 d2l
 
 學深度學習技術，用下列這本書就對了
