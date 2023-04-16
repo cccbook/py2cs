@@ -61,14 +61,13 @@ def backward(model, X, y, alpha):
     return cross_entropy(cache["z"], y)
 ```
 
+問題是，還原之後不是應該直接變回 X 嗎？為何 loss 是用 z 和 y 來做 cross_entropy， y 是甚麼？
 
+那個 y 是詞彙 x 的上下文，也就是前後的詞彙，如下圖所示。
 
+![](https://miro.medium.com/max/1400/1*Mmp1vbFOxrmiCF17lYJWRA.png)
 
-
-
-
-
-
+所以還原後，要讓 z 在上下文關係當中，預測能力和 x 愈像愈好
 
 
 # ccc: 深度學習中的 Embed 層是甚麼？
