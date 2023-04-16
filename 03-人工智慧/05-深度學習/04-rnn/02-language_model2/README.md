@@ -2,35 +2,52 @@
 
 ## 產生 train.txt
 
-```
-$ python gen_train.py > train.txt
-```
-
-## 學習 train.txt 並產生 sample.txt
-
-輸入： train.txt
-
-輸出： sample.txt
-
-```
-$ python main.py
-Epoch [1/5], Step[0/22], Loss: 2.7744, Perplexity: 16.03
-Epoch [2/5], Step[0/22], Loss: 1.4379, Perplexity:  4.21
-Epoch [3/5], Step[0/22], Loss: 1.3359, Perplexity:  3.80
-Epoch [4/5], Step[0/22], Loss: 1.3163, Perplexity:  3.73
-Epoch [5/5], Step[0/22], Loss: 1.2976, Perplexity:  3.66
-Sampled [100/1000] words and save to sample.txt
-Sampled [200/1000] words and save to sample.txt
-Sampled [300/1000] words and save to sample.txt
-Sampled [400/1000] words and save to sample.txt
-Sampled [500/1000] words and save to sample.txt
-Sampled [600/1000] words and save to sample.txt
-Sampled [700/1000] words and save to sample.txt
-Sampled [800/1000] words and save to sample.txt
-Sampled [900/1000] words and save to sample.txt
-Sampled [1000/1000] words and save to sample.txt
+```bash
+$ gen.sh
 ```
 
+## 學習 exp_train.txt 並產生 exp_sample.txt
+
+training
+
+```
+$ python main.py exp train
+tokens= 14388
+len(ids)= 14388
+ids.size(0)= 14388
+batch_size= 20
+num_batches= 719
+len(ids)= 14380
+ids.shape= torch.Size([20, 719])
+vocab_size= 16
+Epoch [1/3], Step[0/23], Loss: 2.7705, Perplexity: 15.97
+Epoch [2/3], Step[0/23], Loss: 1.4124, Perplexity:  4.11
+Epoch [3/3], Step[0/23], Loss: 1.3985, Perplexity:  4.05
+```
+
+testing
+
+```
+$ python main.py exp test
+tokens= 14388
+len(ids)= 14388
+ids.size(0)= 14388
+batch_size= 20
+num_batches= 719
+len(ids)= 14380
+ids.shape= torch.Size([20, 719])
+vocab_size= 16
+Sampled [100/1000] words and save to exp_sample.txt
+Sampled [200/1000] words and save to exp_sample.txt
+Sampled [300/1000] words and save to exp_sample.txt
+Sampled [400/1000] words and save to exp_sample.txt
+Sampled [500/1000] words and save to exp_sample.txt
+Sampled [600/1000] words and save to exp_sample.txt
+Sampled [700/1000] words and save to exp_sample.txt
+Sampled [800/1000] words and save to exp_sample.txt
+Sampled [900/1000] words and save to exp_sample.txt
+Sampled [1000/1000] words and save to exp_sample.txt
+```
 
 ## 參考文獻
 
