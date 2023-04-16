@@ -32,7 +32,7 @@ forward:
 
 $A_1 = X W_1$
 
-$A_2 = A1 W_2$
+$A_2 = A_1 W_2$
 
 $Z = softmax(A_2)$
 
