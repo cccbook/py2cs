@@ -21,21 +21,26 @@ seq_length = 30
 learning_rate = 0.002
 
 def load_data(train_file):
-    global corpus, ids, vocab_size, num_batches
-    corpus = Corpus()
-    ids = corpus.get_data(train_file, batch_size)
+    global corpusObj, ids, vocab_size, num_batches
+    corpusObj = Corpus()
+    ids = corpusObj.get_data(train_file, batch_size)
     print('ids.shape=', ids.shape)
-    vocab_size = len(corpus.dictionary)
+    vocab_size = len(corpusObj.dictionary)
     print('vocab_size=', vocab_size)
     num_batches = ids.size(1) // seq_length
 
 # RNN based language model
 class RNNLM(nn.Module):
-    def __init__(self, vocab_size, embed_size, hidden_size, num_layers):
+    def __init__(self, method, vocab_size, embed_size, hidden_size, num_layers):
         super(RNNLM, self).__init__()
+        method = method.upper()
         self.embed = nn.Embedding(vocab_size, embed_size)
-        self.rnn = nn.RNN(embed_size, hidden_size, num_layers, batch_first=True)
-        # self.rnn = nn.GRU(embed_size, hidden_size, num_layers, batch_first=True)
+        if method == "RNN":
+            self.rnn = nn.RNN(embed_size, hidden_size, num_layers, batch_first=True)
+        elif method == "GRU":
+            self.rnn = nn.GRU(embed_size, hidden_size, num_layers, batch_first=True)
+        else:
+            raise Exception(f'RNNLM: method={method} not supported!')
         self.linear = nn.Linear(hidden_size, vocab_size)
         
     def forward(self, x, h):
@@ -52,9 +57,9 @@ class RNNLM(nn.Module):
         out = self.linear(out)
         return out, h
 
-def train(name):
+def train(corpus, method):
     global model
-    model = RNNLM(vocab_size, embed_size, hidden_size, num_layers).to(device)
+    model = RNNLM(method, vocab_size, embed_size, hidden_size, num_layers).to(device)
 
     # Loss and optimizer
     criterion = nn.CrossEntropyLoss()
@@ -88,12 +93,13 @@ def train(name):
 
     # Save the model checkpoints
     # torch.save(model.state_dict(), 'model.ckpt')
-    torch.save(model, name+'_model.ckpt')
+    torch.save(model, f'{corpus}_{method}.pt')
 
-def test(name):
+def test(corpus, method):
     # Test the model
+    model = torch.load(f'{corpus}_{method}.pt')
     with torch.no_grad():
-        with open(name+'_sample.txt', 'w', encoding='utf-8') as f:
+        with open(f'{corpus}_{method}.txt', 'w', encoding='utf-8') as f:
             # Set intial hidden ane cell states
             state = torch.zeros(num_layers, 1, hidden_size).to(device)
 
@@ -113,22 +119,23 @@ def test(name):
                 input.fill_(word_id)
 
                 # File write
-                word = corpus.dictionary.idx2word[word_id]
+                word = corpusObj.dictionary.idx2word[word_id]
                 word = '\n' if word == '<eos>' else word + ' '
                 f.write(word)
 
                 if (i+1) % 100 == 0:
-                    print('Sampled [{}/{}] words and save to {}'.format(i+1, num_samples, name+'_sample.txt'))
+                    print('Sampled [{}/{}] words and save to {}'.format(i+1, num_samples, f'{corpus}_{method}.txt'))
 
 if len(sys.argv) < 3:
-    print('usage: python main.py <name> (train or test)')
+    print('usage: python main.py <corpus> (train or test)')
     exit()
 
-name = sys.argv[1]
-action = sys.argv[2]
-load_data(name+"_train.txt")
-if action == 'train':
-    train(name)
-elif action == 'test':
-    model = torch.load(name+'_model.ckpt')
-    test(name)
+corpus = sys.argv[1]
+method = sys.argv[2]
+job = sys.argv[3]
+
+load_data(f'{corpus}.txt')
+if job == 'train':
+    train(corpus, method)
+elif job == 'test':
+    test(corpus, method)
