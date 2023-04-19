@@ -1,0 +1,92 @@
+cat love the white dog tw: 這隻 白 貓 追 一隻 白 狗 
+en: a pig tw: 一隻 豬 
+en: the white cat tw: 這隻 白 貓 
+en: a little dog tw: 一隻 小 狗 
+en: a black dog chase a black cat tw: 一隻 黑 豬 追 這隻 黑 貓 
+en: a little pig chase every dog tw: 一隻 小 豬 追 每隻 狗 
+en: a dog tw: 一隻 狗 
+en: a pig tw: 一隻 豬 
+en: every pig bite every white cat tw: 每隻 白 豬 咬 每隻 白 貓 
+en: a cat tw: 一隻 貓 
+en: a cat tw: 一隻 貓 
+en: a little cat tw: 一隻 小 貓 
+en: a white pig bite a little cat tw: 一隻 豬 追 一隻 小 貓 
+en: the pig bite every black cat tw: 這隻 豬 咬 每隻 黑 貓 
+en: a cat bite a cat 一隻 貓 追 一隻 貓 
+en: the cat chase the white pig tw: 這隻 貓 追 這隻 白 豬 
+en: a white cat tw: 一隻 白 貓 
+en: a pig tw: 一隻 豬 
+en: the white dog love every pig tw: 這隻 白 豬 愛 每隻 狗 
+en: the little pig bite the cat tw: 這隻 小 豬 
+en: every white pig love a pig tw: 每隻 白 豬 愛 一隻 豬 
+en: every black pig tw: 每隻 黑 豬 
+en: a black cat tw: 一隻 黑 貓 
+en: the little cat tw: 這隻 小 貓 
+en: every cat chase a cat tw: 每隻 貓 追 一隻 黑 貓 
+en: the white cat love every black cat tw: 這隻 黑 貓 愛 每隻 黑 貓 
+en: a white cat tw: 一隻 白 貓 
+en: a white pig tw: 一隻 白 豬 
+en: a dog tw: 一隻 狗 
+en: every pig bite every pig tw: 每隻 豬 咬 每隻 豬 
+en: the black cat love a white pig tw: 這隻 黑 貓 愛 一隻 黑 豬 
+en: a black dog love a pig tw: 一隻 黑 狗 愛 每隻 豬 
+en: the little pig bite the little cat tw: 這隻 小 豬 咬 這隻 小 貓 
+en: a black cat tw: 一隻 黑 貓 
+en: the cat tw: 這隻 貓 
+en: a black dog tw: 一隻 黑 狗 
+en: every cat tw: 每隻 貓 
+en: a black pig love a dog tw: 一隻 黑 豬 愛 一隻 狗 
+en: the cat tw: 這隻 貓 
+en: a cat chase a cat tw: 一隻 貓 追 一隻 貓 
+en: every little dog tw: 每隻 小 狗 
+en: a cat tw: 一隻 貓 
+en: a cat tw: 這隻 貓 
+en: every cat love a black cat tw: 每隻 貓 愛 一隻 黑 貓 愛 每隻 黑 貓 
+en: a dog love a black pig tw: 一隻 狗 愛 一隻 黑 豬 
+en: the cat tw: 這隻 貓 
+en: the cat bite the cat tw: 這隻 貓 咬 這隻 貓 
+en: the cat chase every white pig tw: 這隻 貓 愛 每隻 白 豬 
+en: a white cat tw: 一隻 白 貓 
+en: every black dog tw: 每隻 黑 狗 
+en: every little cat tw: 每隻 小 貓 
+en: the cat love a white pig tw: 這隻 貓 愛 一隻 白 豬 
+en: a white cat tw: 一隻 白 貓 
+en: a little pig tw: 一隻 小 豬 
+en: the pig chase a pig tw: 這隻 豬 追 一隻 豬 
+en: the dog tw: 這隻 狗 
+en: every cat bite every black cat tw: 每隻 貓 咬 每隻 黑 貓 
+en: a dog tw: 一隻 狗 
+en: a cat tw: 一隻 貓 
+en: a pig love a cat tw: 一隻 豬 愛 一隻 貓 
+en: a pig love a dog tw: 一隻 豬 愛 一隻 狗 
+en: a pig tw: 一隻 豬 
+en: the pig bite every pig tw: 這隻 豬 咬 每隻 豬 
+en: the white cat bite a little dog tw: 這隻 白 貓 咬 一隻 小 狗 
+en: the black dog tw: 這隻 黑 狗 
+en: a cat tw: 一隻 貓 
+en: a little pig tw: 一隻 小 豬 
+en: the black pig tw: 這隻 黑 豬 
+en: every black cat every every little cat tw: 每隻 黑 貓 愛 每隻 黑 貓 
+en: the cat tw: 這隻 貓 
+en: a cat love every black pig tw: 一隻 貓 愛 每隻 黑 豬 
+en: a pig tw: 一隻 豬 
+en: every dog tw: 每隻 狗 
+en: the dog tw: 這隻 狗 
+en: a dog love every pig tw: 一隻 狗 愛 每隻 豬 
+en: a cat chase a little dog tw: 一隻 貓 追 一隻 小 狗 
+en: every black cat tw: 每隻 黑 貓 
+en: a white pig love every pig tw: 一隻 白 豬 愛 每隻 豬 
+en: the cat tw: 這隻 貓 
+en: the cat tw: 這隻 貓 
+en: the cat chase the white cat tw: 這隻 貓 追 這隻 白 貓 
+en: a cat tw: 一隻 貓 
+en: every little cat tw: 每隻 小 貓 
+en: a black cat tw: 一隻 黑 貓 
+en: a white cat chase a pig tw: 一隻 白 豬 追 一隻 貓 
+en: the black cat tw: 這隻 黑 貓 
+en: a dog chase the dog tw: 一隻 狗 追 這隻 狗 
+en: a black cat tw: 一隻 黑 貓 
+en: a black pig tw: 一隻 黑 豬 
+en: a little dog tw: 一隻 小 狗 
+en: a pig bite a pig tw: 一隻 豬 咬 一隻 豬 
+en: the cat tw: 這隻 貓 
