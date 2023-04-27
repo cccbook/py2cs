@@ -33,7 +33,7 @@ $ gen.sh
 training
 
 ```
-$ python main.py exp train
+$ python main.py exp gru train
 tokens= 14388
 len(ids)= 14388
 ids.size(0)= 14388
