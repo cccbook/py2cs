@@ -248,3 +248,10 @@ def evaluate(model, val_loader, criterion, device):
 ```
 
 在训练过程中，我们可以使用 scheduler 对学习率进行动态调整，以加快训练速度和提高模型性能。
+
+## 參考文獻
+
+* [YouTube/ CodeEmporium
+/Language Model](https://www.youtube.com/playlist?list=PLTl9hO2Oobd_bzXUpzKMKA3liq2kj6LfE)
+    * [Transformer Neural Networks - an Overview!](https://www.youtube.com/watch?v=O3xbVmpdJwU) (讚)
+    * [NLP with Neural Networks & Transformers](https://www.youtube.com/watch?v=BGKumht1qLA)
