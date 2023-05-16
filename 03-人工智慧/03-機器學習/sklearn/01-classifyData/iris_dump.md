@@ -1,4 +1,12 @@
-$ python iris1.py
+# iris_dump.py
+
+
+
+```
+$ python iris_dump.py
+iris.keys()= dict_keys(['data', 'target', 'frame', 'target_names', 'DESCR', 'feature_names', 'filename', 'data_module'])
+filename= iris.csv
+feature_names= ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
 data= [[5.1 3.5 1.4 0.2]
  [4.9 3.  1.4 0.2]
  [4.7 3.2 1.3 0.2]
@@ -151,8 +159,11 @@ data= [[5.1 3.5 1.4 0.2]
  [5.9 3.  5.1 1.8]]
 target= [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+
  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
+
  2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+
  2 2]
 target_names= ['setosa' 'versicolor' 'virginica']
 DESCR= .. _iris_dataset:
@@ -196,15 +207,19 @@ from Fisher's paper. Note that it's the same as in R, but not as in the UCI
 Machine Learning Repository, which has two wrong data points.
 
 This is perhaps the best known database to be found in the
-pattern recognition literature.  Fisher's paper is a classic in the field and
+pattern recognition literature.  Fisher's paper is a classic in the field
+and
 is referenced frequently to this day.  (See Duda & Hart, for example.)  The
-data set contains 3 classes of 50 instances each, where each class refers to a
+data set contains 3 classes of 50 instances each, where each class refers
+to a
 type of iris plant.  One class is linearly separable from the other 2; the
+
 latter are NOT linearly separable from each other.
 
 .. topic:: References
 
    - Fisher, R.A. "The use of multiple measurements in taxonomic problems"
+
      Annual Eugenics, 7, Part II, 179-188 (1936); also in "Contributions to
      Mathematical Statistics" (John Wiley, NY, 1950).
    - Duda, R.O., & Hart, P.E. (1973) Pattern Classification and Scene Analysis.
@@ -218,3 +233,47 @@ latter are NOT linearly separable from each other.
    - See also: 1988 MLC Proceedings, 54-64.  Cheeseman et al"s AUTOCLASS II
      conceptual clustering system finds 3 classes in the data.
    - Many, many more ...
+x=      sepal length (cm)  ...  petal width (cm)
+0                  5.1  ...               0.2
+1                  4.9  ...               0.2
+2                  4.7  ...               0.2
+3                  4.6  ...               0.2
+4                  5.0  ...               0.2
+..                 ...  ...               ...
+145                6.7  ...               2.3
+146                6.3  ...               1.9
+147                6.5  ...               2.0
+148                6.2  ...               2.3
+149                5.9  ...               1.8
+
+[150 rows x 4 columns]
+y=      target
+0         0
+1         0
+2         0
+3         0
+4         0
+..      ...
+145       2
+146       2
+147       2
+148       2
+149       2
+
+[150 rows x 1 columns]
+data=
+      sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target
+0                  5.1               3.5  ...               0.2       0
+1                  4.9               3.0  ...               0.2       0
+2                  4.7               3.2  ...               0.2       0
+3                  4.6               3.1  ...               0.2       0
+4                  5.0               3.6  ...               0.2       0
+..                 ...               ...  ...               ...     ...
+145                6.7               3.0  ...               2.3       2
+146                6.3               2.5  ...               1.9       2
+147                6.5               3.0  ...               2.0       2
+148                6.2               3.4  ...               2.3       2
+149                5.9               3.0  ...               1.8       2
+
+[150 rows x 5 columns]
+```

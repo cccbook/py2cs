@@ -1,5 +1,6 @@
 # AI作曲
 
+* [音樂版 ChatGPT 來了！ Google AI 音樂生成器 MusicLM 開放註冊使用 ](https://www.inside.com.tw/article/31592-google-text-to-music-ai-MusicLM-public)
 * [有趣的AI作曲](https://zhuanlan.zhihu.com/p/40811268)
 * [计算音乐基础知识](https://zhuanlan.zhihu.com/p/61287265)
 * [AI作曲到底可以达到什么程度？](https://zhuanlan.zhihu.com/p/30723955)
