@@ -153,6 +153,7 @@ for i_dataset, (dataset, algo_params) in enumerate(datasets):
     # ============
     ms = cluster.MeanShift(bandwidth=bandwidth, bin_seeding=True)
     two_means = cluster.MiniBatchKMeans(n_clusters=params["n_clusters"], n_init="auto")
+    print('connectivity=', connectivity)
     ward = cluster.AgglomerativeClustering(
         n_clusters=params["n_clusters"], linkage="ward", connectivity=connectivity
     )
@@ -161,6 +162,7 @@ for i_dataset, (dataset, algo_params) in enumerate(datasets):
         eigen_solver="arpack",
         affinity="nearest_neighbors",
     )
+    print('eps=', params['eps'])
     dbscan = cluster.DBSCAN(eps=params["eps"])
     optics = cluster.OPTICS(
         min_samples=params["min_samples"],

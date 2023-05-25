@@ -1,4 +1,3 @@
-#是否避孕決策樹
 import numpy as np
 from sklearn.metrics import confusion_matrix,classification_report
 from sklearn import tree
