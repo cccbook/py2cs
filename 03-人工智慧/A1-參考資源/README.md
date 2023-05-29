@@ -1,4 +1,8 @@
-#  Dive into Deep Learning (动手学深度学习)
+# Reference
+
+* http://neuralnetworksanddeeplearning.com/
+
+##  Dive into Deep Learning (动手学深度学习)
 
 學深度學習技術，用這本書就對了
 
