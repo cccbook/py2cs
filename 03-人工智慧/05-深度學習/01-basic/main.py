@@ -34,21 +34,22 @@ y = w * x + b    # y = 2 * x + 3
 y.backward()
 
 # Print out the gradients.
-print(x.grad)    # x.grad = 2 
-print(w.grad)    # w.grad = 1 
-print(b.grad)    # b.grad = 1 
+print('=====================')
+print('x.grad=', x.grad)    # x.grad = 2 
+print('w.grad=', w.grad)    # w.grad = 1 
+print('b.grad=', b.grad)    # b.grad = 1 
 
 
 # ================================================================== #
 #                    2. Basic autograd example 2                     #
 # ================================================================== #
-
+print('=====================')
 # Create tensors of shape (10, 3) and (10, 2).
 x = torch.randn(10, 3)
 y = torch.randn(10, 2)
 
 # Build a fully connected layer.
-linear = nn.Linear(3, 2)
+linear = nn.Linear(3, 2) # y = w x + b
 print ('w: ', linear.weight)
 print ('b: ', linear.bias)
 
@@ -86,21 +87,22 @@ print('loss after 1 step optimization: ', loss.item())
 # ================================================================== #
 #                     3. Loading data from numpy                     #
 # ================================================================== #
-
+print('=====================')
 # Create a numpy array.
 x = np.array([[1, 2], [3, 4]])
-
+print('numpy:x=', x)
 # Convert the numpy array to a torch tensor.
 y = torch.from_numpy(x)
-
+print('torch:y=', y)
 # Convert the torch tensor to a numpy array.
 z = y.numpy()
+print('numpy:z=', z)
 
 
 # ================================================================== #
 #                         4. Input pipeline                           #
 # ================================================================== #
-
+print('=====================')
 # Download and construct CIFAR-10 dataset.
 train_dataset = torchvision.datasets.CIFAR10(root='./data/',
                                              train=True, 
@@ -121,7 +123,7 @@ train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
 data_iter = iter(train_loader)
 
 # Mini-batch images and labels.
-images, labels = data_iter.next()
+# images, labels = data_iter.next()
 
 # Actual usage of the data loader is as below.
 for images, labels in train_loader:
@@ -132,7 +134,7 @@ for images, labels in train_loader:
 # ================================================================== #
 #                5. Input pipeline for custom dataset                 #
 # ================================================================== #
-
+print('=====================')
 # You should build your custom dataset as below.
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self):
@@ -150,16 +152,17 @@ class CustomDataset(torch.utils.data.Dataset):
         return 0 
 
 # You can then use the prebuilt data loader. 
+'''
 custom_dataset = CustomDataset()
 train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,
                                            batch_size=64, 
                                            shuffle=True)
-
+'''
 
 # ================================================================== #
 #                        6. Pretrained model                         #
 # ================================================================== #
-
+print('=====================')
 # Download and load the pretrained ResNet-18.
 resnet = torchvision.models.resnet18(pretrained=True)
 
@@ -179,7 +182,7 @@ print (outputs.size())     # (64, 100)
 # ================================================================== #
 #                      7. Save and load the model                    #
 # ================================================================== #
-
+print('=====================')
 # Save and load the entire model.
 torch.save(resnet, './model/model.ckpt')
 model = torch.load('./model/model.ckpt')

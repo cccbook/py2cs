@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torchvision
 
-model = torch.load('results/model.ckpt')
+model = torch.load('results/model.pth')
 
 batch_size_test = 1000
 test_loader = torch.utils.data.DataLoader(
