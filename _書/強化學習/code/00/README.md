@@ -30,3 +30,7 @@ https://sourceforge.net/projects/swig/files/swigwin/swigwin-4.1.1/swigwin-4.1.1.
 ```
 pip install gymnasium[box2d]
 ```
+
+還是失敗 ...
+
+不過別用 box2d 顯示就會成功，改用 human !

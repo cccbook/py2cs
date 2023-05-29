@@ -1,5 +1,22 @@
 # 陳鍾誠的『人工智慧』課程 
 
+## 深度學習
+
+學深度學習技術，用下列這本書就對了
+
+* https://d2l.ai/ -- Dive into Deep Learning
+
+還有中文版
+
+* https://zh.d2l.ai/ -- 动手学深度学习
+    * 李沐課程 -- https://courses.d2l.ai/zh-v2/
+
+## 強化學習
+
+而且不要買書，裡面每章都是完整的 Jupyter Notebook 單元，可以剪貼去執行
+
+* [強化學習: 蘑菇书EasyRL](https://datawhalechina.github.io/easy-rl/#/) (超讚)
+
 ## AIMA
 
 * https://github.com/aimacode/aima-python/
@@ -11,18 +28,6 @@
 * Understanding Deep Learning, Simon J.D. Prince
     * https://udlbook.github.io/udlbook/
 
-## 書籍 d2l
-
-學深度學習技術，用下列這本書就對了
-
-* https://d2l.ai/ -- Dive into Deep Learning
-
-還有中文版
-
-* https://zh.d2l.ai/ -- 动手学深度学习
-    * 李沐課程 -- https://courses.d2l.ai/zh-v2/
-
-而且不要買書，裡面每章都是完整的 Jupyter Notebook 單元，可以剪貼去執行
 
 ## 課程影片
 
@@ -75,3 +80,4 @@
     * 14.8. 来自Transformers的双向编码器表示（BERT）
     * 14.9. 用于预训练BERT的数据集
     * 14.10. 预训练BERT
+

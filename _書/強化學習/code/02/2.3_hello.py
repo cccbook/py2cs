@@ -1,13 +1,12 @@
-import gym
+import gymnasium as gym
 
 # 創建環境
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1', render_mode="human")
 
 # 重置環境，得到起始狀態
-observation = env.reset()
+observation, info = env.reset()
 
-# 環境運行，最多執行 100 步
-for t in range(100):
+for t in range(1000000):
     env.render()
     action = env.action_space.sample()  # 隨機選擇一個動作
     r = env.step(action)  # 執行動作並返回環境的下一個狀態和相應的回饋信號
