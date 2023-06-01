@@ -31,7 +31,10 @@ for episode in range(num_episodes):
         # 更新狀態
         state = next_state
 
-env = gym.make('FrozenLake-v1', render_mode="human")
+print('Q=', Q)
+
+# env = gym.make('FrozenLake-v1', render_mode="human")
+env = gym.make('FrozenLake-v1', render_mode="rgb_array")
 # 測試Q-learning的表現
 num_test_episodes = 100
 num_successful_episodes = 0
