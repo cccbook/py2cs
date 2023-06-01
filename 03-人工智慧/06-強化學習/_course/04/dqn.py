@@ -267,3 +267,30 @@ plot_rewards(res_dic['rewards'], cfg, tag="train")
 res_dic = test(cfg, env, agent)
 plot_rewards(res_dic['rewards'], cfg, tag="test")  # 画出结果
 
+def run(env, agent):
+    print("开始展示 run！")
+    rewards = []  # 记录所有回合的奖励
+    steps = []
+    for i_ep in range(5):
+        ep_reward = 0  # 记录一回合内的奖励
+        ep_step = 0
+        state, info = env.reset()  # 重置环境，返回初始状态
+        for _ in range(100000):
+            env.render()
+            ep_step+=1
+            action = agent.predict_action(state)  # 选择动作
+            next_state, reward, done, _, info = env.step(action)  # 更新环境，返回transition
+            state = next_state  # 更新下一个状态
+            ep_reward += reward  # 累加奖励
+            if done:
+                break
+        steps.append(ep_step)
+        rewards.append(ep_reward)
+        print(f"回合：{i_ep+1}/{cfg['test_eps']}，奖励：{ep_reward:.2f}")
+    print("完成執行")
+    env.close()
+    return {'rewards':rewards}
+
+# 展示
+env = gym.make(cfg['env_name'], render_mode="human") # 创建环境
+run(env, agent)
