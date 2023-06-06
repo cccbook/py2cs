@@ -2,7 +2,6 @@
 import gymnasium as gym
 import numpy as np
 
-# env = gym.make('FrozenLake-v1', render_mode="rgb_array")
 env = gym.make('FrozenLake-v1', render_mode="rgb_array")
 print('env=', env)
 print('env.observation_space=', env.observation_space)
@@ -11,51 +10,31 @@ print('env.reward_range=', env.reward_range)
 print('env.spec=', env.spec)
 print('env.metadata=', env.metadata)
 
-# 超參數
 alpha = 0.8          # 學習速率
 gamma = 0.95         # 折扣因子
 num_episodes = 2000  # 迭代次數
+Q = np.zeros([env.observation_space.n,env.action_space.n]) # Q-table 初始化
 
-# Q-table
-Q = np.zeros([env.observation_space.n,env.action_space.n])
-
-# 執行所有迭代
-for i in range(num_episodes):
-    # 初始化環境
-    s, info = env.reset()
-    # print('info=', info)
-    rAll = 0
-    d = False
-    j = 0
-    # Q-learning 更新規則
-    while j < 99:
-        j += 1
-        # 選擇行動
-        # print('s=', s)
-        a = np.argmax(Q[s,:] + np.random.randn(1,env.action_space.n)*(1./(i+1)))
-        # 取得新的狀態和報酬
-        s1, reward, terminated, truncated, info = env.step(a)
-        
-        # 將新的知識累積到 Q-table 中
-        Q[s,a] = Q[s,a] + alpha*(reward + gamma*np.max(Q[s1,:]) - Q[s,a])
-        # 公式 : $$Q(s_t, a_t)←Q(s_t, a_t)+\alpha(reward+\gamma \max_{a} Q(s_{t+1},a)-Q(s_t,a_t))$$
-
-        rAll += reward
+for i in range(num_episodes): # 學習循環
+    s, info = env.reset() # 初始化環境
+    for j in range(99): # 行動根據報酬調整 Q 表
+        a = np.argmax(Q[s,:] + np.random.randn(1,env.action_space.n)*(1./(i+1))) # 選擇報酬最高的行動 (加上一點隨機，才有可能探索所有行動，但隨機性隨時間降低，逐漸消失)
+        s1, reward, terminated, truncated, info = env.step(a) # 執行動作，取得回饋
+        Q[s,a] += alpha*(reward + gamma*np.max(Q[s1,:]) - Q[s,a]) # Q-Learning 公式
+        #       學習速率*(真實報酬+ 折扣因子*下一步最佳報酬 -預測報酬)
         s = s1
         if terminated == True:
             break
 
 print('Q=', Q)
-print("完成迭代")
 
-print('展示學習成果 ...')
+print('完成迭代，展示學習成果 ...')
 
 env = gym.make('FrozenLake-v1', render_mode="human")
-# env = gym.make('FrozenLake-v1', render_mode="ansi")
 s, info = env.reset()
 for i in range(100):
     env.render()
-    a = np.argmax(Q[s,:])
+    a = np.argmax(Q[s,:]) # 永遠取 Q table 中的最佳行動
     s, reward, terminated, truncated, info = env.step(a)
     if terminated == True:
         break
