@@ -22,7 +22,7 @@
 
 ### 度量張量變換的公式
 
-當參考系改變時，度量張量的分量也會改變。用$g'_{ij}$表示新參考系中的度量張量，$g_{ij}$表示原參考系中的度量張量，$x^{\mu}$表示新參考系中的4-維坐標，$x^{\nu}$表示原參考系中的4-維坐標，則有以下公式：
+當參考系改變時，度量張量的分量也會改變。用$g'_{ij}$表示新參考系中的度量張量， $g_{ij}$表示原參考系中的度量張量， $x^{\mu}$表示新參考系中的4-維坐標， $x^{\nu}$表示原參考系中的4-維坐標，則有以下公式：
 
 $$g'_{\mu\nu}=\frac{\partial x^{\alpha}}{\partial x'^{\mu}}\frac{\partial x^{\beta}}{\partial x'^{\nu}}g_{\alpha\beta}$$
 
@@ -54,7 +54,7 @@ $$T_{\mu\nu}=\frac{\partial x'^{\alpha}}{\partial x^{\mu}}\frac{\partial x'^{\be
 
 $$R^{\gamma}_{\ \tau \mu \nu}=\partial_{\mu}\Gamma^{\gamma}_{\ \nu \tau}-\partial_{\nu}\Gamma^{\gamma}_{\ \mu \tau}+\Gamma^{\gamma}_{\ \mu \lambda}\Gamma^{\lambda}_{\ \nu \tau}-\Gamma^{\gamma}_{\ \nu \lambda}\Gamma^{\lambda}_{\ \mu \tau}$$
 
-在這個公式中，$\Gamma^{\gamma}_{\ \nu \tau}$表示克氏符號，表示時空的曲率；$\partial_{\mu}$則表示對座標$x^{\mu}$求偏微分。
+在這個公式中， $\Gamma^{\gamma}_{\ \nu \tau}$表示克氏符號，表示時空的曲率；$\partial_{\mu}$則表示對座標$x^{\mu}$求偏微分。
 
 ### 黎曼曲率張量的性質
 
@@ -76,7 +76,7 @@ $$R^{\gamma}_{\ \tau \mu \nu}=\partial_{\mu}\Gamma^{\gamma}_{\ \nu \tau}-\partia
 
 $$S_{\mu\nu}=\frac{1}{2}\Big(T_{\mu\nu}+T_{\nu\mu}\Big)-\frac{1}{3}\delta_{\mu\nu}T^{\alpha}_{\ \alpha}$$
 
-其中，$\delta_{\mu\nu}$為Kronecker delta符號：當$\mu=\nu$時$\delta_{\mu\nu}=1$，否則$\delta_{\mu\nu}=0$；$T_{\mu\nu}$表示動能量-動量張量。
+其中， $\delta_{\mu\nu}$為Kronecker delta符號：當$\mu=\nu$時$\delta_{\mu\nu}=1$，否則$\delta_{\mu\nu}=0$；$T_{\mu\nu}$表示動能量-動量張量。
 
 ### 謝菲爾德張量的性質
 
@@ -89,7 +89,7 @@ $$S_{\mu\nu}=\frac{1}{2}\Big(T_{\mu\nu}+T_{\nu\mu}\Big)-\frac{1}{3}\delta_{\mu\n
 
 $$\nabla_{\nu}S^{\mu\nu}=T^{\mu\nu}u_{\nu}$$
 
-其中，$\nabla_{\nu}$表示協變導數，$u_{\nu}$表示四速度。這個關係表明，謝菲爾德張量在某些情況下可以用來描述能量動量張量的一些性質。
+其中， $\nabla_{\nu}$表示協變導數， $u_{\nu}$表示四速度。這個關係表明，謝菲爾德張量在某些情況下可以用來描述能量動量張量的一些性質。
 
 ## 總結
 
