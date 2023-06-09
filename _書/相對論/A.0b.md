@@ -54,7 +54,7 @@ $$T_{\mu\nu}=\frac{\partial x'^{\alpha}}{\partial x^{\mu}}\frac{\partial x'^{\be
 
 $$R^{\gamma}_{\ \tau \mu \nu}=\partial_{\mu}\Gamma^{\gamma}_{\ \nu \tau}-\partial_{\nu}\Gamma^{\gamma}_{\ \mu \tau}+\Gamma^{\gamma}_{\ \mu \lambda}\Gamma^{\lambda}_{\ \nu \tau}-\Gamma^{\gamma}_{\ \nu \lambda}\Gamma^{\lambda}_{\ \mu \tau}$$
 
-在這個公式中， $\Gamma^{\gamma}_{\ \nu \tau}$表示克氏符號，表示時空的曲率；$\partial_{\mu}$則表示對座標$x^{\mu}$求偏微分。
+在這個公式中， $\Gamma^{\gamma}_{\ \nu \tau}$表示克氏符號，表示時空的曲率； $\partial_{\mu}$則表示對座標$x^{\mu}$求偏微分。
 
 ### 黎曼曲率張量的性質
 
@@ -76,7 +76,7 @@ $$R^{\gamma}_{\ \tau \mu \nu}=\partial_{\mu}\Gamma^{\gamma}_{\ \nu \tau}-\partia
 
 $$S_{\mu\nu}=\frac{1}{2}\Big(T_{\mu\nu}+T_{\nu\mu}\Big)-\frac{1}{3}\delta_{\mu\nu}T^{\alpha}_{\ \alpha}$$
 
-其中， $\delta_{\mu\nu}$為Kronecker delta符號：當$\mu=\nu$時$\delta_{\mu\nu}=1$，否則$\delta_{\mu\nu}=0$；$T_{\mu\nu}$表示動能量-動量張量。
+其中， $\delta_{\mu\nu}$為Kronecker delta符號：當$\mu=\nu$時$\delta_{\mu\nu}=1$，否則$\delta_{\mu\nu}=0$； $T_{\mu\nu}$表示動能量-動量張量。
 
 ### 謝菲爾德張量的性質
 
