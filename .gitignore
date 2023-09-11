@@ -3,6 +3,8 @@ files
 raw
 *.pth
 .pytest_cache
+*.bin
+.cache/
 
 .vscode
 *.exe

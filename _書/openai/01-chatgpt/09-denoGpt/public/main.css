@@ -1,0 +1,41 @@
+header, nav, footer, main {
+    width: 95%;
+    display: block;
+    margin:10px auto;
+}
+
+#menu {
+    float:right;
+}
+
+#template {
+    height: 500px;
+}
+
+span, button, select, input, textarea {
+    border-radius: 5px;
+    color: #666666;
+    border: 1px solid #cccccc;
+    padding: 5px;
+}
+
+textarea {
+    display:block;
+    width:100%;
+    margin:10px auto;
+    height: 10em;
+    padding: 10px;
+}
+
+div {
+    display:block;
+    width:100%;
+    margin:10px auto;
+    height: 200px;
+    padding: 10px;
+}
+
+#question {
+    height: 5em;
+}
+
