@@ -3,10 +3,11 @@ from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
 
 # 定义 Lorenz 吸引子的微分方程
-def lorenz(t, y, sigma, rho, beta):
-    dx_dt = sigma * (y[1] - y[0])
-    dy_dt = y[0] * (rho - y[2]) - y[1]
-    dz_dt = y[0] * y[1] - beta * y[2]
+def lorenz(t, xyz, sigma, rho, beta):
+    x,y,z = xyz
+    dx_dt = sigma * (y - x)
+    dy_dt = x * (rho - z) - y
+    dz_dt = x * y - beta * z
     return [dx_dt, dy_dt, dz_dt]
 
 # 设置参数
