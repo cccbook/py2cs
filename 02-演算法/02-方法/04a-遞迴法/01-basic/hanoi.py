@@ -5,5 +5,5 @@ def hanoi(n, curr, dest, rest):
     hanoi(n - 1, rest, dest, curr)
     return
 
-hanoi(3, "A", "B", "C")
-# hanoi(64, "A", "B", "C")
+# hanoi(3, "A", "B", "C")
+hanoi(64, "A", "B", "C")
