@@ -4,9 +4,10 @@ def hillClimbing(f, p, h=0.01):
     failCount = 0                    # 失敗次數歸零
     while (failCount < 10000):       # 如果失敗次數小於一萬次就繼續執行
         fnow = f(p)                  # fxy 為目前高度
-        fneighbor = neighbor(f, p, h)
-        if fneighbor >= fnow:        # 如果移動後高度比現在高
-            fnow = fneighbor         #   就移過去
+        p1, f1 = neighbor(f, p, h)
+        if f1 >= fnow:               # 如果移動後高度比現在高
+            fnow = f1                #   就移過去
+            p = p1
             print('p=', p, 'f(p)=', fnow)
             failCount = 0            # 失敗次數歸零
         else:                        # 若沒有更高
