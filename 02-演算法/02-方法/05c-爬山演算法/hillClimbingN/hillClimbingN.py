@@ -15,7 +15,8 @@ def hillClimbing(f, p, h=0.01):
     return (p,fnow)                 # 結束傳回 （已經失敗超過一萬次了）
 
 def f(x, y, z):
-    #return -1 * ( x*x -2*x + y*y +2*y - 8 )
+    # return -1 * ( x*x -2*x + y*y +2*y - 8 )
+    # return -1*((x-1)**2+(y-2)**2+(z-3)**2)
     return -1*(x**2+y**2+z**2)
 
 hillClimbing(f, [2,1,3])
