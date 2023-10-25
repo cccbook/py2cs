@@ -2,6 +2,8 @@ import math
 import numpy as np
 from numpy.linalg import norm
 
+np.set_printoptions(precision=4)
+
 # 函數 f 對變數 k 的偏微分: df / dk
 def df(f, p, k, step=0.01):
     p1 = p.copy()
