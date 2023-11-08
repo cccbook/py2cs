@@ -1,5 +1,11 @@
 # 陳鍾誠的『人工智慧』課程 
 
+## 最新的書
+
+* [Understanding Deep Learning by Simon J.D. Prince](https://udlbook.github.io/udlbook/)
+    * https://github.com/udlbook/udlbook
+
+
 ## 深度學習
 
 學深度學習技術，用下列這本書就對了
