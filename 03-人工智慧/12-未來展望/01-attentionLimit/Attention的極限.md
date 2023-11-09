@@ -2,11 +2,13 @@
 
 * [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 
+## 程世嘉的貼文
+
 * [程世嘉: OpenAI dev day 後，根據 Deep Mind 論文，討論 Attention 的極限](https://www.facebook.com/segacheng/posts/pfbid0hcavupakPKd4cFLPRaMgYrA6VcrPCDqNazs9iqE6XgiHi41o1Jp9KoVBcUJWEJ1fl)
     * DeepMind 論文 -- [Pretraining Data Mixtures Enable Narrow Model Selection
 Capabilities in Transformer Models](https://arxiv.org/pdf/2311.00871.pdf)
 
-程世嘉 原文：
+原文：
 
 OpenAI 在 DevDay 開發者大會中展現龐大野心，想讓 GPT Store 成為未來 AI agent 的集散地，興奮的開發者也馬上激動地把 OpenAI 類比為 AI 時代的蘋果公司，馬上就要複製當年 Steve Jobs 推出 App Store 時的成功經驗。
 
@@ -52,7 +54,7 @@ GPT Store 一開始不會像是 Apple 的 App Store 剛開始發展的榮景，�
 OpenAI 想要成為 AI 時代的蘋果公司，還早。
 
 
-我的想法:
+## 我的想法:
 
 程世嘉的想法很有趣
 
