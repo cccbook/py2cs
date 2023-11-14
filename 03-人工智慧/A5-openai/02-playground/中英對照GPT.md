@@ -40,6 +40,9 @@ Answer: Cats can come in a variety of colors. The most common colors include bla
 
 ## 使用案例 1
 
+![](../img/Dog.png)
+
+
 User
 
 請問狗狗通常是甚麼顏色?
