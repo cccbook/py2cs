@@ -14,4 +14,4 @@ def stirling(n):
 a = [3, 10, 100, 1000]
 
 for n in a:
-    print(f'{n}:{logFactorial(n)} {stirling(n)}')
+    print(f'{n}:{logFactorial(n)} {stirling(n)} ratio={logFactorial(n)/stirling(n)}')
