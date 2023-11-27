@@ -17,4 +17,14 @@ Andrej Karpathy
 
 * [Wikipedia:Elo Rating 等級分](https://zh.wikipedia.org/zh-tw/%E7%AD%89%E7%BA%A7%E5%88%86)
 
-目前看到 24:00 
+有兩種 LLM 的 AI，一種是直覺反射的 (System1)，另一種需要仔細思考的 (System2)，例如：
+
+1. 直覺反射 System 1： 2+2=4, 
+2. 仔細思考 System 2： 37254 + 1374 = ?, 下棋
+
+目前 LLM 只在 System 1 做得好， System 2 不行，但 Alpha Go 這類的卻可以在 System 2 做得好
+
+## 接下來幾年的可能發展
+
+![](./img/KapathyTalk.png)
+

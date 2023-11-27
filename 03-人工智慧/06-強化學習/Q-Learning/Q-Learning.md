@@ -17,3 +17,8 @@ $\gamma$ 是一个衰减系数，用于权衡当前奖励和未来奖励的重�
 $s'$ 是使用动作 $a$ 后进入的新状态
 $\max_{a'} Q(s', a')$ 表示在新状态 $s'$ 下执行的最佳动作的期望奖励
 通过不断地更新 Q 表，智能体可以学习如何通过执行最佳动作来获得最大的期望奖励。
+
+
+## 參考
+
+* [An Introduction to Q-Learning Part 2/2](https://huggingface.co/blog/deep-rl-q-part2)
