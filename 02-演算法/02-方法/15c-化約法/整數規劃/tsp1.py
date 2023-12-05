@@ -42,7 +42,7 @@ c = [[0 if i == j
 model = Model()
 
 # binary variables indicating if arc (i,j) is used on the route or not
-x = [[model.add_var(var_type=BINARY) for j in V] for i in V]
+x = [[model.add_var(var_type=BINARY) for j in V] for i in V] # x[i][j] == 1 代表 (i,j) 這個邊在 TSP 中
 
 # continuous variable to prevent subtours: each city will have a
 # different sequential id in the planned route except the first one
@@ -59,10 +59,13 @@ for i in V:
 for i in V:
     model += xsum(x[j][i] for j in V - {i}) == 1
 
-# subtour elimination
-for (i, j) in product(V - {0}, V - {0}):
-    if i != j:
-        model += y[i] - (n+1)*x[i][j] >= y[j]-n
+# subtour elimination # 避免子迴圈
+for (i, j) in product(V - {0}, V - {0}): # 對於所有 (i,j) 
+    if i != j:                           # 若 (i,j) 不相等
+        model += y[i] - (n+1)*x[i][j] >= y[j]-n # n 是節點(城市)數， y[i] 是第 i 個節點對應的變數值
+        # y[i] - (n+1)*x[i][j] >= y[j]-n => y[i]-y[j] >= (n+1)*x[i][j]-n
+        # 參考 https://dl.acm.org/doi/pdf/10.1145/321043.321046
+        # 這裡的 y 就是論文裡的 u ，有點難懂 ...
 
 # optimizing
 model.optimize()
