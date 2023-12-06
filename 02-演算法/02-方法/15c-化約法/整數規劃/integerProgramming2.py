@@ -1,16 +1,14 @@
-# 解決問題 SAT('(x or y) and (not x or not z) and (x) and (y)', ['x', 'y', 'z'])
+# 解決問題 https://en.wikipedia.org/wiki/Integer_programming 
 from mip import *
 m = Model(sense=MAXIMIZE)
-x = m.add_var(name='x', var_type=BINARY)
-y = m.add_var(name='y', var_type=BINARY)
-z = m.add_var(name='z', var_type=BINARY)
-m += x + y >= 1
-m += (1-x) + (1-z) >= 1
-m += x >=1
-m += y >=1
-# m.objective = maximize(y)
-# m.objective = maximize()
-m.write('sat1.lp')
+x = m.add_var(name='x', var_type=INTEGER, lb=0)
+y = m.add_var(name='y', var_type=INTEGER, lb=0)
+z = m.add_var(name='z', var_type=INTEGER, lb=0)
+m += -x + y + z <= 1
+m += 3*x + 2*y + 5*z <= 12
+m += 2*x + 3*y + 1*z <= 10
+m.objective = maximize(x+y+z)
+m.write('integerProgramming2.lp')
 m.max_gap = 0.05
 status = m.optimize(max_seconds=300)
 if status == OptimizationStatus.OPTIMAL:
@@ -22,5 +20,5 @@ elif status == OptimizationStatus.NO_SOLUTION_FOUND:
 if status == OptimizationStatus.OPTIMAL or status == OptimizationStatus.FEASIBLE:
     print('solution:')
     for v in m.vars:
-         # if abs(v.x) > 1e-6: # only printing non-zeros
-         print('{} : {}'.format(v.name, v.x))
+       # if abs(v.x) > 1e-6: # only printing non-zeros
+       print('{} : {}'.format(v.name, v.x))
