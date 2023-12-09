@@ -1,7 +1,7 @@
 \Problem name: 
 
 Minimize
-OBJROW: - y
+OBJROW:
 Subject To
 constr(0):  x + y >= 1
 constr(1):  - x - z >= -1
