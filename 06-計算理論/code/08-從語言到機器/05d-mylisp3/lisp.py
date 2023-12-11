@@ -1,75 +1,67 @@
-import sys
-import operator as op
 from parse import parse_lisp
+import operator as op
 
-class Symbol(str): pass
-def is_pair(x): return x != [] and isa(x, list)
-def cons(x, y): return [x]+y
 isa = isinstance
+Symbol = str
+
+class Env(dict):
+    def __init__(self, vars, outer=None):
+        self.outer = outer
+        self.update(vars)
+
+    def find(self, var): # 找到最內層出現的環境變數
+        if var in self: return self.get(var)
+        elif self.outer is None: raise Exception(var)
+        else: return self.outer.find(var)
+
+class Function(object): # 函數定義
+    def __init__(self, params, body, env):
+        self.params, self.body, self.env = params, body, env
+    def __call__(self, *args): 
+        if len(args) != len(self.params):
+            raise Exception(f'({self.params}) 和 {args} 參數數量不符!')
+        fenv = Env(zip(self.params, args), self.env)
+        return evaluate(self.body, fenv)
 
 # 定義一些基本的運算符
-ENV = {
-    '+': op.add, '-': op.sub, '*': op.mul, '/': op.truediv,
-    'not':op.not_, '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq, 
-    'equal?':op.eq, 'eq?':op.is_, 'length':len, 'cons':cons,
-    'car':lambda x:x[0], 'cdr':lambda x:x[1:], 'append':op.add,
-    'list':lambda *x:list(x), 'list?': lambda x:isa(x,list),
-    'null?':lambda x:x==[], # 'symbol?':lambda x: isa(x, Symbol),
-    'boolean?':lambda x: isa(x, bool), 'pair?':is_pair, 
-    # 'port?': lambda x:isa(x,file), 
-    'apply':lambda proc,l: proc(*l), 
-    # 'eval':lambda x: eval(expand(x)), 'load':lambda fn: load(fn), 'call/cc':callcc,
-    'open-input-file':open,'close-input-port':lambda p: p.file.close(), 
-    'open-output-file':lambda f:open(f,'w'), 'close-output-port':lambda p: p.close(),
-    # 'eof-object?':lambda x:x is eof_object, 'read-char':readchar,
-    # 'read':read, 'write':lambda x,port=sys.stdout:port.write(to_string(x)),
-    'display':lambda x,port=sys.stdout:port.write(x if isa(x,str) else to_string(x))
-}
+ENV = Env({ '+': op.add, '-': op.sub, '*': op.mul, '/': op.truediv })
 
-def list2str(x):
-    if x is True: return "#t"
-    elif x is False: return "#f"
-    elif isa(x, Symbol): return x
-    elif isa(x, str): return '"%s"' % x.encode('string_escape').replace('"',r'\"')
-    elif isa(x, list): return '('+' '.join(map(to_string, x))+')'
-    elif isa(x, complex): return str(x).replace('j', 'i')
-    else: return str(x)
-
-# Scheme 解釋器
+# LISP (Scheme) 解釋器
 def evaluate(exp, env={}):
-    if isinstance(exp, list):
-        # 特殊形式
+    if isa(exp, list):
         if exp[0] == 'define':
             _, var, value = exp
             env[var] = evaluate(value, env)
         elif exp[0] == 'lambda':
-            _, parameters, body = exp
-            return lambda *args: evaluate(body, dict(zip(parameters, args)), env)
-        else:
+            _, params, body = exp
+            return Function(params, body, env)
+        else: 
             # 函數調用
             op = evaluate(exp[0], env)
             args = [evaluate(arg, env) for arg in exp[1:]]
             return op(*args)
-    elif isinstance(exp, str) and (exp in env):
+    elif isa(exp, str) and (env.find(exp)):
         # 變數引用
-        return env[exp]
+        return env.find(exp)
     else:
         # 常數
         return exp
 
+def run(blocks):
+    env = Env({ '+': op.add, '-': op.sub, '*': op.mul, '/': op.truediv })
+    for block in blocks:
+        code = parse_lisp(block)
+        print(code)
+        result = evaluate(code, env)
+        print(result)
+
 # 測試 Scheme 解釋器
 if __name__ == "__main__":
-    # 定義一個簡單的 Scheme 表達式
-    text = "(+ 2 (* 3 4))"
-    code = parse_lisp(text)
-    print('code=', code)
-    # code = ['+', 2, ['*', 3, 4]]
-    # 解釋和計算結果
-    result = evaluate(code, ENV)
-    print(result)
-"""
     # 定義一個 lambda 函數並調用
-    scheme_lambda = ['(lambda (x y) (+ x y))', 3, 4]
-    lambda_result = evaluate(scheme_lambda, ENV)
-    print(lambda_result)
-"""
+    run(['((lambda (x y) (+ x y)) 3 4)'])
+    
+    # 定義一個有名稱的函數並調用
+    run([
+    "(define add (lambda (x y) (+ x y)))",
+    "(add 3 4)"
+    ])
