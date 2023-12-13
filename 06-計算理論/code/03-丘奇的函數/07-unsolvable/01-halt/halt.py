@@ -1,5 +1,5 @@
 def halt(f, input):
-    f(input)
+    f(input) # if halt(f,input): return True else: return False
     return True
 
 def f1(n):
