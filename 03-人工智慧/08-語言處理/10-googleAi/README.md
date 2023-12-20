@@ -1,4 +1,6 @@
+# Google AI
 
+* [如何使用 Google 的 Gemini 模型 API？(基礎教學，附上 Python 範例程式)](https://blog.jiatool.com/posts/gemini_api/)
 
 * https://ai.google.dev/
     * https://cloud.google.com/generative-ai-studio?hl=en
