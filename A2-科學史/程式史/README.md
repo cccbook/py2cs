@@ -17,6 +17,7 @@
 1958 | [麥卡錫的LISP語言](1958-麥卡錫的LISP語言.md) | 受 λ-Calculus 啟發的美麗語言 LISP | [1971] | LISP 解譯器
 1960 | [Algol語言與編譯技術](1960-Algol語言與編譯技術.md) | 啟發 Pascal/C/....等眾多語言 | [1966] [1972] [1984] [2005] | LISP 編譯器
 1961 | [CTSS分時系統與虛擬機](1961-CTSS分時系統與虛擬機.md) | IBM M44+CP-40 | [1990] | VM4 堆疊式虛擬機
+1968 | [從Linkabit到高通的無線通訊產業](1968-從Linkabit到高通的無線通訊產業.md) | | | 馬可夫 + 引馬可夫 + 維特比演算法
 1969 | [ARPANET與TCPIP網路](1969-ARPANET與TCPIP網路.md) | 封包網路與 Socket 函式庫 | [2004] | Python Socket 程式
 1970 | [關聯式資料庫與B-Tree](1970-關聯式資料庫與B-Tree.md) | E.F.Codd 的關聯式代數 與 System R | [1981] [1998] [2013] [2014] | B-Tree (C) + Sqlite 範例
 1969 | [UNIX作業系統](1969-UNIX作業系統.md) | Multics 失敗後的小而美系統 | [1983] | mini-riscv-os / xv6 作業系統
@@ -27,6 +28,7 @@
 1975 | [RISC處理器與管線技術](1975-RISC處理器與管線技術.md) | IBM 801 + Power / Berkley RISC  | [1987] [2017] | Verilog 管線處理器專案
 1976 | [庫克與NP-Complete](1976-庫克與NP-Complete.md) | 非確定型圖靈機 / P 是否等於 NP 呢？ | [1976] [1982] [1985] | 將 SAT 化約為整數規劃
 1976 | [賈伯斯、蘋果、個人電腦與皮克斯](1976-賈伯斯、蘋果、個人電腦與皮克斯.md) | Apple I/II , Lisa , Macintosh | | 光跡追蹤法
+1976 | [RCA與台灣的新竹科學園區](1976-RCA與台灣的新竹科學園區.md) | RCA 技轉晶圓廠，衍生後來的聯電，台積電、聯發科等公司 | | 
 1977 | [RSA公鑰私鑰加解密系統](1977-RSA公鑰私鑰加解密系統.md) | 現代密碼學最重要的方法 | [2002] [2015] | RSA 加解密
 1980 | [IBM/PC、微軟與視窗系統](1980-IBMPC、微軟與視窗系統.md) | DOS、視窗與 Visual Basic | | BIOS 系統呼叫 / VB 程式範例
 1985 | [史托曼的GPL授權與GNU的gcc編譯器](1985-史托曼的GPL授權與GNU的gcc編譯器.md) | 開放原始碼運動的起點 |  | gcc 工具鏈使用範例
