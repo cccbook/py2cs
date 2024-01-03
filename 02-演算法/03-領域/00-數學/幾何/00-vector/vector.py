@@ -35,7 +35,7 @@ length = norm
 def distance(a,b):
 	return length(sub(a,b))
 
-def cross(a,b):
+# def cross(a,b):
 	
 
 if __name__ == '__main__':
