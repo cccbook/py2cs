@@ -18,9 +18,9 @@
 [盤面評估]:./
 [對局搜尋]:./
 [自我對局]:./
-[MCTS對局搜尋]:./
-[CNN卷積網路]:./
-[Diffusion散射模型]:./
+[MCTS]:./
+[CNN]:./
+[Diffusion]:./
 [遮罩]:./
 [傅立葉]:./
 [控制理論]:./
@@ -44,7 +44,7 @@
 [RNN]:./
 [State]:./
 [Action]:./
-[GAN生成對抗網路]:./
+[GAN]:./
 [MIN-MAX搜尋]:./
 [Alpha-Beta修剪]:./
 [Parser]:./
@@ -64,19 +64,19 @@
 [思考問題] | [找出最佳解]  |  [學習最佳模型]
 [關鍵技術] | [演算法設計]        | [模型建構與選擇]
 [優化算法]   | [算分數] + [鄰居] + [搜尋] | [梯度下降] + [反傳遞]
-[機器學習] | [分類] + [分群] + [回歸] |  | [sklearn] + [Pytorch]
-[神經網路] | | [MLP] : [梯度下降] + [反傳遞] | [Pytorch]
-[深度學習] | | [CNN] + [RNN] + [Attention] + [Transformer] | [Pytorch]
-[強化學習] | [Q-Table] : [馬可夫決策過程] | [Q-Network] : [Q-Learning] |  | [Gym] + [Pytorch]
-[下棋]     | [盤面評估] + [MIN-MAX搜尋] + [Alpha-Beta修剪] | [自我對局]+ [MCTS對局搜尋] + [CNN卷積網路] + [強化學習]
-[語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] + [Jieba] + [GenSim] + [Pytorch]
-[影像]     | [邊緣偵測] + [遮罩] + [模式比對] + [傅立葉]     | [CNN卷積網路] + [Diffusion散射模型] + [GAN生成對抗網路] | [Pytorch]
-[機器人]   | [控制理論]        | [強化學習] + [馬可夫決策過程] | [Pytorch]
+[機器學習] | [分類] + [分群] + [回歸] |  | [Sklearn] + [PyTorch]
+[神經網路] | | [MLP] : [梯度下降] + [反傳遞] | [PyTorch]
+[深度學習] | | [CNN] + [RNN] <br/>+ [Attention] + [Transformer] | [PyTorch]
+[強化學習] | [Q-Table] : [馬可夫決策過程] | [Q-Network] : [Q-Learning] |  | [Gym] + [PyTorch]
+[下棋]     | [盤面評估] + [MIN-MAX搜尋] <br/>+ [Alpha-Beta修剪] | [自我對局]+ [MCTS]  <br/> + [CNN] + [強化學習]
+[語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] + [PyTorch]
+[影像]     | [邊緣偵測] + [遮罩] + [模式比對] + [傅立葉]     | [CNN] + [Diffusion] + [GAN] | [PyTorch]
+[機器人]   | [控制理論]        | [強化學習] + [馬可夫決策過程] | [PyTorch]
 
-[Pytorch]:./
+[PyTorch]:./
 [NLTK]:./
 [Jieba]:./
-[GenSim]:./01-%E5%82%B3%E7%B5%B1AI/
+[GenSim]:./
 [Q-Learning]:./
 [Q-Network]:./
 [Q-Table]:./
