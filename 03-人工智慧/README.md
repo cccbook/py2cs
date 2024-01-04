@@ -12,17 +12,17 @@
 [cv2]:./
 [工具]:./
 
-[人工智慧]        | [傳統AI]      |  [深度學習] | [Python] + [工具]
+[人工智慧]        | [傳統AI]      |  [深度學習] | [Python] + [Pytorch] + [工具]
 ---------|----------------|----------------|-------
-[思考問題] | [找出最佳解]  |  [學習最佳模型] | [numpy] / [sympy] / [scipy] / [matplotlib] / [panda]
-[關鍵技術] | [演算法設計]  | [模型建構與選擇] | [HillClimbing] / [PyTorch]
+[思考問題] | [找出最佳解]  |  [學習最佳模型] | [numpy] / [sympy] / [scipy] <br/>[matplotlib] / [panda]
+[關鍵技術] | [演算法設計]  | [模型建構與選擇] | [HillClimbing]
 [優化算法]   | [算分數] + [鄰居] + [搜尋] | [梯度下降] + [反傳遞] | [numgrad] / [micrograd]
-[機器學習] | [分類] + [分群] + [回歸] | [神經網路] : [MLP] + [CNN] + [RNN] <br/>[Attention] + [Transformer] | [Sklearn] / [PyTorch]
-[強化學習] | [Q-Table] : [馬可夫決策過程] | [Q-Network] : [Q-Learning] | [Gym] / [PyTorch]
+[機器學習] | [分類] + [分群] + [回歸] | [神經網路] : [MLP] + [CNN] + [RNN] <br/>[Attention] + [Transformer] | [Sklearn]
+[強化學習] | [Q-Table] : [馬可夫決策過程] | [Q-Network] : [Q-Learning] | [Gym]
 [下棋]     | [盤面評估] + [MIN-MAX搜尋] <br/>[Alpha-Beta修剪] | [自我對局]+ [MCTS]  <br/>[CNN] + [強化學習] | [AlphaGomoku]
-[語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] / [PyTorch] <br>[minRNN] / [minGPT] <br>問答：[ChatGPT]
-[影像]     | [邊緣偵測] + [遮罩] + [模式比對] + [傅立葉]     | [CNN] + [Diffusion] + [GAN] | [pillow] / [cv2] / [PyTorch] <br/>繪圖：[BingImage]
-[機器人]   | [控制理論]        | [強化學習] + [馬可夫決策過程] | [PyTorch]
+[語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] <br>[minRNN] / [minGPT] <br>問答：[ChatGPT]
+[影像]     | [邊緣偵測] + [遮罩] + [模式比對] + [傅立葉]     | [CNN] + [Diffusion] + [GAN] | [pillow] / [cv2] <br/>繪圖：[BingImage]
+[機器人]   | [控制理論]        | [強化學習] + [馬可夫決策過程] | [Gym]
 [其他]     |      | | 作曲： [suno.ai] <br/> 音轉字： [whisper]
 
 [whisper]:./
