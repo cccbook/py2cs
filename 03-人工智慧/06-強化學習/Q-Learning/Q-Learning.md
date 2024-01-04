@@ -21,4 +21,5 @@ $\max_{a'} Q(s', a')$ 表示在新状态 $s'$ 下执行的最佳动作的期望�
 
 ## 參考
 
+* https://en.wikipedia.org/wiki/Q-learning
 * [An Introduction to Q-Learning Part 2/2](https://huggingface.co/blog/deep-rl-q-part2)
