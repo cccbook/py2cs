@@ -20,11 +20,14 @@
 [機器學習] | [分類] + [分群] + [回歸] | [神經網路] : [MLP] + [CNN] + [RNN] <br/>[Attention] + [Transformer] | [Sklearn]
 [強化學習] | [Q-Table] : [馬可夫決策過程] | [Q-Network] : [Q-Learning] | [Gym]
 [下棋]     | [盤面評估] + [MIN-MAX搜尋] <br/>[Alpha-Beta修剪] | [自我對局]+ [MCTS]  <br/>[CNN] + [強化學習] | [AlphaGomoku]
-[語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] / [minRNN] / [minGPT] <br>問答：[ChatGPT]
+[語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] / [minRNN] / [minGPT] <br>問答：[openai] + [ChatGPT]
 [影像]     | [邊緣偵測] + [遮罩] + [模式比對] + [傅立葉]     | [CNN] + [Diffusion] + [GAN] | [pillow] / [cv2] <br/>繪圖：[BingImage]
 [機器人]   | [控制理論]        | [強化學習] + [馬可夫決策過程] | [Gym]
-[其他]     |      | | 作曲： [suno.ai] <br/> 音轉字： [whisper]
+[聲音]     | [動態規劃] | [音素分群]+[LLM] | 作曲： [suno.ai] <br/> 音轉字： [whisper]
 
+[音素分群]:./
+[動態規劃]:./
+[聲音]:./
 [whisper]:./
 [ChatGPT]:./
 [suno.ai]:./
@@ -99,3 +102,4 @@
 [演算法設計]:./
 [Transformer]:./
 [minRNN]:./
+[openai]:./
