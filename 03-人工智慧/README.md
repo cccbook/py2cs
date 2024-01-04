@@ -1,7 +1,6 @@
 # 人工智慧
 
 [傳統AI]:./01-傳統AI/
-[深度學習AI]:./02-新式AI/
 [機器學習]:./03-機器學習/
 [神經網路]:./04-神經網路/
 [深度學習]:./05-深度學習/
@@ -59,13 +58,12 @@
 [演算法設計]:./
 [Transformer]:./
 
-[人工智慧]        | [傳統AI]      |  [深度學習AI] | [Python套件]
+[人工智慧]        | [傳統AI]      |  [深度學習] | [Python套件]
 ---------|----------------|----------------|-------
 [思考問題] | [找出最佳解]  |  [學習最佳模型]
 [關鍵技術] | [演算法設計]        | [模型建構與選擇]
 [優化算法]   | [算分數] + [鄰居] + [搜尋] | [梯度下降] + [反傳遞]
-[機器學習] | [分類] + [分群] + [回歸] | [神經網路] : [MLP] | [Sklearn] + [PyTorch]
-[神經網路] | | [CNN] + [RNN] <br/>+ [Attention] + [Transformer] | [PyTorch]
+[機器學習] | [分類] + [分群] + [回歸] | [神經網路] : [MLP] + [CNN] + [RNN] <br/>+ [Attention] + [Transformer] | [Sklearn] + [PyTorch]
 [強化學習] | [Q-Table] : [馬可夫決策過程] | [Q-Network] : [Q-Learning] |  | [Gym] + [PyTorch]
 [下棋]     | [盤面評估] + [MIN-MAX搜尋] <br/>+ [Alpha-Beta修剪] | [自我對局]+ [MCTS]  <br/> + [CNN] + [強化學習]
 [語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] + [PyTorch]
