@@ -1,3 +1,22 @@
+# SpeechRecognition
+
+* https://pypi.org/project/SpeechRecognition/
+
+
+## Install
+
+```
+$ pip install PocketSphinx
+$ pip install SpeechRecognition
+```
+
+## run
+
+```
+$ python audio1.py
+Sphinx thinks you said hello i am a programmer my favorite programming languages hi don
+```
+
 ## Text to speech
 
 * https://huggingface.co/spaces/ysharma/OpenAI_TTS_New

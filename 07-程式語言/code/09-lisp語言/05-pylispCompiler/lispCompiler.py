@@ -6,19 +6,17 @@ def emit(code):
 def gen(o):
     if isinstance(o, list):
         op = o[0]
-        if op[0] == 'lambda':
-            args = op[1]
-            body = op[2]
+        # print('op=', op, 'type(o)=', type(o))
+        if op == 'lambda':
+            args = o[1]
+            body = o[2]
+            # print('args=', args)
+            # print('body=', body)
             emit("lambda")
             for arg in args:
                 emit(f"arg:{arg}")
             gen(body)
-        elif op[0] == 'define':
-            fname = op[1]
-            body = op[2]
-            emit(fname)
-            gen(body)
-            emit("define")
+            emit("-lambda")
         else:
             for arg in o[1:]:
                 gen(arg)
@@ -39,5 +37,3 @@ if __name__ == "__main__":
     compile("(if (> 6 5) (+ 1 1) (+ 2 2))")
     compile("(begin (define x 1) (set! x (+ x 1)) (+ x 1))")
     compile("(define twice (lambda (x) (* 2 x)))")
-
-    
