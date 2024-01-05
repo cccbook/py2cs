@@ -22,9 +22,11 @@
 [下棋]     | [盤面評估] + [MIN-MAX搜尋] <br/>[Alpha-Beta修剪] | [自我對局]+ [MCTS]  <br/>[CNN] + [強化學習] | [AlphaGomoku]
 [語言]     | [生成語法] + [Parser] + [Slot-Filling]       | [LLM] : [詞向量] + [GPT] + [Attention] | [NLTK] / [minRNN] / [minGPT] <br>問答：[openai] + [ChatGPT] + [llama2.c]
 [影像]     | [邊緣偵測] + [遮罩] + [模式比對] + [傅立葉]     | [CNN] + [Diffusion] + [GAN] + [Text2Video] | [pillow] / [cv2] <br/>繪圖：[BingImage]
-[機器人]   | [控制理論]        | [強化學習] + [馬可夫決策過程] | 傳統方法：[Control] / 強化學習：[Gym]
+[機器人]   | [控制理論]        | [強化學習] + [馬可夫決策過程] | [Control] / [Fuzzy] / [Gym]
 [聲音]     | [動態規劃] | [音素分群]+[LLM] | 作曲： [suno.ai] <br/> 音轉字： [whisper]
 
+[Control]:./
+[Fuzzy]:./
 [音素分群]:./
 [動態規劃]:./
 [聲音]:./

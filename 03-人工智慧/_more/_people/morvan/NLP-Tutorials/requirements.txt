@@ -1,0 +1,6 @@
+pandas==1.0.4
+requests==2.23.0
+sklearn==0.23.0
+|PyTorch|1.7.1|
+|NumPy|1.18.1|
+|Matplotlib|3.3.4|
