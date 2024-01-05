@@ -1,59 +1,10 @@
-from parse import parse_lisp
-import operator as op
+from lisp import *
 
-isa = isinstance
-Symbol = str
-Number = (int, float)
-
-class Env(dict):
-    def __init__(self, vars, outer=None):
-        self.outer = outer
-        self.update(vars)
-
-    def findEnv(self, var): # 找到最內層出現的環境變數
-        if var in self: return self
-        elif self.outer is None: raise Exception(var)
-        else: return self.outer.findEnv(var)
-
-    def findVar(self, var): # 找到最內層出現的環境變數
-        env = self.findEnv(var)
-        return env[var]
-
-class Function(object): # 函數定義
-    def __init__(self, params, body, env):
-        self.params, self.body, self.env = params, body, env
-    def __call__(self, *args): 
-        if len(args) != len(self.params):
-            raise Exception(f'({self.params}) 和 {args} 參數數量不符!')
-        fenv = Env(zip(self.params, args), self.env)
-        return evaluate(self.body, fenv)
-
-# 定義一些基本的運算符
-ENV = {
-    '+': op.add, '-': op.sub, '*': op.mul, '/': op.truediv,
-    '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq, 
-    'abs': abs,
-    'append':  op.add,  
-    'apply':   lambda f, args: f(*args),
-    'begin':   lambda *x: x[-1],
-    'car':     lambda x: x[0],
-    'cdr':     lambda x: x[1:], 
-    'cons':    lambda x,y: [x] + y,
-    'eq?':     op.is_, 
-    'equal?':  op.eq, 
-    'length':  len, 
-    'list':    lambda *x: list(x), 
-    'list?':   lambda x: isinstance(x,list), 
-    'map':     map,
-    'max':     max,
-    'min':     min,
-    'not':     op.not_,
-    'null?':   lambda x: x == [], 
-    'number?': lambda x: isinstance(x, Number),   
-    'procedure?': callable,
-    'round':   round,
-    'symbol?': lambda x: isinstance(x, Symbol),
-}
+def call(f, *args): 
+    if isinstance(f, Function):
+        return f.apply(evaluate, f, args)
+    print('f=', f)
+    return f(*args)
 
 # LISP (Scheme) 解釋器
 def evaluate(code, env):
@@ -78,13 +29,15 @@ def evaluate(code, env):
             # 函數調用
             func = evaluate(code[0], env)
             args = [evaluate(arg, env) for arg in code[1:]]
-            return func(*args)
+            print('func=', func)
+            return call(func, *args)
     elif isa(code, Symbol) and (env.findEnv(code)):
         # 變數引用
         return env.findVar(code)
     else:
         # 常數
         return code
+
 
 def test(prog, answer):
     global gEnv
@@ -99,8 +52,6 @@ def test(prog, answer):
         print("✓")
     else:
         print("⨉")
-
-gEnv = Env(ENV)
 
 # 測試 Scheme (lisp 方言) 的解釋器
 if __name__ == "__main__":
