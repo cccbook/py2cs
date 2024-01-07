@@ -4,12 +4,24 @@ from lexer import lex
 tokens = None
 ti = 0
 
+isDebugOn = False
+
+def debug(*msg):
+	if isDebugOn: print(*msg)
+
+def emit(msg):
+	print(msg, end='')
+
+def indent():
+	global level
+	return '\t'*level
+
 # prog = stmts
 def compile(code):
 	global tokens, ti
 	tokens = []
 	for tk in lex(code):
-		print(tk)
+		debug(tk)
 		tokens.append(tk)
 	ti = 0
 	STMTS()
@@ -42,7 +54,7 @@ def nextT(type):
 	global tokens, ti
 	tk = tokens[ti]
 	if isNextT(type):
-		print('tk = ', tk)
+		debug('tk = ', tk)
 		ti += 1
 		return tk.value
 	else:
@@ -52,7 +64,7 @@ def next(value=None):
 	global tokens, ti
 	tk = tokens[ti]
 	if value == None or isNext(value):
-		print('tk = ', tk)
+		debug('tk = ', tk)
 		ti += 1
 		return tk.value
 	else:
@@ -77,7 +89,8 @@ stmt = block                     |
 """
 
 def STMT():
-	print('STMT(): tk=', tokens[ti])
+	debug('STMT(): tk=', tokens[ti])
+	emit(f'{indent()}')
 	if isNextT("BEGIN"):
 		BLOCK()
 	elif isNext("def"):
@@ -86,49 +99,54 @@ def STMT():
 		IF()
 	elif isNext("return"):
 		RETURN()
+		emit(f';\n')
 	elif isNextT("ID"):
-		id = next()
+		id = next(); emit(id)
 		if isNext("="):
 			ASSIGN(id)
 		else:
 			CALL(id)
+		emit(f';\n')
 	else:
 		error('不是一個陳述！')
 
 # IF = if expr: stmt (elif stmt)* (else stmt)?
 def IF():
-	next('if')
+	next('if'); emit('if (')
 	EXPR()
-	next(':')
+	next(':'); emit(')')
 	STMT()
 	while isNext('elif'):
+		next('elif'); emit('else if')
 		STMT()
 	if isNext('else'):
+		next('else'); emit('else')
 		STMT()
 
 # RETURN = return expr 
 def RETURN():
-	next('return')
+	next('return'); emit('return ')
 	EXPR()
 
 # ASSIGN: id = expr
 def ASSIGN(id):
-	next('=')
+	next('='); emit('=')
 	EXPR()
 
 # CALL: id(ARGS)
 def CALL(id):
-	next('(')
+	next('('); emit('(')
 	ARGS()
-	next(')')
+	next(')'); emit(')')
 
 # function = def id(params): block
 def FUNC():
 	next('def')
-	nextT('ID')
-	next('(')
+	fname = nextT('ID')
+	emit(f'int {fname}')
+	next('('); emit('(')
 	PARAMS()
-	next(')')
+	next(')'); emit(')')
 	next(':')
 	BLOCK()
 
@@ -139,42 +157,48 @@ def PARAMS():
 
 # param = id
 def PARAM():
-	nextT("ID")
+	id = nextT("ID")
+	emit(f'int {id}')
 
+level = 0
 # block = : <begin> stmts <end>
 def BLOCK():
-	nextT('BEGIN')
+	global level
+	nextT('BEGIN'); emit(f'\n{indent()}'+'{\n')
+	level += 1
 	STMTS()
-	nextT('END')
+	level -= 1
+	nextT('END'); emit(f'\n{indent()}'+'}\n')
 
 # expr = bexpr (if expr else expr)?
 def EXPR():
 	BEXPR()
 	if isNext('if'):
+		next('if')
 		EXPR()
 		next('else')
 		EXPR()
 
-# bexpr = mexpr (and|or) expr
+# bexpr = cexpr ((and|or) cexpr)*
 def BEXPR():
 	CEXPR()
-	if isNextSet(['and', 'or']):
-		op = next()
-		EXPR()
+	while isNextSet(['and', 'or']):
+		op = next(); cop = '&&' if op=='and' else 'or'; emit(f' {cop} ')
+		CEXPR()
 
-# cexpr = mexpr ['==', '!=', '<=', '>=', '<', '>'] expr
+# cexpr = mexpr ['==', '!=', '<=', '>=', '<', '>'] mexpr
 def CEXPR():
 	MEXPR()
-	if isNextSet(['==', '!=', '<=', '>=', '<', '>']):
-		op = next()
-		EXPR()
+	while isNextSet(['==', '!=', '<=', '>=', '<', '>']):
+		op = next(); emit(op)
+		MEXPR()
 
-# mexpr = item (['+', '-', '*', '/', '%'] expr)?
+# mexpr = item (['+', '-', '*', '/', '%'] item)?
 def MEXPR():
 	ITEM()
-	if isNextSet(['+', '-', '*', '/', '%']):
-		op = next()
-		EXPR()
+	while isNextSet(['+', '-', '*', '/', '%']):
+		op = next(); emit(op)
+		ITEM()
 
 # item = str | array | map | factor
 # item = factor (now)
@@ -185,25 +209,25 @@ def ITEM():
 # factor = int | float | id | CALL | ( expr ) | term (now)
 def FACTOR():
 	if isNextT('FLOAT') or isNextT('INTEGER'):
-		num = next()
+		num = next(); emit(num)
 	elif isNextT('ID'):
-		id = next()
+		id = next(); emit(id)
 		if isNext('('):
 			CALL(id)
 	elif isNext('('):
-		next('(')
+		next('('); next('(')
 		EXPR()
-		next(')')
+		next(')'); next(')')
 		TERM()
 
 # term = id ( [expr] | . id | args )*
 # term = id (args)?
 def TERM():
-	nextT('ID')
+	id = nextT('ID'); emit(id)
 	if (isNext('(')):
-		next('(')
+		next('('); emit('(')
 		ARGS()
-		next(')')
+		next(')'); emit(')')
 
 # array = [ expr* ]
 
@@ -213,6 +237,8 @@ def TERM():
 def ARGS():
 	while not isNext(')'):
 		EXPR()
+		if isNext(','):
+			next(',')
 
 # bool: True | False
 # num : integer | float
