@@ -1,7 +1,6 @@
 from parse import parse_lisp
 import operator as op
 
-isa = isinstance
 Symbol = str
 Number = (int, float)
 
@@ -19,14 +18,6 @@ class Env(dict):
         env = self.findEnv(var)
         return env[var]
 
-class Function(object): # 函數定義
-    def __init__(self, params, body, env):
-        self.params, self.body, self.env = params, body, env
-    def apply(self, f, *args): 
-        if len(args) != len(self.params):
-            raise Exception(f'({self.params}) 和 {args} 參數數量不符!')
-        fenv = Env(zip(self.params, args), self.env)
-        return f(self.body, fenv)
 
 # 定義一些基本的運算符
 ENV = {
@@ -57,4 +48,3 @@ ENV = {
 
 
 gEnv = Env(ENV)
-

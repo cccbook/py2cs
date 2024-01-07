@@ -1,39 +1,37 @@
 from parse import parse_lisp
 
-isa = isinstance
-lambdaTop = 0
-
 def emit(code):
     print(code)
 
 def gen(o):
-    global lambdaTop
     if isinstance(o, list):
         op = o[0]
-        # print('op=', op, 'type(o)=', type(o))
         if op == 'lambda':
-            lambdaTop += 1
             args = o[1]
             body = o[2]
-            # print('args=', args)
-            # print('body=', body)
-            label = f"F{lambdaTop}:"
-            emit(label)
-            emit("function")
+            emit(f"function")
             for arg in args:
                 emit(f"arg {arg}")
             gen(body)
             emit("fend")
-            return label
         else:
             for arg in o[1:]:
                 gen(arg)
-            if isa(op, list):
+            if isinstance(op, list):
                 gen(op)
+                if op[0] == 'lambda':
+                    emit("call")
             else:
                 emit(f"{op}")
     else:
-        emit(f"push {o}")
+        if isinstance(o, int):
+            emit(f"int {o}")
+        elif isinstance(o, float):
+            emit(f"float {o}")
+        elif isinstance(o, str):
+            emit(f"var {o}")
+        else:
+            emit(f"push {o}")
 
 def compile(code):
     emit(f"compile:{code}")

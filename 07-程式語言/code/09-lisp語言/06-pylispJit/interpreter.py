@@ -1,14 +1,18 @@
-from lisp import *
+from env import *
+from parse import parse_lisp
 
-def call(f, *args): 
-    if isinstance(f, Function):
-        return f.apply(evaluate, f, args)
-    print('f=', f)
-    return f(*args)
+class Function(object): # 函數定義
+    def __init__(self, params, body, env):
+        self.params, self.body, self.env = params, body, env
+    def __call__(self, *args): 
+        if len(args) != len(self.params):
+            raise Exception(f'({self.params}) 和 {args} 參數數量不符!')
+        fenv = Env(zip(self.params, args), self.env)
+        return evaluate(self.body, fenv)
 
 # LISP (Scheme) 解釋器
 def evaluate(code, env):
-    if isa(code, list):
+    if isinstance(code, list):
         if code[0] == 'define':
             _, var, value = code
             env[var] = evaluate(value, env)
@@ -29,15 +33,13 @@ def evaluate(code, env):
             # 函數調用
             func = evaluate(code[0], env)
             args = [evaluate(arg, env) for arg in code[1:]]
-            print('func=', func)
-            return call(func, *args)
-    elif isa(code, Symbol) and (env.findEnv(code)):
+            return func(*args)
+    elif isinstance(code, Symbol) and (env.findEnv(code)):
         # 變數引用
         return env.findVar(code)
     else:
         # 常數
         return code
-
 
 def test(prog, answer):
     global gEnv
@@ -52,6 +54,7 @@ def test(prog, answer):
         print("✓")
     else:
         print("⨉")
+
 
 # 測試 Scheme (lisp 方言) 的解釋器
 if __name__ == "__main__":
