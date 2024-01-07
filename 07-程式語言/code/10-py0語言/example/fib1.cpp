@@ -1,4 +1,5 @@
 #include <iostream>
+#include "pylib.cpp"
 
 int fib(int n) {
     if (n==0 || n==1) return 1;
@@ -7,6 +8,6 @@ int fib(int n) {
 
 int main() {
     // std::cout << "Hello World!";
-    std::cout << fib(5);
+    print("fib(5)=", fib(5));
     return 0;
 }
