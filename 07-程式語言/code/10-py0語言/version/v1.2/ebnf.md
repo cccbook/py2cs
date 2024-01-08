@@ -3,9 +3,8 @@
 ```
 STMTS  = STMT*                                            # list
 STMT   = BLOCK | FUNC | IF | WHILE | RETURN | ASSIGN | CALL
-IF     = if EXPR: STMT (elif STMT)* (else STMT)?
+IF     = if EXPR: STMT (elif STMT)* (else STMT)?   # expr1, stmt1, stmts2, stmt3
 WHILE  = while EXPR: STMT
-FOR    = for id in EXPR: STMT
 RETURN = return EXPR
 ASSIGN = id = EXPR
 CALL   = id(ARGS)
@@ -20,10 +19,7 @@ MEXPR  = ITEM (['+', '-', '*', '/', '%'] ITEM)*            # list
 ITEM   = FACTOR
 FACTOR = float | integer | LREXPR | TERM
 LREXPR = ( EXPR )
-TERM   = id ( [EXPR] | . id | (ARGS) )*
+TERM   = id | CALL
 CALL   = id(ARGS)
-ARGS   = (EXPR ,)* EXPR?
-ARRAY  = [ (EXPR ,)* EXPR? ]
-MAP    = { (PAIR ,)* PAIR? }
-PAIR   = string : EXPR
+ARGS   = (EXPR ',')* EXPR?
 ```

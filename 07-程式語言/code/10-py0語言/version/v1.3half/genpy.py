@@ -81,35 +81,10 @@ def gen(n):
 			emit('(')
 			gen(n['expr'])
 			emit(')')
-		case 'array': # ARRAY  = [ (EXPR ,)* EXPR? ]
-			emit('[')
-			elist = n['list']
-			if len(elist)>0:
-				for expr in elist[0:-1]:
-					gen(expr)
-					emit(',')
-				gen(elist[-1])
-			emit(']')
-		case 'term': # TERM   = id ( [EXPR] | . id | (ARGS) )*
-			tlist = n['list']
-			tid = tlist[0]
-			emit(tid['id'])
-			for t in tlist[1:]:
-				op = t['type']
-				if op == 'index':
-					emit('[')
-					gen(t['expr'])
-					emit(']')
-				elif op == 'member':
-					emit('.')
-					gen(t['id'])
-				elif op == 'call':
-					emit('(')
-					gen(t['args'])
-					emit(')')
-				else:
-					error(f'term: op = {op} 不合法！')
-
+		case 'call': # CALL = id(ARGS)
+			emit(f'{n["id"]}(')
+			gen(n['args'])
+			emit(')')
 		case 'args': # ARGS = (EXPR ',')* EXPR? # args
 			args = n['args']
 			if len(args)>0:

@@ -23,14 +23,6 @@ def gen(n):
 			gen(n['expr'])
 			emit(':')
 			gen(n['stmt'])
-		case 'for':
-			# print('for=', n)
-			emit('for ')
-			emit(n['id'])
-			emit(' in ')
-			gen(n['expr'])
-			emit(' : ')
-			gen(n['stmt'])
 		case 'if':
 			emit('if ')
 			gen(n['expr'])
@@ -81,52 +73,39 @@ def gen(n):
 			emit('(')
 			gen(n['expr'])
 			emit(')')
-		case 'array': # ARRAY  = [ (EXPR ,)* EXPR? ]
-			emit('[')
-			elist = n['list']
-			if len(elist)>0:
-				for expr in elist[0:-1]:
-					gen(expr)
-					emit(',')
-				gen(elist[-1])
-			emit(']')
-		case 'term': # TERM   = id ( [EXPR] | . id | (ARGS) )*
-			tlist = n['list']
-			tid = tlist[0]
-			emit(tid['id'])
-			for t in tlist[1:]:
-				op = t['type']
-				if op == 'index':
-					emit('[')
-					gen(t['expr'])
-					emit(']')
-				elif op == 'member':
-					emit('.')
-					gen(t['id'])
-				elif op == 'call':
-					emit('(')
-					gen(t['args'])
-					emit(')')
-				else:
-					error(f'term: op = {op} 不合法！')
-
+		case 'call': # CALL = id(ARGS)
+			emit(f'{n["id"]}(')
+			gen(n['args'])
+			emit(')')
 		case 'args': # ARGS = (EXPR ',')* EXPR? # args
-			args = n['args']
-			if len(args)>0:
-				for arg in args[0:-1]:
-					gen(arg)
-					emit(' , ')
-				gen(args[-1])
+			for arg in n['args']:
+				gen(arg)
 		case 'float'|'integer':
-			emit(n['value'])
-		case 'string':
 			emit(n['value'])
 		case 'id':
 			emit(n['id'])
 
+code = '''
+def fib(n):
+	if n == 0 or n == 1:
+		a = 3
+		return 1
+	return fib(n-1)+fib(n-2)
+
+def sum(n):
+	s = 0
+	i = 1
+	while i<n:
+		s = s+i
+		i = i+1
+	return s
+
+print(fib(5))
+print(sum(10))
+'''
+
 # 測試詞彙掃描器
 if __name__ == "__main__":
-	from test0 import code
 	ast = parse(code)
 	print(ast)
 	gen(ast)
