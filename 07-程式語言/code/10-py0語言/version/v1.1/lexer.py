@@ -17,7 +17,7 @@ def tokenize(code):
 		('OP2',      r'(==)|(!=)|(<=)|(>=)'),    # Arithmetic operators
 		('INDENT',   r'\n\t*'),        # Line indent
 		('SPACE',    r'[ \t]+'),       # Skip over spaces and tabs
-		('CHAR',     r'[{}\(\)\+\-\*\/=!:<>]'), # 
+		('CHAR',     r'[{}\(\)\+\-\*\/=!:]'), # 
 		('MISMATCH', r'.'),            # Any other character
 	]
 	tok_regex = '|'.join('(?P<%s>%s)' % pair for pair in token_specification)

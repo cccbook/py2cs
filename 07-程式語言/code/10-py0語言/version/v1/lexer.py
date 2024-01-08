@@ -8,7 +8,7 @@ class Token(NamedTuple):
 	column: int
 	level: int
 
-def tokenize(code):
+def lex(code):
 	keywords = {'def', 'if', 'while', 'for', 'return', 'and', 'or', 'not'}
 	token_specification = [
 		('FLOAT',    r'\d+\.\d*'),     # Float
@@ -17,7 +17,7 @@ def tokenize(code):
 		('OP2',      r'(==)|(!=)|(<=)|(>=)'),    # Arithmetic operators
 		('INDENT',   r'\n\t*'),        # Line indent
 		('SPACE',    r'[ \t]+'),       # Skip over spaces and tabs
-		('CHAR',     r'[{}\(\)\+\-\*\/=!:<>]'), # 
+		('CHAR',     r'[{}\(\)\+\-\*\/=!:]'), # 
 		('MISMATCH', r'.'),            # Any other character
 	]
 	tok_regex = '|'.join('(?P<%s>%s)' % pair for pair in token_specification)
@@ -33,14 +33,14 @@ def tokenize(code):
 			kind = value
 		elif kind == 'INDENT':
 			hlevel = len(value)-1
-			if tokenize.lastTk and tokenize.lastTk.type in ['BEGIN', 'END', 'INDENT']:
+			if lex.lastTk and lex.lastTk.type in ['BEGIN', 'END', 'INDENT']:
 				continue
 			elif hlevel > level:
 				kind = 'BEGIN'
 				level_now = level
-			elif hlevel < level: #  and tokenize.lastTk and not tokenize.lastTk.type in ['BEGIN', 'END', 'INDENT']
+			elif hlevel < level: #  and lex.lastTk and not lex.lastTk.type in ['BEGIN', 'END', 'INDENT']
 				kind = 'END'
-				level_now = tokenize.lastTk.level - 1
+				level_now = lex.lastTk.level - 1
 			else:
 				kind = 'NEWLINE' # 'INDENT'
 				level_now = hlevel
@@ -52,20 +52,14 @@ def tokenize(code):
 			continue
 		elif kind == 'MISMATCH':
 			raise RuntimeError(f'{value!r} unexpected on line {line_num}')
-		tokenize.lastTk = Token(kind, value, line_num, column, level_now)
-		yield tokenize.lastTk
+		lex.lastTk = Token(kind, value, line_num, column, level_now)
+		yield lex.lastTk
 
-tokenize.lastTk = None
-
-def lex(code):
-	tokens = []
-	for tk in tokenize(code):
-		tokens.append(tk)
-	return tokens
+lex.lastTk = None
 
 def format(code):
 	words = []
-	for tk in tokenize(code):
+	for tk in lex(code):
 		tabs = '\t'*tk.level
 		if tk.type == 'BEGIN':
 			words.append('\n'+tabs+'begin\n'+tabs+'\t') # 多一個 \t ，因為 begin 後內縮一層
@@ -89,11 +83,7 @@ print(fib(5))
 
 # 測試詞彙掃描器
 if __name__ == "__main__":
-	"""
-	for token in tokenize(code):
+	for token in lex(code):
 		print(token)
-	"""
-	tokens = lex(code)
-	print(tokens)
 	fcode = format(code)
 	print(fcode)
