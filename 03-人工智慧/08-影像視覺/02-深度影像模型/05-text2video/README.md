@@ -2,6 +2,9 @@
 
 ## 工具
 
+* https://openai.com/sora
+    * https://openai.com/sora
+
 * https://huggingface.co/spaces/fffiloni/zeroscope
     * 我做的 https://huggingface.co/spaces/fffiloni/zeroscope/discussions/313
     * 我做的 https://cdn-uploads.huggingface.co/production/uploads/noauth/1MvNlrHcq1JWnOQW8nrht.mp4
