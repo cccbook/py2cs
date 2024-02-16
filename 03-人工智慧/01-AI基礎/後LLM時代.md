@@ -45,6 +45,7 @@ LLM 令人驚豔的地方有很多，像是：
     * [11 Best AI Image Generators in 2024](https://visme.co/blog/best-ai-image-generator/)
 2. text2video : 你輸入劇本，他就幫你拍出影片 (Lumen5 / InVideo / ...)
     * https://lumen5.com/
+    * https://openai.com/sora
     * [10 Best Tools for Text2Video By AI Generators](https://falahgs.medium.com/10-best-tools-for-text2video-by-ai-generators-47608e223948)
 3. text2music : 你告訴他想做甚麼風格的歌曲，他就幫你做好了 (Suno / AIVA)
     * https://www.suno.ai/
