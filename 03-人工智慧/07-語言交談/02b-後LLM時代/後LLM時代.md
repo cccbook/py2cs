@@ -102,4 +102,9 @@ LLM 令人驚豔的地方有很多，像是：
 
 > 往過去看相當清楚，但往未來看卻一片模糊 ...
 
+不過，有些程式人試圖創造出《可以融合 LLM 的程式設計的框架》，像是：
+
+1. https://github.com/langchain-ai/langchain
+2. https://github.com/stanfordnlp/dspy
+
 不管是用 Prompt ，或者結合 System2 ，在 AI 取代人類之前，我們還有得玩 ...
