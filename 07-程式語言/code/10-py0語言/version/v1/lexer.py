@@ -1,0 +1,89 @@
+from typing import NamedTuple
+import re
+
+class Token(NamedTuple):
+	type: str
+	value: str
+	line: int
+	column: int
+	level: int
+
+def lex(code):
+	keywords = {'def', 'if', 'while', 'for', 'return', 'and', 'or', 'not'}
+	token_specification = [
+		('FLOAT',    r'\d+\.\d*'),     # Float
+		('INTEGER',  r'\d+'),          # Integer
+		('ID',       r'[A-Za-z]+'),    # Identifiers
+		('OP2',      r'(==)|(!=)|(<=)|(>=)'),    # Arithmetic operators
+		('INDENT',   r'\n\t*'),        # Line indent
+		('SPACE',    r'[ \t]+'),       # Skip over spaces and tabs
+		('CHAR',     r'[{}\(\)\+\-\*\/=!:]'), # 
+		('MISMATCH', r'.'),            # Any other character
+	]
+	tok_regex = '|'.join('(?P<%s>%s)' % pair for pair in token_specification)
+	line_num = 1
+	line_start = 0
+	level = 0
+	for mo in re.finditer(tok_regex, code):
+		level_now = level
+		kind = mo.lastgroup
+		value = mo.group()
+		column = mo.start() - line_start
+		if kind == 'ID' and value in keywords:
+			kind = value
+		elif kind == 'INDENT':
+			hlevel = len(value)-1
+			if lex.lastTk and lex.lastTk.type in ['BEGIN', 'END', 'INDENT']:
+				continue
+			elif hlevel > level:
+				kind = 'BEGIN'
+				level_now = level
+			elif hlevel < level: #  and lex.lastTk and not lex.lastTk.type in ['BEGIN', 'END', 'INDENT']
+				kind = 'END'
+				level_now = lex.lastTk.level - 1
+			else:
+				kind = 'NEWLINE' # 'INDENT'
+				level_now = hlevel
+				
+			line_start = mo.start() + 1 # mo.end()
+			line_num += 1
+			level = hlevel
+		elif kind == 'SPACE':
+			continue
+		elif kind == 'MISMATCH':
+			raise RuntimeError(f'{value!r} unexpected on line {line_num}')
+		lex.lastTk = Token(kind, value, line_num, column, level_now)
+		yield lex.lastTk
+
+lex.lastTk = None
+
+def format(code):
+	words = []
+	for tk in lex(code):
+		tabs = '\t'*tk.level
+		if tk.type == 'BEGIN':
+			words.append('\n'+tabs+'begin\n'+tabs+'\t') # 多一個 \t ，因為 begin 後內縮一層
+		elif tk.type == 'END':
+			words.append('\n'+tabs+'end\n'+tabs)
+		elif tk.type == 'NEWLINE':
+			words.append('\n'+tabs)
+		else:
+			words.append(tk.value+' ')
+	return ''.join(words)
+
+code = '''
+def fib(n):
+	if n == 0 or n == 1:
+		a = 3
+		return 1
+	return fib(n-1)+fib(n-2)
+
+print(fib(5))
+'''
+
+# 測試詞彙掃描器
+if __name__ == "__main__":
+	for token in lex(code):
+		print(token)
+	fcode = format(code)
+	print(fcode)

@@ -8,6 +8,9 @@ def logFactorial(n):
 
 def factorial(n):
 	logf = logFactorial(n)
-	return int(math.exp(logf))
+	print('logf=', logf)
+	r = math.exp(logf)
+	print('r=', r)
+	return int(r)
 
 print(factorial(10))

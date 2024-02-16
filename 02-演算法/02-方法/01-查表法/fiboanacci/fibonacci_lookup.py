@@ -1,5 +1,5 @@
 from datetime import datetime
-fib = [None]*100
+fib = [None]*10000
 fib[0] = 0
 fib[1] = 1
 
