@@ -7,7 +7,7 @@
     * [Diffusion Model 原理剖析 (2/4) (optional)](https://www.youtube.com/watch?v=73qwu77ZsTM)
     * [Diffusion Model 原理剖析 (3/4) (optional)](https://www.youtube.com/watch?v=m6QchXTx6wA)
     * [Diffusion Model 原理剖析 (4/4) (optional)](https://www.youtube.com/watch?v=67_M2qP5ssY)
-    * [Stable Diffusion、DALL-E、Imagen 背後共同的套路](https://www.youtube.com/watch?v=JbfcAaBT66U)
+    * [Stable Diffusion、DALL-E、Imagen 背後共同的套路](https://www.youtube.com/watch?v=JbfcAaBT66U) (讚)
 
 
 ## 概念
@@ -62,3 +62,17 @@
 ![](./img/AlgorithmTraining2.png)
 
 ![](./img/AlgorithmSampling2.png)
+
+
+## 完整系統的架構
+
+* [Stable Diffusion、DALL-E、Imagen 背後共同的套路](https://www.youtube.com/watch?v=JbfcAaBT66U) (讚)
+
+![](./img/framework1.png)
+
+Decoder 壓縮變大圖，不需要《文字描述》
+
+所以任何圖片樣本都可用來訓練，樣本數很大 ...
+
+![](./img/framework2imagen.png)
+

@@ -3,6 +3,7 @@
 ## 工具
 
 * https://openai.com/sora (重要，必看)
+    * 原理: https://openai.com/research/video-generation-models-as-world-simulators
 
 * https://huggingface.co/spaces/fffiloni/zeroscope
     * 我做的 https://huggingface.co/spaces/fffiloni/zeroscope/discussions/313
