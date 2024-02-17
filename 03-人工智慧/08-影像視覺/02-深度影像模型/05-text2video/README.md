@@ -2,8 +2,7 @@
 
 ## 工具
 
-* https://openai.com/sora
-    * https://openai.com/sora
+* https://openai.com/sora (重要，必看)
 
 * https://huggingface.co/spaces/fffiloni/zeroscope
     * 我做的 https://huggingface.co/spaces/fffiloni/zeroscope/discussions/313
