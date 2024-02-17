@@ -1,5 +1,13 @@
 # Diffusion Model 的原理
 
+論文： 
+
+* [enoising Diffusion Probabilistic Models(PDF)](https://arxiv.org/pdf/2006.11239.pdf)
+
+![](./img/paper1.png)
+
+![](./img/paper3.png)
+
 ## 圖片來源：李宏毅教學影片
 
 * [YouTube 李宏毅: 淺談圖像生成模型 Diffusion Model 原理](https://www.youtube.com/watch?v=azBugJzmz-o) (讚)
