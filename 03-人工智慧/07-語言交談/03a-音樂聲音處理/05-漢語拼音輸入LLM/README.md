@@ -23,3 +23,11 @@
 ![](./img/piningInput.png)
 
 所以，語音辨識系統，應該不需要轉成文字，只要轉成拼音，就可以拿去問 ChatGPT 了 ...
+
+## Python 套件
+
+既然上述實驗成功了，那麼，我們就可以用下列 Python 套件，來將中文轉成漢語拼音。
+
+* https://github.com/mozillazg/python-pinyin
+
+這樣就不會有選字問題了 ...
