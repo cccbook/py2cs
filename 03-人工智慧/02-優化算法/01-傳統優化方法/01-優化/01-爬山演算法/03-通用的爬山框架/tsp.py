@@ -7,7 +7,9 @@ citys = [
     (3,1),(3,2)
 ]
 
-path = [i for i in range(len(citys))]
+#path = [i for i in range(len(citys))]
+l = len(citys)
+path = [(i+1)%l for i in range(l)]
 print(path)
 
 def distance(p1, p2):
@@ -20,7 +22,8 @@ def pathLength(p):
     dist = 0
     plen = len(p)
     for i in range(plen):
-        dist += distance(citys[p[i]], citys[p[(i+1)%plen]])
+        # dist += distance(citys[p[i]], citys[p[(i+1)%plen]])
+        dist += distance(citys[i], citys[p[i]])
     return dist
 
 print('pathLength=', pathLength(path))
