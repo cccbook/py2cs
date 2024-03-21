@@ -22,6 +22,10 @@ Sora 到底有沒有《理解世界模型》
     * 我做的 https://cdn-uploads.huggingface.co/production/uploads/noauth/1MvNlrHcq1JWnOQW8nrht.mp4
     * 我做的 https://cdn-uploads.huggingface.co/production/uploads/noauth/Aovw0ijCXkjX9y8XCQFRA.mp4
 
+* Stable Video
+    * https://www.stablevideo.com/
+* Pika
+    * https://pika.art/
 
 ## 參考
 
