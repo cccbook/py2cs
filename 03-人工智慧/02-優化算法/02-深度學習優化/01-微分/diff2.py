@@ -7,11 +7,11 @@ def power3(x):
 def triple(x):
     return 3*x
 
-dx = 0.001
+h = 0.001
 
 def diff(f, x):
-    df = f(x+dx)-f(x)
-    return df/dx
+    df = f(x+h)-f(x)
+    return df/h
 
 print('diff(square,2)=', diff(square, 2))
 print('diff(power3,1)=', diff(power3, 1))
