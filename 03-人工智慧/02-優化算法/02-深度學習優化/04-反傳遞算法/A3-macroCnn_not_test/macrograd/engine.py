@@ -205,3 +205,37 @@ class Tensor:
                         output_data[b, k, i // stride_vertical, j // stride_horizontal] += np.sum(padded_input[b, :, i:i+kernel_height, j:j+kernel_width] * filter_tensor.data[k])
 
         return Tensor(output_data)
+
+    def maxpool2d(input_tensor, pool_size=(2, 2), stride=(2, 2)):
+        """
+        Perform 2D max pooling on input tensor.
+
+        Parameters:
+            input_tensor (Tensor): Input tensor of shape (batch_size, channels, height, width).
+            pool_size (tuple): Size of the pooling window in (vertical, horizontal) direction. Default is (2, 2).
+            stride (tuple): Stride of the pooling operation in (vertical, horizontal) direction. Default is (2, 2).
+
+        Returns:
+            Tensor: Output tensor after max pooling operation.
+        """
+        # Extract shapes
+        batch_size, channels, in_height, in_width = input_tensor.shape
+        pool_height, pool_width = pool_size
+        stride_vertical, stride_horizontal = stride
+
+        # Compute output shape
+        out_height = (in_height - pool_height) // stride_vertical + 1
+        out_width = (in_width - pool_width) // stride_horizontal + 1
+
+        # Initialize output tensor
+        output_data = np.zeros((batch_size, channels, out_height, out_width))
+
+        # Perform max pooling
+        for b in range(batch_size):
+            for c in range(channels):
+                for i in range(0, in_height - pool_height + 1, stride_vertical):
+                    for j in range(0, in_width - pool_width + 1, stride_horizontal):
+                        output_data[b, c, i // stride_vertical, j // stride_horizontal] = np.max(
+                            input_tensor.data[b, c, i:i+pool_height, j:j+pool_width])
+
+        return Tensor(output_data)
