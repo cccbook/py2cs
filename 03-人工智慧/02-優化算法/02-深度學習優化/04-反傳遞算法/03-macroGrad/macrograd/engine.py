@@ -115,10 +115,12 @@ class Tensor:
         return out
 
     def cross_entropy(self, yb):
-        log_probs = self.log()
-        zb = yb*log_probs
+        log_probs = self.log() # log (q)
+        zb = yb*log_probs # yb = p; z=p*log(q)
         outb = zb.sum(axis=1)
+        print('zb=', zb, '\noutb=', outb)
         loss = -outb.sum()  # cross entropy loss
+        print('loss=', loss)
         return loss # 本函數不用指定反傳遞，因為所有運算都已經有反傳遞了，所以直接呼叫 loss.backward() 就能反傳遞了
 
     def backward(self):
