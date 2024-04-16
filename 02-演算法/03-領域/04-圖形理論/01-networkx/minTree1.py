@@ -5,10 +5,9 @@ import pylab as plt
 from graph1 import G
 
 T = nx.minimum_spanning_tree(G, algorithm="kruskal")
-c=nx.to_numpy_matrix(T)
-print("c=", c)
-w1 = c.sum()/2
-print("tree weight:", w1)
+print("T=", T)
+print("edges=", sorted(T.edges(data=True)))
+print("tree weight:", T.size(weight="weight"))
 pos = nx.circular_layout(G)
 key=range(8); s=['v'+str(i) for i in key]
 s = dict(zip(key, s))
