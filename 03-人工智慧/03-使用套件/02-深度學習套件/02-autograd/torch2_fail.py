@@ -1,7 +1,7 @@
 import torch 
 
-x = torch.tensor(1.)
-y = torch.tensor(3.)
+x = torch.tensor(1., requires_grad=True)
+y = torch.tensor(3., requires_grad=True)
 x2 = x*x
 y2 = y*y
 o = x2+y2
