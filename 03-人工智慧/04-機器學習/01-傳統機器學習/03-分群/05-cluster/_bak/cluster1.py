@@ -29,8 +29,8 @@ model = cluster.DBSCAN(eps=0.3) # 對 circle 不好
 model.fit(X)
 
 # 透過模型對每個樣本進行預測，得到每個樣本所屬的 cluster
-predictions = model.predict(X)
-# predictions = model.fit_predict(X)
+# predictions = model.predict(X)
+predictions = model.fit_predict(X)
 # 繪製散佈圖
 plt.scatter(X[:, 0], X[:, 1], c=predictions)
 plt.show()

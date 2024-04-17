@@ -19,7 +19,7 @@ plt.show()
 # model = cluster.KMeans(n_clusters=3)
 # model = cluster.KMeans(n_clusters=2)
 # model = cluster.AgglomerativeClustering(n_clusters=3, linkage="ward", connectivity=)
-        n_clusters=params["n_clusters"], linkage="ward") # connectivity=??
+#        n_clusters=params["n_clusters"], linkage="ward") # connectivity=??
 
 # model = cluster.DBSCAN(eps=0.5, min_samples=3) # 對 circle 不好
 # model = cluster.DBSCAN(eps=0.3) # 對 circle 不好

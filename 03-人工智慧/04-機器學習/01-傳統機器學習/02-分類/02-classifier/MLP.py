@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
 """資料準備"""
-data= pd.read_csv('data.csv')
+data= pd.read_csv('cmc.csv')
 x = data.drop(labels=['ContraceptiveMethodUsed'],axis=1).values 
 y = data['ContraceptiveMethodUsed']-1 #是否避孕，1=No-use, 2=Long-term, 3=Short-term
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2) #切分訓練測試集
