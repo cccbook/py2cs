@@ -18,3 +18,8 @@ ChatGPT 震驚了很多人，於是我們開始想像《通用 AI 》
 
 克服 LLM 知識推理能力的障礙，是通往 AGI 的關鍵技術 ...
 
+
+![](./img/CopilotAnimal.png)
+
+![](./img/CopilotFamily.png)
+
