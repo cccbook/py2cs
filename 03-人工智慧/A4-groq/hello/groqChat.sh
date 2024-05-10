@@ -1,0 +1,2 @@
+# GROQ_API_KEY=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 python groqChat.py What is GPT?
+GROQ_API_KEY=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 python groqChat.py GPT 是什麼？ 請用中文回答
