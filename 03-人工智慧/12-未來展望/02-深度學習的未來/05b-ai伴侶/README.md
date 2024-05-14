@@ -1,5 +1,8 @@
 
 
+* https://twitter.com/op7418/status/1790265101410574742
+    * 跟 ChatGPT 去海边约会 (AI 男友超會講情話 ... )
+
 * https://www.facebook.com/ccckmit/posts/pfbid02m2gqWDEWpeJRsG3NgTMHaCrxbUkfrz8h544UTdVJZ7L5v2A6Vxf2MV157Qm48ph7l
 
 Open AI 的 GPT-4o 出來後

@@ -63,3 +63,13 @@ GPT-4o
 
 * https://www.facebook.com/janyeh/posts/pfbid0WZ5hQZNSniUPt5KkZ6kjSs1d8vfaGaFBdUiPfNqVrucu52vnBit6uVYVS159C2J9l
     * #chatgpt 可以用記憶功能自訂指令
+
+* https://twitter.com/op7418/status/1790265101410574742
+    * 跟 ChatGPT 去海边约会 (AI 男友超會講情話 ... )
+
+* https://twitter.com/imxiaohu/status/1790080559382679627
+    * 讓 ChatGPT 看著你然後對話
+
+* https://twitter.com/jesselaunz/status/1790159233834762664
+    * 用GPT-4o模拟处理客服事务
+    
