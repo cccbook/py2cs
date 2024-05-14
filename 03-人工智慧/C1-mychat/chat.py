@@ -2,18 +2,15 @@ import os
 import sys
 from openai import OpenAI
 
+chatStack = []
+
 openai_key = os.environ.get("OPENAI_API_KEY")
 openai = OpenAI() if openai_key else None
 
 def openaiChat(question):
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "請用繁體中文 zh-tw 回答"},
-            {"role": "assistant", "content": "你聊天對象是台灣人"},
-            {"role": "user", "content": question}
-        ]
+        messages=chatStack+[{"role": "user", "content": question}]
     )
     return response.choices[0].message.content
 
@@ -24,13 +21,9 @@ groq = Groq(api_key=groq_key) if groq_key else None
 
 def groqChat(question):
     response = groq.chat.completions.create(
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "請用繁體中文 zh-tw 回答"},
-            {"role": "assistant", "content": "你聊天對象是台灣人"},
-            {"role": "user", "content": question},
-        ],
-        model="llama3-8b-8192",
+        messages=chatStack+[{"role": "user", "content": question}],
+        # model="llama3-8b-8192",
+        model="llama3-70b-8192",
     )
     return response.choices[0].message.content
 
@@ -41,13 +34,18 @@ def chatList():
     return rlist
 
 def chat(question, model="groq"):
-    print('model=', model)
-    if model=='groq':
-        return groqChat(question)
-    elif model=='openai':
-        return openaiChat(question)
-    else:
-        raise Exception('chat model not found!')
+    try:
+        print('model=', model)
+        if model=='groq':
+            return groqChat(question)
+        elif model=='openai':
+            return openaiChat(question)
+        else:
+            raise Exception('chat model not found!')
+    except Exception as error:
+        print(f"OpenAI API returned an API Error: {error}")
+        # print("Error: openai chat api fail!")
+        return "Error: openai chat api fail!"
 
 if __name__ == '__main__':
     clist = chatList()

@@ -1,0 +1,1 @@
+GROQ_API_KEY=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 python ai2_test.py
