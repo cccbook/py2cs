@@ -72,4 +72,6 @@ GPT-4o
 
 * https://twitter.com/jesselaunz/status/1790159233834762664
     * 用GPT-4o模拟处理客服事务
-    
+
+* https://twitter.com/Nasdaqprinter/status/1790118494656200999
+    * ChatGPT 即時翻譯
