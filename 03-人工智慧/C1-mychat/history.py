@@ -1,4 +1,6 @@
 from sys import platform
+# import atexit
+import readline
 
 # 设置历史记录文件的路径
 histfile = ".python_history"
@@ -20,7 +22,7 @@ def start():
     except FileNotFoundError:
         pass
 
-def input(prompt):
+def input2(prompt):
     if platform == "win32":
         return readline.readline(prompt)
     else:

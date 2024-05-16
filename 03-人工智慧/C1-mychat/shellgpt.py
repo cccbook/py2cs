@@ -154,7 +154,7 @@ chatStack.extend([
 history.start()
 commandList = []
 while True:
-    command = history.input('\ncommand> ')
+    command = history.input2('\ncommand> ')
     command = command.strip()
     if command == 'quit': break
     commandList.append(command)
