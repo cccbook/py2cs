@@ -18,9 +18,11 @@ ReAct 是一个将推理和行为与 LLMs 相结合通用的范例。ReAct 提�
 ## LangChain + OpenAI 範例
 
 ```py
-import openai
+#import openai
 import os
-from langchain.llms import OpenAI
+#from langchain.llms import OpenAI
+# from langchain_core.prompts import ChatPromptTemplate
+from langchain_groq import ChatGroq
 from langchain.agents import load_tools
 from langchain.agents import initialize_agent
 from dotenv import load_dotenv
