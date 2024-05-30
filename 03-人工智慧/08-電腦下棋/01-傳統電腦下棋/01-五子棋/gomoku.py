@@ -97,9 +97,9 @@ def getScore(board, r, c, turn, mode):
             inc  = i9[start: start + length]
             dec  = d9[start: start + length]
             if patternCheck(board, turn, r, c, zero, inc):
-                score += mScores[length] #  得分：垂直 |
-            if patternCheck(board, turn, r, c, inc, zero):
                 score += mScores[length] #  得分：水平 -
+            if patternCheck(board, turn, r, c, inc, zero):
+                score += mScores[length] #  得分：垂直 | 
             if patternCheck(board, turn, r, c, inc, inc):
                 score += mScores[length] #  得分：下斜 \
             if patternCheck(board, turn, r, c, inc, dec):
