@@ -9,6 +9,7 @@ BOARD_SIZE = 15
 LINE_WIDTH = 2
 GRID_SIZE = WIDTH // (BOARD_SIZE + 1)  # 棋盤格子大小調整
 SEARCH_DEPTH = 1
+# SEARCH_DEPTH = 2
 # 初始化 Pygame
 pygame.init()
 

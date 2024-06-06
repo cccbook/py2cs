@@ -1,0 +1,8 @@
+bak
+raw
+*.pth
+*.pt
+__pycache__
+*.gz
+*.zip
+*.bak

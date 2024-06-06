@@ -1,0 +1,27 @@
+Q: the cat love every dog A:
+Q: the little pig A:
+Q: every little dog A:
+Q: the little pig bite a black cat A:
+Q: a white cat love the black dog A:
+Q: every pig bite every white cat A:
+Q: the little dog bite the little cat A:
+Q: the white pig bite a white pig A:
+Q: the white cat A: 
+Q: the little pig love a little pig A: 
+Q: the black cat bite the black dog A: 
+Q: every black dog A: 
+Q: the dog A: 
+Q: every cat bite the white pig A: 
+Q: a white cat A: 
+Q: every little pig bite the dog A: 
+Q: every white cat love a white cat A: 
+Q: a dog bite the pig A: 
+Q: the black dog A: 
+Q: a dog A: 
+Q: the little dog A: 
+Q: every little dog chase the white cat A: 
+Q: the black pig chase a black dog A: 
+Q: the pig A: 
+Q: every pig A: 
+Q: a little cat A: 
+Q: the cat A: 

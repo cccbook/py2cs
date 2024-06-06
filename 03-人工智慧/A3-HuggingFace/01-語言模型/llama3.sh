@@ -1,0 +1,1 @@
+HF_TOKEN=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 python llama3_test.py

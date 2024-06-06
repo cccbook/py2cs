@@ -1,0 +1,19 @@
+{
+  "in_shape": [
+    28,
+    28
+  ],
+  "out_shape": [
+    10
+  ],
+  "layers": [
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "Flatten"
+    }
+  ],
+  "parameter_count": 7850,
+  "accuracy": 91.70999908447266
+}
