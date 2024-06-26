@@ -3,3 +3,4 @@ from solutionScheduling import SolutionScheduling # 引入平方根解答類別
 
 # 執行爬山演算法 (最多3萬代、失敗一千次就跳出)
 hillClimbing(SolutionScheduling.init(), 30000, 1000)
+# hillClimbing(SolutionScheduling.init(), 100, 1000)

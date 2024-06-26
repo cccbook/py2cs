@@ -6,7 +6,7 @@ import pydot
 from six import StringIO
 import pandas as pd
 from sklearn.model_selection import train_test_split
-data= pd.read_csv('data.csv')
+data= pd.read_csv('cmc.csv')
 x = data.drop(labels=['ContraceptiveMethodUsed'],axis=1).values 
 y = data['ContraceptiveMethodUsed'] #是否避孕，1=No-use, 2=Long-term, 3=Short-term
 

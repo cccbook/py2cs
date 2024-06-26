@@ -17,7 +17,7 @@ def mining(record) :
         record['nonce'] = i
         # record['nonce'] = random.randint(0,1000000000000)
         h = hash(json.dumps(record))
-        if h.startswith('00000'):
+        if h.startswith('00000000'):
             return {'record': record, 'hash': h}
 
 print(mining(record))
