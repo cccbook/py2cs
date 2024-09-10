@@ -1,7 +1,7 @@
 C = [[None]*100 for _ in range(100)]
 
 def c(n, k):
-    if k < 0 or k > n: return 0
+    if k==0 or k==n : return 1
     if not C[n][k] is None: return C[n][k]
     if k==0 or n <= 1:
         C[n][k] = 1
