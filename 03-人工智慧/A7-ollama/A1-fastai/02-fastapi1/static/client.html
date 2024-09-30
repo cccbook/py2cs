@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <h1>Ollama WebSocket Client</h1>
+    <input type="text" id="messageInput" placeholder="輸入您的問題">
+    <button onclick="sendMessage()">發送</button>
+    <div id="response"></div>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8000/ws");
+
+        ws.onopen = () => {
+            console.log("Connected to WebSocket server");
+        };
+
+        ws.onmessage = (event) => {
+            const responseDiv = document.getElementById("response");
+            responseDiv.innerHTML += `<p><strong>回應:</strong> ${event.data}</p>`;
+        };
+
+        ws.onclose = () => {
+            console.log("Disconnected from WebSocket server");
+        };
+
+        function sendMessage() {
+            const input = document.getElementById("messageInput");
+            const message = input.value;
+            ws.send(message);
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
