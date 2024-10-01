@@ -34,12 +34,12 @@ def differentiate(expr):
     return f"未知的函數: {expr}"
 
 # 測試例子
-print(differentiate('x'))         # 1
-print(differentiate('x^3'))       # 3*x^2
-print(differentiate('sin(x)'))    # cos(x) * 1
-print(differentiate('sin(x^2)'))  # cos(x^2) * 2x
-print(differentiate('sin(cos(x^2))'))  # cos(cos(x^2)) * -sin(x^2) * 2*x^1
+print('diff(x)=', differentiate('x'))         # 1
+print('diff(x^3)=', differentiate('x^3'))       # 3*x^2
+print('diff(sin(x))=', differentiate('sin(x)'))    # cos(x) * 1
+print('diff(sin(x^2))=', differentiate('sin(x^2)'))  # cos(x^2) * 2x
+print('diff(sin(cos(x^2)))=', differentiate('sin(cos(x^2))'))  # cos(cos(x^2)) * -sin(x^2) * 2*x^1
 # print(differentiate('sin(cos(x^2)^2)'))  # cos(cos(x^2)) * -sin(x^2) * 2*x^1
-print(differentiate('cos(x)'))    # -sin(x) * 1
-print(differentiate('exp(x)'))    # exp(x) * 1
-print(differentiate('exp(x^3)'))  # exp(x^3) * 3*x^2
+print('diff(cos(x))=', differentiate('cos(x)'))    # -sin(x) * 1
+print('diff(exp(x))=', differentiate('exp(x)'))    # exp(x) * 1
+print('diff(exp(x^3))=', differentiate('exp(x^3)'))  # exp(x^3) * 3*x^2
