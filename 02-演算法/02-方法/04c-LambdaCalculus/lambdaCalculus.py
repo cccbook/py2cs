@@ -74,7 +74,7 @@ NIL                   = lambda x:TRUE
 
 # 另一種定義方式 Y = lambda g:g(lambda:Y(g))
 # Y-Combinators : 令 g = (lambda x:f(lambda y:x(x)(y)))
-# 利用遞迴的方式 Y(g) = g(g) = g(g)(y) = 
+# 利用遞迴的方式 Y(g) = g(g)
 Y = lambda f:\
   (lambda x:f(lambda y:x(x)(y)))\
   (lambda x:f(lambda y:x(x)(y)))
