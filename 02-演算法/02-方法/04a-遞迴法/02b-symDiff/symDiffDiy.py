@@ -23,7 +23,7 @@ def differentiate(expr):
     if expr == 'x':
         return derivatives['x']
 
-    # 處理基本函數，如 sin(x), cos(x), exp(x)
+    # 處理函數，如 sin(x), cos(x), exp(x)
     for func in derivatives:
         if expr.startswith(f"{func}(") and expr.endswith(")"):
             inner_expr = expr[len(func)+1:-1]
@@ -37,6 +37,9 @@ def differentiate(expr):
 print(differentiate('x'))         # 1
 print(differentiate('x^3'))       # 3*x^2
 print(differentiate('sin(x)'))    # cos(x) * 1
+print(differentiate('sin(x^2)'))  # cos(x^2) * 2x
+print(differentiate('sin(cos(x^2))'))  # cos(cos(x^2)) * -sin(x^2) * 2*x^1
+# print(differentiate('sin(cos(x^2)^2)'))  # cos(cos(x^2)) * -sin(x^2) * 2*x^1
 print(differentiate('cos(x)'))    # -sin(x) * 1
 print(differentiate('exp(x)'))    # exp(x) * 1
-print(differentiate('exp(x^3)'))    # exp(x) * 1
+print(differentiate('exp(x^3)'))  # exp(x^3) * 3*x^2
