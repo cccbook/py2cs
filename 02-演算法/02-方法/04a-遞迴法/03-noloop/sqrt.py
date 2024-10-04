@@ -5,6 +5,7 @@ def square(x):
     return x*x
 
 def sqrt_iter(guess, x):
+    print('guess=', guess)
     return guess if is_good_enough(guess, x) else sqrt_iter(improve(guess, x), x)
 
 def improve(guess, x):
@@ -20,6 +21,6 @@ def sqrt(x):
     return sqrt_iter(1, x)
 
 print('sqrt(9)=', sqrt(9))
-print('sqrt(100 + 37)=', sqrt(100 + 37))
-print('sqrt(sqrt(2) + sqrt(3))=', sqrt(sqrt(2) + sqrt(3)))
-print('square(sqrt(1000))=', square(sqrt(1000)))
+#print('sqrt(100 + 37)=', sqrt(100 + 37))
+#print('sqrt(sqrt(2) + sqrt(3))=', sqrt(sqrt(2) + sqrt(3)))
+#print('square(sqrt(1000))=', square(sqrt(1000)))
