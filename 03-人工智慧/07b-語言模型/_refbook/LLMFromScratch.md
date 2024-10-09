@@ -1,7 +1,12 @@
 
 
 * [Build a Large Language Model (From Scratch)](https://github.com/rasbt/LLMs-from-scratch/)
-    * 
+
+![](https://camo.githubusercontent.com/a17472f25db0af2e7a72700cf3e994b48a61405931b54111ed4d62cbe0371216/68747470733a2f2f73656261737469616e72617363686b612e636f6d2f696d616765732f4c4c4d732d66726f6d2d736372617463682d696d616765732f6d656e74616c2d6d6f64656c2e6a7067)
+
+* [Ch 7: Finetuning to Follow Instructions](https://github.com/ccc-ai0/LLMs-from-scratch/blob/main/ch07/01_main-chapter-code/ch07.ipynb)
+
+* LLAMA3
     * https://github.com/rasbt/LLMs-from-scratch/blob/main/ch05/07_gpt_to_llama/converting-llama2-to-llama3.ipynb
     * https://www.linkedin.com/posts/sebastianraschka_the-llama-32-1b-and-3b-models-are-my-favorite-activity-7248317830943686656-yyYD/
 
