@@ -38,9 +38,11 @@ if __name__ == "__main__":
     hopfield_net = HopfieldNetwork(size)
 
     # Train the network
-    hopfield_net.train(patterns)
+    for i in range(100):
+        hopfield_net.train(patterns)
 
     # Test the network with a noisy input
+    # test_input = [-1,1,1,1] 
     test_input = [1, 1, -1, 1]  # One element is noisy
     recalled_pattern = hopfield_net.recall(test_input)
 
