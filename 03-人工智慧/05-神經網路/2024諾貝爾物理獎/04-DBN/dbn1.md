@@ -1,5 +1,7 @@
 
 
+
+
 ```
  python dbn1.py
 Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
