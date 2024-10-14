@@ -1,6 +1,7 @@
+# https://pypi.org/project/mlx-lm/
 from mlx_lm import load, generate
 
-model, tokenizer = load("mlx-community/quantized-gemma-2b")
+model, tokenizer = load("mlx-community/Llama-3.2-1B-Instruct-4bit")
 
 prompt = "Write a story about Einstein"
 

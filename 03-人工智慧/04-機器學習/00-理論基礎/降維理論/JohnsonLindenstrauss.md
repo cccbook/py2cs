@@ -8,3 +8,5 @@ $ python JohnsonLindenstrauss.py
 投影後數據維度: (100, 50)
 ```
 
+
+
