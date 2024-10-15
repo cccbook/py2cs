@@ -12,8 +12,8 @@ def hillClimbing(f, x, dx=0.01):
 
 # 高度函數
 def f(x):
-    # return -1*(x*x-2*x+1)
+    return -1*(x*x-2*x+1)
     # return -1*(x*x+3*x+5)
-    return -1*abs(x*x-4)
+    # return -1*abs(x*x-4)
 
 hillClimbing(f, 0) # 以 x=0 為起點，開始呼叫爬山演算法
