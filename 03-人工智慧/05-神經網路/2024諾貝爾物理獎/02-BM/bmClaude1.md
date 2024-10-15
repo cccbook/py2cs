@@ -1,0 +1,58 @@
+
+
+```
+(base) cccimac@cccimacdeiMac 02-BM % python bmClaude1.py
+Epoch 0/5000
+Epoch 100/5000
+Epoch 200/5000
+Epoch 300/5000
+Epoch 400/5000
+Epoch 500/5000
+Epoch 600/5000
+Epoch 700/5000
+Epoch 800/5000
+Epoch 900/5000
+Epoch 1000/5000
+Epoch 1100/5000
+Epoch 1200/5000
+Epoch 1300/5000
+Epoch 1400/5000
+Epoch 1500/5000
+Epoch 1600/5000
+Epoch 1700/5000
+Epoch 1800/5000
+Epoch 1900/5000
+Epoch 2000/5000
+Epoch 2100/5000
+Epoch 2200/5000
+Epoch 2300/5000
+Epoch 2400/5000
+Epoch 2500/5000
+Epoch 2600/5000
+Epoch 2700/5000
+Epoch 2800/5000
+Epoch 2900/5000
+Epoch 3000/5000
+Epoch 3100/5000
+Epoch 3200/5000
+Epoch 3300/5000
+Epoch 3400/5000
+Epoch 3500/5000
+Epoch 3600/5000
+Epoch 3700/5000
+Epoch 3800/5000
+Epoch 3900/5000
+Epoch 4000/5000
+Epoch 4100/5000
+Epoch 4200/5000
+Epoch 4300/5000
+Epoch 4400/5000
+Epoch 4500/5000
+Epoch 4600/5000
+Epoch 4700/5000
+Epoch 4800/5000
+Epoch 4900/5000
+部分數據: [1 0 1 1 0 0]
+重建結果: [1. 0. 1. 1. 0. 0.]
+最相似的訓練樣本: [1 0 1 0 0 0]
+```
