@@ -3,7 +3,7 @@ import json
 
 url = 'http://localhost:11434/api/chat'
 data = {
-    "model": "gemma:2b",
+    "model": "llama3.2:3b", #"gemma:2b",
     "messages": [
         {"role": "user", "content": "你是誰？"}
     ]
@@ -15,7 +15,7 @@ lines = response.text.strip().split('\n')
 json1 = '['+',\n'.join(lines)+']'
 # print(json1)
 response = json.loads(json1)
-# print(json.dumps(response, indent=2, ensure_ascii=False))
+print(json.dumps(response, indent=2, ensure_ascii=False))
 
 for t in response:
     print(t['message']['content'], end='')

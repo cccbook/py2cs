@@ -13,6 +13,8 @@ print('ft=', ft)
 print('Fq=', Fq)
 print('ft2=', ft2)
 np.testing.assert_array_almost_equal(ft, ft2)
+np.testing.assert_array_almost_equal([0,0,0], [0,0,0])
+np.testing.assert_array_almost_equal([0,0,0], [0,0,1])
 
 
 
