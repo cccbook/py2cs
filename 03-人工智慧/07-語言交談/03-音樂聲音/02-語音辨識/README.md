@@ -1,3 +1,8 @@
+
+
+待整理 -- https://github.com/AssemblyAI-Community/python-speech-recognition-course
+
+
 # SpeechRecognition
 
 * https://pypi.org/project/SpeechRecognition/
