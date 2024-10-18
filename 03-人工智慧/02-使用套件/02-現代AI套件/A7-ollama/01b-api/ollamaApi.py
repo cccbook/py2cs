@@ -1,7 +1,8 @@
 import requests
 import json
 
-url = 'http://localhost:11434/api/chat'
+# url = 'http://localhost:11434/api/chat'
+url = 'http://139.162.90.34::11434/api/chat'
 data = {
     "model": "llama3.2:3b", #"gemma:2b",
     "messages": [
