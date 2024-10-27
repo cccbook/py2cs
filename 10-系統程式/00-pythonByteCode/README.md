@@ -1,5 +1,7 @@
 
 
+* https://zoo.cs.yale.edu/classes/cs200/lectures/PVM.html
+
 * https://chatgpt.com/c/671c5b5a-2d00-8012-a2fb-d32971ef10ef
 
 ## ccc: pyc 是堆疊幾架構嗎？
