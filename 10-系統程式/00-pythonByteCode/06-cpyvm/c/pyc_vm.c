@@ -13,47 +13,76 @@ void dump_code_object(PyCodeObject *code_obj) {
     printf("Disassembling code object: %s\n", PyUnicode_AsUTF8(code_obj->co_name));
     printf("Filename: %s\n", PyUnicode_AsUTF8(code_obj->co_filename));
     printf("First Line Number: %d\n", code_obj->co_firstlineno);
-    
+
+    Py_ssize_t size;
+    size = PyTuple_Size(code_obj->co_consts);
+    PyObject **constant_objs = malloc(sizeof(PyObject*)*size);
     // Print constants
     printf("Constants:\n");
     for (Py_ssize_t i = 0; i < PyTuple_Size(code_obj->co_consts); i++) {
         PyObject *const_obj = PyTuple_GetItem(code_obj->co_consts, i);
-        printf("  [%zd] %s\n", i, PyUnicode_Check(const_obj) ? 
-             PyUnicode_AsUTF8(const_obj) : "Non-string constant");
-        /*
-        if (PyUnicode_Check(const_obj))
-            printf("  [%zd] %s\n", i,  PyUnicode_AsUTF8(const_obj));
-        else
-            printf("  [%zd] %d\n", i,  *(int*)const_obj);
-        */
+        constant_objs[i] = const_obj;
+        // printf("  [%zd] %s", i, PyUnicode_Check(const_obj) ? 
+        //      PyUnicode_AsUTF8(const_obj) : "Non-string constant");
+        PyTypeObject *type = Py_TYPE(const_obj);
+        printf("%4zd: %s:", i, type->tp_name);
+        if (strcmp(type->tp_name, "int")==0) {
+            long ivalue = PyLong_AsLong(const_obj);
+            printf("%ld ", ivalue);
+        } else if (strcmp(type->tp_name, "float")==0) {
+            double fvalue = PyFloat_AsDouble(const_obj);
+            printf("%f ", fvalue);
+        } else if (strcmp(type->tp_name, "str")==0) {
+            const char *svalue = PyUnicode_AsUTF8(const_obj);
+            printf("%s ", svalue);
+        } else if (strcmp(type->tp_name, "code")==0) {
+            PyObject_Print(const_obj, stdout, 0);
+        } else if (strcmp(type->tp_name, "NoneType")==0) {
+            printf("None ");
+        }
+        printf("\n");
     }
     
+    size = PyTuple_Size(code_obj->co_names);
+    const char **names = malloc(sizeof(char*)*size);
     // Print names
     printf("Names:\n");
     for (Py_ssize_t i = 0; i < PyTuple_Size(code_obj->co_names); i++) {
         PyObject *name_item = PyTuple_GetItem(code_obj->co_names, i);
-        printf("  [%zd] %s\n", i, PyUnicode_AsUTF8(name_item));
+        printf("%4zd: %s\n", i, PyUnicode_AsUTF8(name_item));
+        names[i] = PyUnicode_AsUTF8(name_item);
     }
 
-    // Print variable names
-    printf("Variable Names:\n");
-    for (Py_ssize_t i = 0; i < PyTuple_Size(code_obj->co_names); i++) {
-        PyObject *var_item = PyTuple_GetItem(code_obj->co_names, i);
-        printf("  [%zd] %s\n", i, PyUnicode_AsUTF8(var_item));
-    }
-// 這段有錯
     // Print the bytecode
     printf("Bytecode:\n");
     PyObject *bytecode = PyCode_GetCode(code_obj); // (PyObject *) code_obj->co_code_adaptive;
     Py_ssize_t bytecode_size = PyBytes_Size(bytecode);
     unsigned char *code = (unsigned char *)PyBytes_AsString(bytecode);
+
     for (Py_ssize_t i = 0; i < bytecode_size; ) {
         Py_ssize_t addr = i;
         int opcode = code[i++];
-        int arg_count = code[i++];
-        printf("%4zd: %s %d", addr, op_names[opcode], arg_count);  // 使用 Python 的操作碼名稱 (這個在 internal/pycore_opcode_metadata 引用不到)
+        int oparg = code[i++];
+        printf("%4zd: %s %d \t # ", addr, op_names[opcode], oparg);  // 使用 Python 的操作碼名稱 (這個在 internal/pycore_opcode_metadata 引用不到)
+        PyObject *arg_obj = NULL;
+        switch (opcode) {
+            case LOAD_CONST:
+            case RETURN_CONST:
+                arg_obj = PyTuple_GetItem(code_obj->co_consts, oparg);
+                break;
+            case LOAD_NAME:
+            case STORE_NAME:
+            case DELETE_NAME:
+            case IMPORT_NAME:
+                arg_obj = PyTuple_GetItem(code_obj->co_names, oparg);
+                break;
+            default:
+                printf("");
+        }
         if (opcode == CALL) i+=6; // CALL 指令占 8byte (不知為何？)
 
+        if (arg_obj)
+            PyObject_Print(arg_obj, stdout, 0);
         printf("\n");
         // i++;
     }
@@ -99,16 +128,20 @@ void run_code_object(PyCodeObject *code_obj) {
         // printf("  [%zd] %s", i, PyUnicode_Check(const_obj) ? 
         //      PyUnicode_AsUTF8(const_obj) : "Non-string constant");
         PyTypeObject *type = Py_TYPE(const_obj);
-        printf("=>  type:%s ", type->tp_name);
+        printf("%4zd: %s:", i, type->tp_name);
         if (strcmp(type->tp_name, "int")==0) {
             long ivalue = PyLong_AsLong(const_obj);
-            printf("value:%ld ", ivalue);
+            printf("%ld ", ivalue);
         } else if (strcmp(type->tp_name, "float")==0) {
             double fvalue = PyFloat_AsDouble(const_obj);
-            printf("value:%f ", fvalue);
+            printf("%f ", fvalue);
         } else if (strcmp(type->tp_name, "str")==0) {
             const char *svalue = PyUnicode_AsUTF8(const_obj);
-            printf("value:%s ", svalue);
+            printf("%s ", svalue);
+        } else if (strcmp(type->tp_name, "code")==0) {
+            PyObject_Print(const_obj, stdout, 0);
+        } else if (strcmp(type->tp_name, "NoneType")==0) {
+            printf("None ");
         }
         printf("\n");
     }
@@ -119,7 +152,7 @@ void run_code_object(PyCodeObject *code_obj) {
     printf("Names:\n");
     for (Py_ssize_t i = 0; i < PyTuple_Size(code_obj->co_names); i++) {
         PyObject *name_item = PyTuple_GetItem(code_obj->co_names, i);
-        printf("  [%zd] %s\n", i, PyUnicode_AsUTF8(name_item));
+        printf("%4zd: %s\n", i, PyUnicode_AsUTF8(name_item));
         names[i] = PyUnicode_AsUTF8(name_item);
     }
 
@@ -128,13 +161,31 @@ void run_code_object(PyCodeObject *code_obj) {
     PyObject *bytecode = PyCode_GetCode(code_obj); // (PyObject *) code_obj->co_code_adaptive;
     Py_ssize_t bytecode_size = PyBytes_Size(bytecode);
     unsigned char *code = (unsigned char *)PyBytes_AsString(bytecode);
+
     for (Py_ssize_t i = 0; i < bytecode_size; ) {
         Py_ssize_t addr = i;
         int opcode = code[i++];
-        int arg_count = code[i++];
-        printf("%4zd: %s %d", addr, op_names[opcode], arg_count);  // 使用 Python 的操作碼名稱 (這個在 internal/pycore_opcode_metadata 引用不到)
+        int oparg = code[i++];
+        printf("%4zd: %s %d \t # ", addr, op_names[opcode], oparg);  // 使用 Python 的操作碼名稱 (這個在 internal/pycore_opcode_metadata 引用不到)
+        PyObject *arg_obj = NULL;
+        switch (opcode) {
+            case LOAD_CONST:
+            case RETURN_CONST:
+                arg_obj = PyTuple_GetItem(code_obj->co_consts, oparg);
+                break;
+            case LOAD_NAME:
+            case STORE_NAME:
+            case DELETE_NAME:
+            case IMPORT_NAME:
+                arg_obj = PyTuple_GetItem(code_obj->co_names, oparg);
+                break;
+            default:
+                printf("");
+        }
         if (opcode == CALL) i+=6; // CALL 指令占 8byte (不知為何？)
 
+        if (arg_obj)
+            PyObject_Print(arg_obj, stdout, 0);
         printf("\n");
         // i++;
     }
