@@ -19,7 +19,13 @@ void print_code_object(PyCodeObject *code_obj) {
     for (Py_ssize_t i = 0; i < PyTuple_Size(code_obj->co_consts); i++) {
         PyObject *const_item = PyTuple_GetItem(code_obj->co_consts, i);
         printf("  [%zd] %s\n", i, PyUnicode_Check(const_item) ? 
-            PyUnicode_AsUTF8(const_item) : "Non-string constant");
+             PyUnicode_AsUTF8(const_item) : "Non-string constant");
+        /*
+        if (PyUnicode_Check(const_item))
+            printf("  [%zd] %s\n", i,  PyUnicode_AsUTF8(const_item));
+        else
+            printf("  [%zd] %d\n", i,  *(int*)const_item);
+        */
     }
     
     // Print names
