@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "op_names.c"
+#include "op.h"
 
 #define HEADER_SIZE 16  // Python 3.12 header size
 
@@ -40,26 +40,16 @@ void print_code_object(PyCodeObject *code_obj) {
     printf("Bytecode:\n");
     PyObject *bytecode = PyCode_GetCode(code_obj); // (PyObject *) code_obj->co_code_adaptive;
     Py_ssize_t bytecode_size = PyBytes_Size(bytecode);
-    
+    unsigned char *code = (unsigned char *)PyBytes_AsString(bytecode);
     for (Py_ssize_t i = 0; i < bytecode_size; ) {
-        int opcode = (unsigned char)PyBytes_AsString(bytecode)[i];
-        printf("%4zd: %s", i, op_names[opcode]);  // 使用 Python 的操作碼名稱 (這個在 internal/pycore_opcode_metadata 引用不到)
-        // printf("%4zd: %x", i, opcode);  // 使用 Python 的操作碼名稱 (這個在 internal/pycore_opcode_metadata.h 引用不到)
-/*
-        // 處理操作數
-        int oparg = 0;
-        if (PyOpcode_HasArg(opcode)) { // 沒有 PyOpcode_HasArg
-            i++;
-            oparg = (unsigned char)PyBytes_AsString(bytecode)[i];
-            if (opcode >= 90) {  // 對於需要 2 個字節的操作數
-                i++;
-                oparg |= (unsigned char)PyBytes_AsString(bytecode)[i] << 8;
-            }
-            printf(" %d", oparg);
-        }
-*/
+        Py_ssize_t addr = i;
+        int opcode = code[i++];
+        int arg_count = code[i++];
+        printf("%4zd: %s %d", addr, op_names[opcode], arg_count);  // 使用 Python 的操作碼名稱 (這個在 internal/pycore_opcode_metadata 引用不到)
+        if (opcode == CALL) i+=6; // CALL 指令占 8byte (不知為何？)
+
         printf("\n");
-        i++;
+        // i++;
     }
 }
 
