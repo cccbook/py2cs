@@ -14,11 +14,11 @@ print('add(2,3)=', add(2,3))
 ```
 (base) cccimac@cccimacdeiMac py % ./dasm_test.sh
 Constants:
-0  <code object add at 0x104ed7910, file "../test/example.py", line 1>
-1  add(2,3)=
-2  2
-3  3
-4  None
+0  <code object add at 0x100bc7910, file "../test/example.py", line 1> <class 'code'>
+1  add(2,3)= <class 'str'>
+2  2 <class 'int'>
+3  3 <class 'int'>
+4  None <class 'NoneType'>
 
 Names:
 0  add

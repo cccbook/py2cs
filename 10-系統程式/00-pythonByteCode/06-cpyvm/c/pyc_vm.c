@@ -17,14 +17,14 @@ void dump_code_object(PyCodeObject *code_obj) {
     // Print constants
     printf("Constants:\n");
     for (Py_ssize_t i = 0; i < PyTuple_Size(code_obj->co_consts); i++) {
-        PyObject *const_item = PyTuple_GetItem(code_obj->co_consts, i);
-        printf("  [%zd] %s\n", i, PyUnicode_Check(const_item) ? 
-             PyUnicode_AsUTF8(const_item) : "Non-string constant");
+        PyObject *const_obj = PyTuple_GetItem(code_obj->co_consts, i);
+        printf("  [%zd] %s\n", i, PyUnicode_Check(const_obj) ? 
+             PyUnicode_AsUTF8(const_obj) : "Non-string constant");
         /*
-        if (PyUnicode_Check(const_item))
-            printf("  [%zd] %s\n", i,  PyUnicode_AsUTF8(const_item));
+        if (PyUnicode_Check(const_obj))
+            printf("  [%zd] %s\n", i,  PyUnicode_AsUTF8(const_obj));
         else
-            printf("  [%zd] %d\n", i,  *(int*)const_item);
+            printf("  [%zd] %d\n", i,  *(int*)const_obj);
         */
     }
     
@@ -94,10 +94,23 @@ void run_code_object(PyCodeObject *code_obj) {
     // Print constants
     printf("Constants:\n");
     for (Py_ssize_t i = 0; i < PyTuple_Size(code_obj->co_consts); i++) {
-        PyObject *const_item = PyTuple_GetItem(code_obj->co_consts, i);
-        constant_objs[i] = const_item;
-        printf("  [%zd] %s\n", i, PyUnicode_Check(const_item) ? 
-             PyUnicode_AsUTF8(const_item) : "Non-string constant");
+        PyObject *const_obj = PyTuple_GetItem(code_obj->co_consts, i);
+        constant_objs[i] = const_obj;
+        // printf("  [%zd] %s", i, PyUnicode_Check(const_obj) ? 
+        //      PyUnicode_AsUTF8(const_obj) : "Non-string constant");
+        PyTypeObject *type = Py_TYPE(const_obj);
+        printf("=>  type:%s ", type->tp_name);
+        if (strcmp(type->tp_name, "int")==0) {
+            long ivalue = PyLong_AsLong(const_obj);
+            printf("value:%ld ", ivalue);
+        } else if (strcmp(type->tp_name, "float")==0) {
+            double fvalue = PyFloat_AsDouble(const_obj);
+            printf("value:%f ", fvalue);
+        } else if (strcmp(type->tp_name, "str")==0) {
+            const char *svalue = PyUnicode_AsUTF8(const_obj);
+            printf("value:%s ", svalue);
+        }
+        printf("\n");
     }
     
     size = PyTuple_Size(code_obj->co_names);
