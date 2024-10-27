@@ -139,6 +139,7 @@ int main(int argc, char *argv[]) {
     PyCodeObject *code_obj = load_code_object(argv[1]);
     if (code_obj) {
         dump_code_object(code_obj);
+        run_code_object(code_obj);
         Py_DECREF(code_obj);  // Decrease reference count
     }
 

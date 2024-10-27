@@ -14,7 +14,7 @@ with open(sys.argv[1], 'rb') as f:
     
     print("Constants:")
     for i, const in enumerate(constants):
-        print(f"{i}  {const}")
+        print(f"{i}  {const} {type(const)}")
     
     print("\nNames:")
     for i, name in enumerate(names):

@@ -1,8 +1,18 @@
 ```
 (base) cccimac@cccimacdeiMac py % ./dasm_test.sh
+Constants:
+0  <code object add at 0x100bc7910, file "../test/example.py", line 1> <class 'code'>
+1  add(2,3)= <class 'str'>
+2  2 <class 'int'>
+3  3 <class 'int'>
+4  None <class 'NoneType'>
+
+Names:
+0  add
+1  print
   0           0 RESUME                   0
 
-  1           2 LOAD_CONST               0 (<code object add at 0x10509f910, file "../test/example.py", line 1>)
+  1           2 LOAD_CONST               0 (<code object add at 0x100bc7910, file "../test/example.py", line 1>)
               4 MAKE_FUNCTION            0
               6 STORE_NAME               0 (add)
 
@@ -16,9 +26,10 @@
              22 CALL                     2
              30 CALL                     2
              38 POP_TOP
-             40 RETURN_CONST             4 (None)
 
-Disassembly of <code object add at 0x10509f910, file "../test/example.py", line 1>:
+  6          40 RETURN_CONST             4 (None)
+
+Disassembly of <code object add at 0x100bc7910, file "../test/example.py", line 1>:
   1           0 RESUME                   0
 
   2           2 LOAD_FAST                0 (a)
