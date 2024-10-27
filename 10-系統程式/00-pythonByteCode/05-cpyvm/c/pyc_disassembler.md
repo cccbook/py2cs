@@ -1,7 +1,7 @@
 
 
 ```
-(base) cccimac@cccimacdeiMac 01-hello % ./conda_build.sh
+(base) cccimac@cccimacdeiMac 05-cpyvm % ./build.sh
 Disassembling code object: <module>
 Filename: example.py
 First Line Number: 1
@@ -18,46 +18,19 @@ Variable Names:
   [0] add
   [1] print
 Bytecode:
-   0: 97
-   1: 0
-   2: 64
-   3: 0
-   4: 84
-   5: 0
-   6: 5a
-   7: 0
-   8: 2
-   9: 0
-  10: 65
-  11: 1
-  12: 64
-  13: 1
-  14: 2
-  15: 0
-  16: 65
-  17: 0
-  18: 64
-  19: 2
-  20: 64
-  21: 3
-  22: ab
-  23: 2
-  24: 0
-  25: 0
-  26: 0
-  27: 0
-  28: 0
-  29: 0
-  30: ab
-  31: 2
-  32: 0
-  33: 0
-  34: 0
-  35: 0
-  36: 0
-  37: 0
-  38: 1
-  39: 0
-  40: 79
-  41: 4
+   0: RESUME 0
+   2: LOAD_CONST 0
+   4: MAKE_FUNCTION 0
+   6: STORE_NAME 0
+   8: PUSH_NULL 0
+  10: LOAD_NAME 1
+  12: LOAD_CONST 1
+  14: PUSH_NULL 0
+  16: LOAD_NAME 0
+  18: LOAD_CONST 2
+  20: LOAD_CONST 3
+  22: CALL 2
+  30: CALL 2
+  38: POP_TOP 0
+  40: RETURN_CONST 4
 ```
