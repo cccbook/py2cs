@@ -140,6 +140,9 @@ void run_code_object(PyCodeObject *code_obj) {
     }
 }
 
+// 呼叫物件的成員函數，例如假設我們呼叫 "method_name" 並傳遞一個參數,  "(O)"  代表傳遞一個參數，是物件 (Object)
+//    PyObject *result = PyObject_CallMethod(obj, "method_name", "(O)", PyLong_FromLong(5));
+
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <pyc file>\n", argv[0]);
