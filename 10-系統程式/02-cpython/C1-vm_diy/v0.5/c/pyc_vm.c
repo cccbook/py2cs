@@ -116,6 +116,36 @@ PyObject *stack[NSTACK];
 Py_ssize_t stack_top = 0;
 PyObject *globals = NULL;
 
+void import_all_builtins(PyObject *globals) {
+    // 導入 builtins 模組
+    PyObject *builtins_module = PyImport_ImportModule("builtins");
+    if (builtins_module == NULL) {
+        PyErr_Print();
+        fprintf(stderr, "Failed to import builtins module.\n");
+        return;
+    }
+
+    // 獲取 builtins 模組的字典
+    PyObject *builtins_dict = PyModule_GetDict(builtins_module);
+    if (builtins_dict == NULL) {
+        PyErr_Print();
+        fprintf(stderr, "Failed to get builtins dictionary.\n");
+        Py_DECREF(builtins_module);
+        return;
+    }
+
+    // 將 builtins 字典中的所有項目添加到 globals 中
+    PyObject *key, *value;
+    Py_ssize_t pos = 0;
+    while (PyDict_Next(builtins_dict, &pos, &key, &value)) {
+        // 將項目添加到 globals
+        PyDict_SetItem(globals, key, value);
+    }
+
+    // 釋放 builtins 模組的引用
+    Py_DECREF(builtins_module);
+}
+
 void dump_globals(PyObject *globals) {
     // 使用 PyDict 遍歷字典並打印鍵和值
     PyObject *key, *value;
@@ -137,7 +167,8 @@ void dump_globals(PyObject *globals) {
 void run_code_object(PyCodeObject *code_obj) {
     printf("run_code_object()...\n");
     globals = PyDict_New();    
-
+    import_all_builtins(globals);
+    // dump_globals(globals);
     Py_ssize_t const_size = PyTuple_Size(code_obj->co_consts);
     Py_ssize_t name_size = PyTuple_Size(code_obj->co_names);
     // PyObject *name_item = PyTuple_GetItem(code_obj->co_names, i);
@@ -166,13 +197,24 @@ void run_code_object(PyCodeObject *code_obj) {
                 arg_obj = PyTuple_GetItem(co_consts, oparg);
                 // ???
                 break;
-            case LOAD_NAME:
-                stack[stack_top++] = arg_obj = PyTuple_GetItem(co_names, oparg);
+            case LOAD_NAME: {
+                PyObject *name = PyTuple_GetItem(co_names, oparg);
+                arg_obj = PyDict_GetItem(globals, name);
+                stack[stack_top++] = arg_obj;
                 break;
-            case STORE_NAME:
+            }
+            case STORE_NAME: {
+                PyObject *name = PyTuple_GetItem(co_names, oparg);
                 arg_obj = stack[--stack_top];
-                PyTuple_SetItem(co_names, oparg, arg_obj); 
+                PyDict_SetItem(globals, name, arg_obj);
+                // stack[stack_top++] = arg_obj;
+
+                // arg_obj = stack[--stack_top];
+                // PyDict_SetItem(globals, arg_obj, );
+                // PyTuple_SetItem(co_names, oparg, arg_obj); 
+                // globals
                 break;
+            }
             case DELETE_NAME:
                 Py_DECREF(PyTuple_GetItem(co_names, oparg)); 
                 PyTuple_SetItem(co_names, oparg, Py_None);
@@ -191,12 +233,13 @@ void run_code_object(PyCodeObject *code_obj) {
             case MAKE_FUNCTION:
                 arg_obj = PyTuple_GetItem(co_consts, oparg);
                 stack[stack_top++] = PyFunction_New(arg_obj, globals);
+                // stack[stack_top++] = arg_obj;
                 break;
             case RESUME:
                 printf(" 待處理 ...");
                 break;
             case CALL: { // 有錯
-ß                dump_globals(globals);
+                // dump_globals(globals);
                 arg_obj = PyTuple_GetItem(co_consts, oparg);
                 Py_ssize_t param_count = PyLong_AsLong(arg_obj);
                 PyObject *params = PyTuple_New(param_count);
