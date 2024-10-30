@@ -1,3 +1,11 @@
+# cpython
+build
+dist
+*.egg-info
+
+
+## old
+
 lightning_logs
 
 .DS_Store

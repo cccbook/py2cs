@@ -202,7 +202,7 @@ int main(int argc, char *argv[]) {
 
     // Initialize Python interpreter
     Py_Initialize();
-
+    printf("global=%p\n", PyEval_GetGlobals());
     PyCodeObject *code_obj = load_code_object(argv[1]);
     if (code_obj) {
         dump_code_object(code_obj);
