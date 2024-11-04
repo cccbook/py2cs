@@ -18,11 +18,9 @@ def editDistance (b, a):
             else:
                 m[i][j] = min(
                   m[i-1][j-1] + 1, # 取代
-                  min(
-                    m[i][j-1] + 1, # 插入
-                    m[i-1][j] + 1
-                  )
-                ) # 刪除
+                  m[i][j-1] + 1, # 插入
+                  m[i-1][j] + 1 # 刪除
+                )
     return {'d': m[blen][alen], 'm': m} 
 
 def align (b, a, m) :
