@@ -237,7 +237,7 @@ def get_args(): # 超參數
     parser.add_argument('--batch_size',default=64,type=int)
     parser.add_argument('--target_update',default=4,type=int)
     parser.add_argument('--hidden_dim',default=256,type=int)
-    parser.add_argument('--device',default='cpu',type=str,help="cpu or cuda") 
+    parser.add_argument('--device',default='cpu',type=str,help="cpu or cuda or mps") 
     parser.add_argument('--seed',default=10,type=int,help="seed")   
     args = parser.parse_args([])
     args = {**vars(args)}  # 轉換成字典類型    
