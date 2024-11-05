@@ -6,7 +6,7 @@ env = gym.make('FrozenLake-v1', render_mode="rgb_array")
 print('env=', env)
 print('env.observation_space=', env.observation_space)
 print('env.action_space=', env.action_space)
-print('env.reward_range=', env.reward_range)
+# print('env.reward_range=', env.reward_range)
 print('env.spec=', env.spec)
 print('env.metadata=', env.metadata)
 
