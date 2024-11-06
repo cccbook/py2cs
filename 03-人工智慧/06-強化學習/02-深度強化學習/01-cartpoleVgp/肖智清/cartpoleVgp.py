@@ -135,3 +135,8 @@ for episode in range(100):
 
 logging.info('average episode reward = %.2f ± %.2f',
              np.mean(episode_rewards), np.std(episode_rewards))
+
+# 使用 render (for human) 動畫播放玩一次
+env = gym.make('CartPole-v0', render_mode="human")
+episode_reward, elapsed_steps = play_episode(env, agent, render=True)
+env.close()
