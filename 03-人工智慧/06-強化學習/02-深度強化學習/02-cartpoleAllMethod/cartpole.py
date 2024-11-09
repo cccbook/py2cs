@@ -15,6 +15,8 @@ logging.basicConfig(level=logging.INFO,
 
 # 創建 CartPole 環境
 env = gym.make('CartPole-v0')
+env._max_episode_steps = 1000 # CartPole-v0：預設情況下，環境會在達到 200 步時自動結束遊戲。 v1 是 500
+
 for key in vars(env):
     logging.info('%s: %s', key, vars(env)[key])
 for key in vars(env.spec):
@@ -24,14 +26,15 @@ from VPGAgent import VPGAgent
 from VPGwBaselineAgent import VPGwBaselineAgent
 from DQNAgent import DQNAgent
 from SARSAAgent import SARSAAgent
+from ActorCriticAgent import ActorCriticAgent
 # from SARSALambdaAgent import SARSALambdaAgent
 
 # 初始化代理
 # agent = VPGAgent(env)
 # agent = VPGwBaselineAgent(env)
 # agent = DQNAgent(env)
-agent = SARSAAgent(env)
-# agent = SARSALambdaAgent(env) # fail
+# agent = SARSAAgent(env) # agent = SARSALambdaAgent(env) # fail
+agent = ActorCriticAgent(env)
 
 # 定義遊玩一個回合的函數
 def play_episode(env, agent, seed=None, mode=None, render=False):
@@ -59,7 +62,7 @@ for episode in itertools.count():
     episode_rewards.append(episode_reward)
     logging.info('train episode %d: reward = %.2f, steps = %d',
                  episode, episode_reward, elapsed_steps)
-    if np.mean(episode_rewards[-20:]) > 199:
+    if np.mean(episode_rewards[-20:]) > env._max_episode_steps-10:
         break
 
 # 繪製訓練獎勵

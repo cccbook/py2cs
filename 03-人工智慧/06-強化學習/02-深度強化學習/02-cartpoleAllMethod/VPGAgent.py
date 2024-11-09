@@ -58,6 +58,10 @@ class VPGAgent:
         pi_tensor = torch.gather(all_pi_tensor, 1, action_tensor.unsqueeze(1)).squeeze(1)
         log_pi_tensor = torch.log(torch.clamp(pi_tensor, 1e-6, 1.))
         loss_tensor = -(discounted_return_tensor * log_pi_tensor).mean()
+        # discount_return_tensor: Gt, log_pi_tensor: log Pi(at|st)
+        # loss = -Gt*log Pi(at|st)
+        # 參考 https://chatgpt.com/c/672ed6fd-54bc-8012-9b98-be84493b759f
+        # https://chatgpt.com/share/672ed84a-50bc-8012-8ed1-87946c7e2bee
         self.optimizer.zero_grad()
         loss_tensor.backward()
         self.optimizer.step()

@@ -1,18 +1,17 @@
-# 修改自 https://zhiqingxiao.github.io/rl-book/en2024/code/MountainCar-v0_DQN_torch.html
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
 import random
 from collections import deque
+import pandas as pd
 import copy
 # from Replayer import Replayer
-import pandas as pd
 
 class Replayer:
     def __init__(self, capacity):
         self.memory = pd.DataFrame(index=range(capacity),
-                columns=['state', 'action', 'reward', 'next_state', 'terminated'])
+                                   columns=['state', 'action', 'reward', 'next_state', 'next_action', 'terminated'])
         self.i = 0
         self.count = 0
         self.capacity = capacity
@@ -24,10 +23,9 @@ class Replayer:
 
     def sample(self, size):
         indices = np.random.choice(self.count, size=size)
-        return (np.stack(self.memory.loc[indices, field]) for field in
-                self.memory.columns)
+        return (np.stack(self.memory.loc[indices, field]) for field in self.memory.columns)
 
-class DQNAgent:
+class SARSAAgent:
     def __init__(self, env):
         self.action_n = env.action_space.n
         self.gamma = 0.99
@@ -54,26 +52,22 @@ class DQNAgent:
         self.mode = mode
         if self.mode == 'train':
             self.trajectory = []
-            self.target_net = copy.deepcopy(self.evaluate_net)
 
     def step(self, observation, reward, terminated):
         if self.mode == 'train' and np.random.rand() < 0.001:
-            # epsilon-greedy policy in train mode
             action = np.random.randint(self.action_n)
         else:
-            state_tensor = torch.as_tensor(observation,
-                    dtype=torch.float).squeeze(0)
+            state_tensor = torch.as_tensor(observation, dtype=torch.float).squeeze(0)
             q_tensor = self.evaluate_net(state_tensor)
             action_tensor = torch.argmax(q_tensor)
             action = action_tensor.item()
+        
         if self.mode == 'train':
             self.trajectory += [observation, reward, terminated, action]
             if len(self.trajectory) >= 8:
-                state, _, _, act, next_state, reward, terminated, _ = \
-                        self.trajectory[-8:]
-                self.replayer.store(state, act, reward, next_state, terminated)
+                state, _, _, act, next_state, reward, terminated, next_action = self.trajectory[-8:]
+                self.replayer.store(state, act, reward, next_state, next_action, terminated)
             if self.replayer.count >= self.replayer.capacity * 0.95:
-                    # skip first few episodes for speed
                 self.learn()
         return action
 
@@ -81,24 +75,27 @@ class DQNAgent:
         pass
 
     def learn(self):
-        # replay
-        states, actions, rewards, next_states, terminateds = \
-                self.replayer.sample(1024)
+        # 從記憶庫中隨機抽取
+        states, actions, rewards, next_states, next_actions, terminateds = self.replayer.sample(1024)
+        
         state_tensor = torch.as_tensor(states, dtype=torch.float)
         action_tensor = torch.as_tensor(actions, dtype=torch.long)
         reward_tensor = torch.as_tensor(rewards, dtype=torch.float)
         next_state_tensor = torch.as_tensor(next_states, dtype=torch.float)
+        next_action_tensor = torch.as_tensor(next_actions, dtype=torch.long)
         terminated_tensor = torch.as_tensor(terminateds, dtype=torch.float)
-
-        # update value net
-        next_q_tensor = self.target_net(next_state_tensor)
-        next_max_q_tensor, _ = next_q_tensor.max(axis=-1)
-        target_tensor = reward_tensor + self.gamma * \
-                (1. - terminated_tensor) * next_max_q_tensor
+        
+        # 根據 SARSA 演算法進行更新
+        # 使用 next_action 來獲取下一狀態的 Q 值
+        next_q_tensor = self.evaluate_net(next_state_tensor).gather(1, next_action_tensor.unsqueeze(1)).squeeze(1)
+        # 以下公式為 q(s,a) = r + gamma * q(s',a')
+        target_tensor = reward_tensor + self.gamma * (1. - terminated_tensor) * next_q_tensor
+        
         pred_tensor = self.evaluate_net(state_tensor)
         q_tensor = pred_tensor.gather(1, action_tensor.unsqueeze(1)).squeeze(1)
-        loss_tensor = self.loss(target_tensor, q_tensor)
+        
+        loss_tensor = self.loss(target_tensor, q_tensor) # 目標：縮小 r + gamma * q(s',a') 與 q(s,a) 之間的差距
+        # 參考 https://chatgpt.com/c/672da875-6be4-8012-a637-d81121396dae
         self.optimizer.zero_grad()
         loss_tensor.backward()
         self.optimizer.step()
-
