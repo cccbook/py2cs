@@ -1,4 +1,3 @@
-# https://zhiqingxiao.github.io/rl-book/en2024/code/CartPole-v0_VPG_torch.html
 import sys
 import logging
 import itertools
@@ -14,38 +13,40 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.distributions as distributions
 
-# 設定 logging
 logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s [%(levelname)s] %(message)s',
-                    stream=sys.stdout, datefmt='%H:%M:%S')
+        format='%(asctime)s [%(levelname)s] %(message)s',
+        stream=sys.stdout, datefmt='%H:%M:%S')
 
-# 創建 CartPole 環境
 env = gym.make('CartPole-v0')
 for key in vars(env):
     logging.info('%s: %s', key, vars(env)[key])
 for key in vars(env.spec):
     logging.info('%s: %s', key, vars(env.spec)[key])
 
-# 定義 VPGAgent 類別
-class VPGAgent:
-    def __init__(self, env):
+class VPGwBaselineAgent:
+    def __init__(self, env,):
         self.action_n = env.action_space.n
         self.gamma = 0.99
-        self.policy_net = self.build_net(
-            input_size=env.observation_space.shape[0],
-            hidden_sizes=[],
-            output_size=self.action_n,
-            output_activator=nn.Softmax(dim=1)
-        )
-        self.optimizer = optim.Adam(self.policy_net.parameters(), lr=0.005)
 
-    def build_net(self, input_size, hidden_sizes, output_size, output_activator=None, use_bias=False):
+        self.policy_net = self.build_net(
+                input_size=env.observation_space.shape[0],
+                hidden_sizes=[],
+                output_size=self.action_n, output_activator=nn.Softmax(1))
+        self.policy_optimizer = optim.Adam(self.policy_net.parameters(), lr=0.005)
+        self.baseline_net = self.build_net(
+                input_size=env.observation_space.shape[0],
+                hidden_sizes=[])
+        self.baseline_optimizer = optim.Adam(self.policy_net.parameters(), lr=0.01)
+        self.baseline_loss = nn.MSELoss()
+
+    def build_net(self, input_size, hidden_sizes, output_size=1,
+            output_activator=None, use_bias=False):
         layers = []
         for input_size, output_size in zip(
-                [input_size] + hidden_sizes, hidden_sizes + [output_size]):
+                [input_size,] + hidden_sizes, hidden_sizes + [output_size,]):
             layers.append(nn.Linear(input_size, output_size, bias=use_bias))
             layers.append(nn.ReLU())
-        layers = layers[:-1]  # 移除最後的 ReLU
+        layers = layers[:-1]
         if output_activator:
             layers.append(output_activator)
         model = nn.Sequential(*layers)
@@ -74,21 +75,34 @@ class VPGAgent:
         reward_tensor = torch.as_tensor(self.trajectory[1::4], dtype=torch.float)
         action_tensor = torch.as_tensor(self.trajectory[3::4], dtype=torch.long)
         arange_tensor = torch.arange(state_tensor.shape[0], dtype=torch.float)
+
+        # update baseline
         discount_tensor = self.gamma ** arange_tensor
         discounted_reward_tensor = discount_tensor * reward_tensor
         discounted_return_tensor = discounted_reward_tensor.flip(0).cumsum(0).flip(0)
+        return_tensor = discounted_return_tensor / discount_tensor
+        pred_tensor = self.baseline_net(state_tensor)
+        psi_tensor = (discounted_return_tensor - discount_tensor *
+                pred_tensor).detach()
+        baseline_loss_tensor = self.baseline_loss(pred_tensor,
+                return_tensor.unsqueeze(1))
+        self.baseline_optimizer.zero_grad()
+        baseline_loss_tensor.backward()
+        self.baseline_optimizer.step()
+
+        # update policy
         all_pi_tensor = self.policy_net(state_tensor)
-        pi_tensor = torch.gather(all_pi_tensor, 1, action_tensor.unsqueeze(1)).squeeze(1)
+        pi_tensor = torch.gather(all_pi_tensor, 1,
+                action_tensor.unsqueeze(1)).squeeze(1)
         log_pi_tensor = torch.log(torch.clamp(pi_tensor, 1e-6, 1.))
-        loss_tensor = -(discounted_return_tensor * log_pi_tensor).mean()
-        self.optimizer.zero_grad()
-        loss_tensor.backward()
-        self.optimizer.step()
+        policy_loss_tensor = -(psi_tensor * log_pi_tensor).mean()
+        self.policy_optimizer.zero_grad()
+        policy_loss_tensor.backward()
+        self.policy_optimizer.step()
 
-# 初始化代理
-agent = VPGAgent(env)
 
-# 定義遊玩一個回合的函數
+agent = VPGwBaselineAgent(env)
+
 def play_episode(env, agent, seed=None, mode=None, render=False):
     observation, _ = env.reset(seed=seed)
     reward, terminated, truncated = 0., False, False
@@ -106,32 +120,28 @@ def play_episode(env, agent, seed=None, mode=None, render=False):
     agent.close()
     return episode_reward, elapsed_steps
 
-# 訓練代理
+
 logging.info('==== train ====')
 episode_rewards = []
 for episode in itertools.count():
-    episode_reward, elapsed_steps = play_episode(env, agent, seed=episode, mode='train')
+    episode_reward, elapsed_steps = play_episode(env, agent, seed=episode,
+            mode='train')
     episode_rewards.append(episode_reward)
     logging.info('train episode %d: reward = %.2f, steps = %d',
-                 episode, episode_reward, elapsed_steps)
+            episode, episode_reward, elapsed_steps)
     if np.mean(episode_rewards[-20:]) > 199:
         break
-
-# 繪製訓練獎勵
 plt.plot(episode_rewards)
-plt.xlabel('Episodes')
-plt.ylabel('Episode Reward')
-plt.title('Training Rewards')
-plt.show()
 
-# 測試代理
+
 logging.info('==== test ====')
 episode_rewards = []
 for episode in range(100):
     episode_reward, elapsed_steps = play_episode(env, agent)
     episode_rewards.append(episode_reward)
     logging.info('test episode %d: reward = %.2f, steps = %d',
-                 episode, episode_reward, elapsed_steps)
-
+            episode, episode_reward, elapsed_steps)
 logging.info('average episode reward = %.2f ± %.2f',
-             np.mean(episode_rewards), np.std(episode_rewards))
+        np.mean(episode_rewards), np.std(episode_rewards))
+
+env.close()
