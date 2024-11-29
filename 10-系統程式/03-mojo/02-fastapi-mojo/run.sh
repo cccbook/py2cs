@@ -1,0 +1,1 @@
+magic run fastapi dev main.py
