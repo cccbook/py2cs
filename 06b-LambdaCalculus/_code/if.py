@@ -1,10 +1,4 @@
-### 第 6 章：Church Boolean (丘奇的布林系統)
-
-
-```py
 IF = lambda cond:lambda job_true:lambda job_false:job_true if cond else job_false
 
 print(IF(True)("Yes")("No"))
 print(IF(False)("Yes")("No"))
-```
-

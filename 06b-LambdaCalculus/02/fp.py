@@ -1,6 +1,3 @@
-### 第 2 章：Functional Programming
-
-```py
 def RANGE(m,n):
     r = []
     for i in range(m,n+1):
@@ -35,5 +32,3 @@ if __name__=="__main__":
     print(MAP(a, lambda x:x*x))
     print(FILTER(a, lambda x:x%2==1))
     print(REDUCE(a, lambda x,y:x+y, 0))
-
-```

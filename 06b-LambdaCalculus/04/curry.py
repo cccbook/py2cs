@@ -1,6 +1,3 @@
-### 第 4 章：Curry (柯里化)
-
-```py
 add_xyz_lambda = lambda x,y,z: x+y+z
 
 print(f'add_xyz_lambda(1,2,3)={add_xyz_lambda(1,2,3)}')
@@ -17,4 +14,4 @@ def add_xyz(x,y,z):
     return addx_yz(y,z)
     
 print(f'add_xyz(1,2,3)={add_xyz(1,2,3)}')
-```
+

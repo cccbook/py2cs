@@ -1,18 +1,3 @@
-# 第 9 章：再探 Lambda Calculus (λ 演算)
-
-## 程式： 使用 λ 代替 lambda 的 Python 版 λ-Calculus
-
-檔案： lambda.sh
-
-```sh
-sed -e "s/λ/lambda/g" λ.py > lambda.py
-
-python lambda.py
-```
-
-檔案： λ.py
-
-```py
 # 本程式碼是 陳鍾誠 從 github 上 gtramontina 的 JavaScript 專案修改為 Python 的 
 # JavaScript 版來源為 -- https://github.com/gtramontina/lambda/tree/master
 
@@ -233,43 +218,3 @@ TEST('FACTORIAL: 5! = 120')(ASSERT(IS_EQUAL\
 TEST('FIBONACCI: 10 = 55')(ASSERT(IS_EQUAL\
   (FIBONACCI(_ten))\
   (ADDITION(MULTIPLICATION(_five)(_ten))(_five))))
-
-```
-
-## 執行結果
-
-```sh
-$ ./lambda.sh
-[✓] $TRUE
-[✓] $FALSE
-[✓] $AND
-[✓] $OR
-[✓] $XOR
-[✓] $NOT
-[✓] $IDENTITY
-[✓] $SUCCESSOR
-[✓] $PREDECESSOR
-[✓] $ADDITION
-[✓] $SUBTRACTION
-[✓] $MULTIPLICATION
-[✓] $POWER
-[✓] $ABS_DIFFERENCE
-[✓] $IS_ZERO
-[✓] $IS_LESS_THAN
-[✓] $IS_LESS_THAN_EQUAL
-[✓] $IS_EQUAL
-[✓] $IS_NOT_EQUAL
-[✓] $IS_GREATER_THAN_EQUAL
-[✓] $IS_GREATER_THAN
-[✓] $IS_NULL
-[✓] $CAR
-[✓] $CDR
-[✓] $CONS
-[✓] $RANGE
-[✓] $MAP
-
---- Examples ---
-
-[✓] $FACTORIAL: 5! = 120
-[✓] $FIBONACCI: 10 = 55
-```

@@ -1,27 +1,11 @@
 # 第 1 章：λ-Calculus
 
+如果你學過 Python ，在閱讀本書之前，請先閱讀並執行以下文章與程式，你將會看到一種奇特的 Python 程式。
 
-[附錄C1-用 Python 實作 Church 的 Lambda Calculus](C1-LambdaCalculus.md)
+* 文章：[用 Python 實作 Church 的 Lambda Calculus](LambdaCalculus.md)
+* 程式：[lambdaCalculus.py](./_code/lambdaCalculus.py)
 
-λ-Calculus 是數學邏輯和計算機科學的基礎理論之一，透過簡單的符號表示和操作，為函數的定義、應用及運算提供了一種抽象的方式。它廣泛用於研究編程語言的基礎概念，例如函數式編程。
-
-λ-Calculus 是數學和計算機科學中的一種形式系統，由 Alonzo Church 在 1930 年代提出。它是研究函數抽象與應用的理論基礎，並被認為是計算理論的核心之一。λ-Calculus 使用一種簡單的語法來描述所有的計算邏輯，其基本單位是函數。
-
-λ-Calculus 的核心目標：
-- 使用簡單的語法來描述計算。
-- 定義函數與它們的應用。
-- 提供計算的形式化基礎。
-
-為什麼學習 λ-Calculus 呢？
-
-1. 理解計算的本質  
-   λ-Calculus 是所有現代程式語言的理論基礎，特別是函數式程式設計語言如 Haskell、Lisp 和 Clojure。  
-   
-2. 強化邏輯思維能力  
-   學習 λ-Calculus 需要理解純函數的抽象表示，這對程式設計邏輯的提升大有幫助。  
-
-3. 應用於現代技術  
-   λ-Calculus 的概念廣泛應用於編譯器、型別系統和人工智慧（如 λ 表達式在深度學習中的應用）。
+本書將帶領你理解上述這個奇妙的 Python 實作，並解說背後的運作機制，以及當初 Alonzo Church 設計 Lambda Calculus 的背景想法。
 
 ## λ-Calculus 的語法
 
