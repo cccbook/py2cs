@@ -1,3 +1,0 @@
-
-
-https://www.purescript.org/
