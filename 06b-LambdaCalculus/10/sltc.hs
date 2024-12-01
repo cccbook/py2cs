@@ -1,4 +1,25 @@
-import Data.Maybe
+import (implicit) Prelude
+    ( (++),
+      otherwise,
+      ($),
+      Eq((==)),
+      Functor(fmap),
+      Num((+)),
+      Ord((>=)),
+      Read,
+      Show,
+      Bool(..),
+      String,
+      Int,
+      Maybe(..),
+      IO,
+      fst,
+      snd,
+      (!!),
+      getLine,
+      putStrLn,
+      read,
+      (&&) )
 
 data Ty
     = TyBool
