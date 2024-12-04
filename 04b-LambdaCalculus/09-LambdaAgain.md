@@ -1,6 +1,6 @@
 # 第 9 章：再探 Lambda Calculus (λ 演算)
 
-Python 的 lambda 匿名函數雖然能傳達了當初 Church 在 λ-Calculus 上的一些概念，但是去掉了λ 符號改用 lambda 卻顯得相當囉唆。
+Python 的 lambda 匿名函數雖然相當貼切的傳達了當初 Church 在 λ-Calculus 上的一些概念，但是去掉了λ 符號改用 lambda 卻顯得相當囉唆。
 
 於是我們寫了一個 shell script (lambda.sh)，可以將符號 λ 改成 lambda 再交給 Python 去執行，這樣你就可以用 λ 符號來寫程式了。
 
