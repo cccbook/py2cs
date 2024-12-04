@@ -1,15 +1,15 @@
-# 數學、語言、機器與程式
+# 書名: 用 Python 學習 λ-Calculus
 
-> 從希爾伯特到圖靈的那些故事
+* [第 1 章：λ-Calculus](./01-LambdaCalculus.md)
+* [第 2 章：Functional Programming](./02-FunctionalProgramming.md)
+* [第 3 章：Lambda 與 Lazy (延遲求值.md)](./03-LambdaLazy.md)
+* [第 4 章：Curry (柯里化.md)](./04-Curry.md)
+* [第 5 章：用 Closure (閉包.md) 儲存資料](./05-ClosureData.md)
+* [第 6 章：Church Boolean (丘奇的布林系統.md)](./06-ChurchBoolean.md)
+* [第 7 章：Church Numeral (丘奇的數值系統.md)](./07-ChurchNumeral.md)
+* [第 8 章：Combinator (組合子.md)](./08-Combinator.md)
+* [第 9 章：再探 Lambda Calculus](./09-LambdaAgain.md)
+* [第 10 章：Lambda Calculus 之後的發展 (從型別系統到 Haskell.md)](./10-LambdaAfter.md)
 
-> -- 以 Python 展現這些故事背後的程式
 
-* [01-希爾伯特的問題](01-希爾伯特的問題.md)
-* [02-哥德爾的定理](02-哥德爾的定理.md)
-* [03-丘奇的函數](03-丘奇的函數.md)
-* [04-圖靈的機器](04-圖靈的機器.md)
-* [05-喬姆斯基的語法](05-喬姆斯基的語法.md)
-* [06-庫克的證明](06-庫克的證明.md)
-* [07-馮紐曼的報告](07-馮紐曼的報告.md)
-* [08-從語言到機器](08-從語言到機器.md)
-* [A1-參考文獻](A1-參考文獻.md)
+
