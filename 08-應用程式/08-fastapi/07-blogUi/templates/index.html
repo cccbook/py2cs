@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Blog System</h1>
+    <a href="/article/create">Create New Article</a>
+    <ul>
+        {% for article in articles %}
+        <li>
+            <a href="/article/{{ article.id }}">{{ article.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+[project]
+authors = ["ccckmit <ccckmit@gmail.com>"]
+channels = ["conda-forge", "https://conda.modular.com/max"]
+description = "Add a short description here"
+name = "fastapi-mojo"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+max = ">=24.5.0,<25"
+
+[pypi-dependencies]
+fastapi = { version = ">=0.115.5, <0.116", extras = ["standard"] }

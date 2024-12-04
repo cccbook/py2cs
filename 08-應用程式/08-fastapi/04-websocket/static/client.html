@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    <button onclick="sendMessage()">Send Message</button>
+    <ul id="messages"></ul>
+
+    <script>
+        // 創建 WebSocket 連接
+        const ws = new WebSocket("ws://127.0.0.1:8000/ws");
+
+        // 當接收到來自伺服器的消息時，更新到頁面上
+        ws.onmessage = function(event) {
+            const messages = document.getElementById('messages');
+            const message = document.createElement('li');
+            message.textContent = `Received: ${event.data}`;
+            messages.appendChild(message);
+        };
+
+        // 發送消息到伺服器
+        function sendMessage() {
+            ws.send("Hello from WebSocket client!");
+        }
+    </script>
+</body>
+</html>
