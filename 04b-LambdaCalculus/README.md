@@ -9,7 +9,9 @@
 * [第 7 章：Church Numeral (丘奇的數值系統)](./07-ChurchNumeral.md)
 * [第 8 章：Combinator (組合子)](./08-Combinator.md)
 * [第 9 章：再探 Lambda Calculus](./09-LambdaAgain.md)
-* [第 10 章：Lambda Calculus 之後的發展 (從型別系統到 Haskell)](./10-LambdaAfter.md)
 
+<!--
+* [第 10 章：Lambda Calculus 之後的發展 (從型別系統到 Haskell)](./10-LambdaAfter.md)
+-->
 
 
