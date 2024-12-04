@@ -1,9 +1,4 @@
-# 用 Python 學習資訊科學
+# 用 Python 學習資訊科學系列書籍
 
-本書採用《檔案目錄》直接當成《書籍目錄》的方式撰寫，請直接看本頁上面的《資料夾與檔案》！
-
-使用本書與程式請遵照 [授權聲明](LICENSE.md) !
-
-
-
-
+* [數學、語言、機器與程式 -- 從希爾伯特到圖靈的那些故事](04a-計算理論/README.md)
+* [用 Python 學習λ-Calculus - Church and Functional Programming](04b-LambdaCalculus/README.md)

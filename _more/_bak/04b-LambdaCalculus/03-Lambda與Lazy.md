@@ -46,6 +46,8 @@ Traceback (most recent call last):
 RecursionError: maximum recursion depth exceeded
 ```
 
+---
+
 ## 使用延遲求值
 
 在 `lazy.py` 中，我們對 `IF` 的邏輯進行改進，改用 **Lambda 函數** 將參數包裝起來，使其在條件成立時才執行相關計算。
