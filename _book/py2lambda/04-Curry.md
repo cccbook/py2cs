@@ -84,7 +84,50 @@ add_xyz_curry(1)(2)(3) = 6
 add_xyz(1,2,3) = 6
 ```
 
----
+## 柯里化的 if
+
+在上一章中，我們透過 lazy 的方式，讓 IF 函數在執行 FACTORIAL(n) 這類的遞迴程式時，不至於因為無窮遞迴兒當掉。
+
+如果我們把 if 也用 curry 的方式改寫，就可以得到下列程式。
+
+檔案： if_curry.py
+
+```py
+IF = lambda cond:lambda job_true:lambda job_false:\
+    job_true() if cond else job_false()
+
+# 階層 FACTORIAL(n) = n!
+def FACTORIAL(n): 
+  return IF(n==0)(lambda:1)(lambda:n*FACTORIAL(n-1))
+
+print(f'FACTORIAL(3)={FACTORIAL(3)}')
+print(f'FACTORIAL(5)={FACTORIAL(5)}')
+
+```
+
+執行結果
+
+```
+$ python if_curry.py
+FACTORIAL(3)=6
+FACTORIAL(5)=120
+```
+
+這樣的 if，就不再是有三個參數的函數，而是經過柯里化後的單參數函數。
+
+只是當 cond 的布林條件確定之後，就能透過 job_true() 或 job_false() 的呼叫，進行真正的動作。
+
+這樣的柯里化寫法，雖然有點奇怪，但是習慣之後，可能反而覺得非常好用。
+
+不過本書中 Church 版本的 Lambda Calculus 裡的 IF 定義如下
+
+```py
+IF = lambda c:lambda x:lambda y:c(x)(y) #  if: λ c x y. c x y # if c then x else y.
+```
+
+因為 Church 的 Lambda Calculus 世界裡，一切皆函數，連資料也是用函數表達的，例如 TRUE, FALSE, 0, 1, 2, 3, .... 
+
+所以直接把函數傳回即可，而不需要再次地進行求值動作，所以就不需要在 x, y 後面再加上 x(), y() 了。
 
 ### 小結
 
