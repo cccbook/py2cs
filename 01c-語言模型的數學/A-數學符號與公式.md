@@ -36,9 +36,11 @@
 - 雅可比矩陣：  $\mathbf{J} = \frac{\partial f}{\partial \mathbf{x}}$ 
 - 二階導數：  $\frac{\partial^2 f}{\partial x^2}$ 
 - 梯度下降： 
+
   $$
   \mathbf{x}_{t+1} = \mathbf{x}_t - \eta \nabla f(\mathbf{x}_t)
   $$
+
   其中， $\eta$  是學習率， $\nabla f(\mathbf{x}_t)$  是梯度。
 
 ---
@@ -48,9 +50,11 @@
 - 概率密度函數：  $p(x)$ 
 - 條件概率：  $p(x|y)$ 
 - 貝葉斯定理：
+
   $$
   p(x|y) = \frac{p(y|x)p(x)}{p(y)}
   $$
+
 - 高斯分布：  $\mathcal{N}(\mu, \sigma^2)$ 
 - 均值：  $\mu = \frac{1}{N} \sum_{i=1}^N x_i$ 
 - 方差：  $\sigma^2 = \frac{1}{N} \sum_{i=1}^N (x_i - \mu)^2$ 
@@ -62,17 +66,23 @@
 
 - 熵：  $H(X) = -\sum_{i} p(x_i) \log p(x_i)$ 
 - 交叉熵： 
+
   $$
   H(p, q) = -\sum_{i} p(x_i) \log q(x_i)
   $$
+
 - Kullback-Leibler散度（KL散度）： 
+
   $$
   D_{\text{KL}}(p || q) = \sum_{i} p(x_i) \log \frac{p(x_i)}{q(x_i)}
   $$
+
 - 信息增益： 
+
   $$
   \text{IG}(X) = H(X) - H(X|Y)
   $$
+
 
 ---
 
@@ -80,17 +90,23 @@
 
 - 概率分布：  $p(x)$ 
 - 梯度上升： 
+
   $$
   \theta_{t+1} = \theta_t + \eta \nabla_{\theta} \log p(x | \theta)
   $$
+
 - 最大似然估計（MLE）： 
+
   $$
   \hat{\theta}_{MLE} = \arg \max_{\theta} \prod_{i=1}^N p(x_i | \theta)
   $$
+
 - 最大後驗估計（MAP）： 
+
   $$
   \hat{\theta}_{MAP} = \arg \max_{\theta} p(\theta) \prod_{i=1}^N p(x_i | \theta)
   $$
+
 
 ---
 
@@ -100,63 +116,85 @@
 - 激活函數：  $\sigma(x)$ （如ReLU、sigmoid、tanh）
 - 損失函數：  $L = \frac{1}{N} \sum_{i=1}^N \text{Loss}(y_i, \hat{y}_i)$ 
 - 反向傳播： 
+
   $$
   \frac{\partial L}{\partial \mathbf{w}} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial \mathbf{w}}
   $$
+
 
 ---
 
 ### **A.8 Transformer模型符號**
 
 - 自注意力： 
+
   $$
   \text{Attention}(Q, K, V) = \text{softmax} \left( \frac{QK^T}{\sqrt{d_k}} \right) V
   $$
+
 - 多頭注意力： 
+
   $$
   \text{MultiHead}(Q, K, V) = \text{concat}(\text{head}_1, \dots, \text{head}_h) \mathbf{W}^O
   $$
+
   其中， $\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$ 
 - 位置編碼： 
+
   $$
   PE(t, 2i) = \sin(t / 10000^{2i/d})
   \quad PE(t, 2i+1) = \cos(t / 10000^{2i/d})
   $$
+
 
 ---
 
 ### **A.9 優化算法符號**
 
 - 梯度下降： 
+
   $$
   \theta_{t+1} = \theta_t - \eta \nabla_{\theta} J(\theta)
   $$
+
 - Adam算法： 
+
   $$
   m_t = \beta_1 m_{t-1} + (1 - \beta_1) \nabla_{\theta} J(\theta)
   $$
+
+
   $$
   v_t = \beta_2 v_{t-1} + (1 - \beta_2) \nabla_{\theta} J(\theta)^2
   $$
+
+
   $$
   \hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}
   $$
+
+
   $$
   \theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
   $$
+
 
 ---
 
 ### **A.10 微積分與數學分析公式**
 
 - 鏈式法則： 
+
   $$
   \frac{d}{dx} f(g(x)) = f'(g(x)) \cdot g'(x)
   $$
+
 - 泰勒展開： 
+
   $$
   f(x) \approx f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \dots
   $$
+
 
 ---
 
