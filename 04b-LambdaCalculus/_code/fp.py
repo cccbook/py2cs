@@ -1,9 +1,3 @@
-def RANGE(m,n):
-    r = []
-    for i in range(m,n+1):
-        r.append(i)
-    return r
-
 def EACH(a, f):
     for x in a:
         f(x)
@@ -27,7 +21,7 @@ def REDUCE(a, f, init):
     return r
 
 if __name__=="__main__":
-    a = RANGE(1,5)
+    a = [1,2,3,4,5]
     EACH(a, lambda x:print(x))
     print(MAP(a, lambda x:x*x))
     print(FILTER(a, lambda x:x%2==1))

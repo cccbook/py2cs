@@ -2,28 +2,6 @@
 
 在這一章中，我們將學習函數式程式設計的基礎概念，以及如何用 Python 實現常見的函數式編程操作，例如 `map`、`filter`、`reduce` 等。以下程式碼展示了這些操作的具體實現。
 
----
-
-#### 定義範圍函數 `RANGE`
-
-`RANGE(m, n)` 函數的功能是產生一個從 `m` 到 `n` 的整數列表，類似於內建的 `range` 函數，但返回的是列表。
-
-```py
-def RANGE(m, n):
-    r = []
-    for i in range(m, n + 1):
-        r.append(i)
-    return r
-```
-
-範例：  
-```py
-print(RANGE(1, 5))
-# 輸出: [1, 2, 3, 4, 5]
-```
-
----
-
 #### 遍歷函數 `EACH`
 
 `EACH(a, f)` 接受一個列表 `a` 和一個函數 `f`，對 `a` 中的每個元素執行 `f`。
@@ -36,7 +14,7 @@ def EACH(a, f):
 
 範例：  
 ```py
-a = RANGE(1, 5)
+a = [1,2,3,4,5]
 EACH(a, lambda x: print(f"Element: {x}"))
 # 輸出:
 # Element: 1
@@ -45,8 +23,6 @@ EACH(a, lambda x: print(f"Element: {x}"))
 # Element: 4
 # Element: 5
 ```
-
----
 
 #### 映射函數 `MAP`
 
@@ -62,7 +38,7 @@ def MAP(a, f):
 
 範例：  
 ```py
-a = RANGE(1, 5)
+a = [1,2,3,4,5]
 print(MAP(a, lambda x: x * x))
 # 輸出: [1, 4, 9, 16, 25]
 ```
@@ -84,7 +60,7 @@ def FILTER(a, f):
 
 範例：  
 ```py
-a = RANGE(1, 5)
+a = [1,2,3,4,5]
 print(FILTER(a, lambda x: x % 2 == 1))
 # 輸出: [1, 3, 5]
 ```
@@ -105,36 +81,53 @@ def REDUCE(a, f, init):
 
 範例：  
 ```py
-a = RANGE(1, 5)
+a = [1,2,3,4,5]
 print(REDUCE(a, lambda x, y: x + y, 0))
 # 輸出: 15
 ```
 
----
 
-#### 主程式執行
+#### 完整的程式碼
 
 以下是完整的程式碼範例，展示了如何使用上述函數：
 
+檔案： fp.py
+
 ```py
-if __name__ == "__main__":
-    a = RANGE(1, 5)
-    # 遍歷並打印每個元素
-    EACH(a, lambda x: print(x))
-    
-    # 將列表中的每個元素平方
-    print(MAP(a, lambda x: x * x))
-    
-    # 過濾出奇數
-    print(FILTER(a, lambda x: x % 2 == 1))
-    
-    # 將列表中的元素累加
-    print(REDUCE(a, lambda x, y: x + y, 0))
+def EACH(a, f):
+    for x in a:
+        f(x)
+
+def MAP(a, f):
+    r = []
+    for x in a:
+        r.append(f(x))
+    return r
+
+def FILTER(a, f):
+    r = []
+    for x in a:
+        if f(x): r.append(x)
+    return r
+
+def REDUCE(a, f, init):
+    r = init
+    for x in a:
+        r = f(r, x)
+    return r
+
+if __name__=="__main__":
+    a = [1,2,3,4,5]
+    EACH(a, lambda x:print(x))
+    print(MAP(a, lambda x:x*x))
+    print(FILTER(a, lambda x:x%2==1))
+    print(REDUCE(a, lambda x,y:x+y, 0))
 ```
 
-執行結果：  
+執行結果：
+
 ```sh
-$ python fp.py
+$ python fp.py       
 1
 2
 3
@@ -145,7 +138,82 @@ $ python fp.py
 15
 ```
 
----
+## 不倚賴迴圈的函數式編程
+
+上述的版本有使用到 for 迴圈，但是很多函數式編程語言裡面，其實是沒有 for, while 這類的回圈的，像是 list, haskell 等等。
+
+不使用 for, while 回圈，怎麼完成 EACH, MAP, FILTER, REDUCE 這些函數呢？
+
+以下是我們將上述程式用遞迴取代回圈的結果。
+
+檔案: fp_noloop.py
+
+```py
+def _each(a, f, i):
+    if i==len(a):
+        return
+    else:
+        f(a[i])
+        _each(a, f, i+1)
+
+def EACH(a, f):
+    _each(a,f,0)
+
+def _map(a, f, i, r):
+    if i==len(a):
+        return
+    else:
+        r.append(f(a[i]))
+        _map(a, f, i+1, r)
+
+def MAP(a, f):
+    r = []
+    _map(a, f, 0, r)
+    return r
+
+def _filter(a, f, i, r):
+    if i == len(a):
+        return
+    else:
+        if f(a[i]): r.append(a[i])
+        _filter(a, f, i+1, r)
+
+def FILTER(a, f):
+    r = []
+    _filter(a, f, 0, r)
+    return r
+
+def _reduce(a, f, i, r):
+    if i == len(a):
+        return r
+    else:
+        r = f(r, a[i])
+        return _reduce(a, f, i+1, r)
+
+def REDUCE(a, f, init):
+    return _reduce(a, f, 0, init)
+
+if __name__=="__main__":
+    a = [1,2,3,4,5]
+    EACH(a, lambda x:print(x))
+    print(MAP(a, lambda x:x*x))
+    print(FILTER(a, lambda x:x%2==1))
+    print(REDUCE(a, lambda x,y:x+y, 0))
+```
+
+執行結果
+
+```
+$ python fp_noloop.py
+1
+2
+3
+4
+5
+[1, 4, 9, 16, 25]
+[1, 3, 5]
+15
+```
 
 ### 小結
 
