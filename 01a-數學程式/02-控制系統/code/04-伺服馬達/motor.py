@@ -14,8 +14,8 @@ L, R = 0.5, 1.0
 V = lambda t: 5.0  # 恒定電壓 5V
 
 y0 = [0, 0, 0]  # 初始角度, 角速度, 電流
-t_span = (0, 30)
-t_eval = np.linspace(0, 30, 500)
+t_span = (0, 10)
+t_eval = np.linspace(0, 10, 500)
 sol = solve_ivp(dc_motor, t_span, y0, args=(J, b, K_t, K_e, L, R, V), t_eval=t_eval)
 
 plt.plot(sol.t, sol.y[1])
