@@ -1,0 +1,103 @@
+### **用 `nn.Conv2d` 和 `nn.MaxPool2d` 定義卷積網路**
+
+在 PyTorch 中，我們可以使用 `nn.Conv2d` 和 `nn.MaxPool2d` 來構建卷積神經網絡（CNN）。這些層的作用是對圖像進行卷積運算並對特徵圖進行池化，以提取圖像中的重要特徵。下面將介紹如何使用這些層來定義一個簡單的 CNN 模型。
+
+#### **1. `nn.Conv2d` 層**
+
+`nn.Conv2d` 是用來執行 2D 卷積操作的層。這個層的主要參數包括：
+- **in_channels**: 輸入圖像的通道數（例如，RGB圖像有3個通道）。
+- **out_channels**: 卷積後輸出的通道數（即濾波器的數量）。
+- **kernel_size**: 卷積核的大小（可以是單個數字或一對數字）。
+- **stride**: 卷積的步長，控制濾波器在圖像上移動的步伐。
+- **padding**: 填充的大小，用來控制卷積後輸出特徵圖的大小。
+
+#### **2. `nn.MaxPool2d` 層**
+
+`nn.MaxPool2d` 是用來執行 2D 最大池化操作的層。它的主要參數包括：
+- **kernel_size**: 池化窗口的大小。
+- **stride**: 池化操作的步長，通常與 `kernel_size` 相同。
+- **padding**: 填充大小。
+
+最大池化操作會選擇池化窗口中最大的元素來減少特徵圖的空間維度。
+
+### **3. 定義簡單的 CNN 模型**
+
+以下是一個簡單的卷積神經網絡的 PyTorch 實現，使用 `nn.Conv2d` 和 `nn.MaxPool2d` 定義網絡結構：
+
+```python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+class SimpleCNN(nn.Module):
+    def __init__(self):
+        super(SimpleCNN, self).__init__()
+        
+        # 卷積層1：輸入通道3（RGB圖像），輸出通道32，卷積核大小3，步長1，填充1
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=1, padding=1)
+        # 最大池化層1：池化窗口大小2，步長2
+        self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+        
+        # 卷積層2：輸入通道32，輸出通道64，卷積核大小3，步長1，填充1
+        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)
+        # 最大池化層2：池化窗口大小2，步長2
+        self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+        
+        # 卷積層3：輸入通道64，輸出通道128，卷積核大小3，步長1，填充1
+        self.conv3 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=1, padding=1)
+        # 最大池化層3：池化窗口大小2，步長2
+        self.pool3 = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+        
+        # 全連接層：將輸出展平後進行全連接層操作
+        self.fc1 = nn.Linear(128 * 8 * 8, 512)  # 假設輸入圖像為 64x64 的大小
+        self.fc2 = nn.Linear(512, 10)  # 假設有10個類別的分類問題
+
+    def forward(self, x):
+        # 卷積層 + 池化層 + ReLU激活函數
+        x = self.pool1(torch.relu(self.conv1(x)))
+        x = self.pool2(torch.relu(self.conv2(x)))
+        x = self.pool3(torch.relu(self.conv3(x)))
+        
+        # 展平輸出，以便輸入全連接層
+        x = x.view(-1, 128 * 8 * 8)
+        
+        # 全連接層
+        x = torch.relu(self.fc1(x))
+        x = self.fc2(x)
+        
+        return x
+
+# 創建模型實例
+model = SimpleCNN()
+
+# 打印模型架構
+print(model)
+```
+
+#### **4. 模型結構分析**
+- **卷積層**：`conv1`、`conv2` 和 `conv3` 分別使用了不同的輸入和輸出通道數。每個卷積層之後都跟隨著一個 ReLU 激活函數來引入非線性。
+- **池化層**：`pool1`、`pool2` 和 `pool3` 使用最大池化來減小特徵圖的空間維度，進而減少計算量並提取最重要的特徵。
+- **全連接層**：最終，將特徵圖展平為一維向量，並經過兩個全連接層進行分類。這裡的 `fc1` 層將展平後的特徵圖轉換為 512 個神經元，`fc2` 層用於將其轉換為 10 個類別的輸出。
+
+#### **5. 模型訓練**
+
+我們可以使用這個模型進行訓練，例如使用交叉熵損失函數（`nn.CrossEntropyLoss`）和 Adam 優化器（`optim.Adam`）進行優化：
+
+```python
+# 訓練設置
+criterion = nn.CrossEntropyLoss()  # 交叉熵損失
+optimizer = optim.Adam(model.parameters(), lr=0.001)  # Adam優化器
+
+# 假設有訓練數據
+# inputs, labels = ...
+
+# 訓練循環
+# optimizer.zero_grad()
+# outputs = model(inputs)
+# loss = criterion(outputs, labels)
+# loss.backward()
+# optimizer.step()
+```
+
+### **總結**
+這樣我們就使用 `nn.Conv2d` 和 `nn.MaxPool2d` 定義了一個簡單的卷積神經網絡。這個模型包含了多個卷積層和池化層，並通過展平操作將卷積層的輸出轉換為適合全連接層處理的格式。最後，使用交叉熵損失進行訓練，並通過優化器更新權重來進行學習。
