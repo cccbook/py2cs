@@ -11,4 +11,4 @@ prompt = tokenizer.apply_chat_template(
 )
 
 text = generate(model, tokenizer, prompt=prompt, verbose=True, 
-     max_tokens=1000, temp=0.5) # temp 是溫度
+     max_tokens=1000, temp=0.5) # temp 是溫度，預設是 0，每次都一樣。 0.5 會有比較多變化。
