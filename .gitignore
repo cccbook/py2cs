@@ -45,7 +45,8 @@ env
 *.ckpt
 *.pt
 model
-models
+
+# models
 # deepLearning data
 data
 .data

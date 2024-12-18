@@ -1,0 +1,5 @@
+mlx>=0.2
+numpy
+tqdm
+scikit-learn
+matplotlib
