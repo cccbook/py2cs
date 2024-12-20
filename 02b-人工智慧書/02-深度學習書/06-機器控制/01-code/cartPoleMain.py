@@ -4,7 +4,8 @@ import itertools
 
 import numpy as np
 np.random.seed(0)
-import gym
+# import gym
+import gymnasium as gym
 
 logging.basicConfig(level=logging.INFO,
         format='%(asctime)s [%(levelname)s] %(message)s',
@@ -26,7 +27,13 @@ from LQRAgent import LQRAgent
 # agent = LQRAgent(env)
 
 from MPCAgent import MPCAgent
-agent = MPCAgent(env)
+# agent = MPCAgent(env)
+
+from FuzzyAgent import FuzzyAgent
+# agent = FuzzyAgent(env)
+
+from TableLookupAgent import TableLookupAgent
+agent = TableLookupAgent(env)
 
 def play_episode(env, agent, seed=None, mode=None, render=False):
     observation, _ = env.reset(seed=seed)
