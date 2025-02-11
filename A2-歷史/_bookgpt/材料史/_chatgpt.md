@@ -1,1 +1,0 @@
-https://chatgpt.com/c/67762505-4684-8012-aa93-bf6d4c2d6bff
