@@ -8,4 +8,5 @@ def f(p):
 
 
 p = [0.0, 0.0, 0.0]
+# gd.gradientDescendent(f, p, dump_period=1)
 gd.gradientDescendent(f, p)
