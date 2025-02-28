@@ -1,0 +1,32 @@
+import pytest
+import torch
+import dtorch
+
+def test_rnn():
+    # 測試數據
+    input_size = 4
+    hidden_size = 3
+    seq_len = 5
+    batch_size = 2
+
+    x = torch.randn(seq_len, batch_size, input_size)  # 輸入張量
+    h_0 = torch.randn(1, batch_size, hidden_size)     # 初始隱藏狀態
+
+    # 使用手動實現的 RNN
+    rnn_custom = dtorch.nn.RNN(input_size, hidden_size)
+    output_custom, h_n_custom = rnn_custom(x, h_0)
+
+    # 使用 PyTorch 內建的 RNN
+    rnn_builtin = torch.nn.RNN(input_size, hidden_size, num_layers=1, nonlinearity='tanh', bias=True)
+    # 將手動實現的權重和偏置複製到內建的 RNN
+    rnn_builtin.weight_ih_l0.data = rnn_custom.W_ih.data
+    rnn_builtin.weight_hh_l0.data = rnn_custom.W_hh.data
+    rnn_builtin.bias_ih_l0.data = rnn_custom.b_ih.data
+    rnn_builtin.bias_hh_l0.data = rnn_custom.b_hh.data
+    output_builtin, h_n_builtin = rnn_builtin(x, h_0)
+
+    # 比較結果
+    print("手動實現的 RNN 輸出:", output_custom)
+    print("PyTorch 內建的 RNN 輸出:", output_builtin)
+    print("結果是否一致:", torch.allclose(output_custom, output_builtin, atol=1e-5))
+    assert torch.allclose(output_custom, output_builtin, atol=1e-5), "輸出不一致"

@@ -1,0 +1,31 @@
+import pytest
+import torch
+import dtorch
+
+def test_transformer():
+    # 測試數據
+    d_model = 512
+    nhead = 8
+    num_layers = 3
+    seq_len_tgt = 10
+    seq_len_memory = 20
+    batch_size = 4
+
+    tgt = torch.randn(seq_len_tgt, batch_size, d_model)
+    memory = torch.randn(seq_len_memory, batch_size, d_model)
+
+    # 使用手動實現的 TransformerDecoder
+    decoder_layer_custom = dtorch.nn.TransformerDecoderLayer(d_model, nhead)
+    decoder_custom = dtorch.nn.TransformerDecoder(decoder_layer_custom, num_layers)
+    output_custom = decoder_custom(tgt, memory)
+
+    # 使用 PyTorch 內建的 TransformerDecoder
+    decoder_layer_builtin = torch.nn.TransformerDecoderLayer(d_model, nhead)
+    decoder_builtin = torch.nn.TransformerDecoder(decoder_layer_builtin, num_layers)
+    output_builtin = decoder_builtin(tgt, memory)
+
+    # 比較結果
+    print("手動實現的 TransformerDecoder 輸出:", output_custom)
+    print("PyTorch 內建的 TransformerDecoder 輸出:", output_builtin)
+    print("結果是否一致:", torch.allclose(output_custom, output_builtin, atol=1e-5))
+    assert torch.allclose(output_custom, output_builtin), "輸出不一致"

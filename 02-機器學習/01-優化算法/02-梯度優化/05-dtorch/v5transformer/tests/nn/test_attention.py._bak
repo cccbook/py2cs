@@ -1,0 +1,45 @@
+import pytest
+import torch
+import dtorch
+
+def test_attention():
+    # 測試數據
+    embed_dim = 8
+    num_heads = 2
+    seq_len_q = 6
+    seq_len_k = 6
+    batch_size = 2
+
+    query = torch.randn(seq_len_q, batch_size, embed_dim)
+    key = torch.randn(seq_len_k, batch_size, embed_dim)
+    value = torch.randn(seq_len_k, batch_size, embed_dim)
+
+    # 使用 PyTorch 內建的 MultiheadAttention
+    mha_builtin = torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0)  # 禁用 Dropout
+    output_builtin, attn_weights_builtin = mha_builtin(query, key, value)
+
+    # 使用手動實現的 MultiheadAttention
+    mha_custom = dtorch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0)  # 禁用 Dropout
+
+    # 將 PyTorch 內建的權重複製到手動實現的版本中
+    with torch.no_grad():
+        # 複製 in_proj_weight 和 in_proj_bias
+        mha_custom.W_q.weight.copy_(mha_builtin.in_proj_weight[:embed_dim, :])
+        mha_custom.W_k.weight.copy_(mha_builtin.in_proj_weight[embed_dim:2*embed_dim, :])
+        mha_custom.W_v.weight.copy_(mha_builtin.in_proj_weight[2*embed_dim:, :])
+        mha_custom.W_q.bias.copy_(mha_builtin.in_proj_bias[:embed_dim])
+        mha_custom.W_k.bias.copy_(mha_builtin.in_proj_bias[embed_dim:2*embed_dim])
+        mha_custom.W_v.bias.copy_(mha_builtin.in_proj_bias[2*embed_dim:])
+        
+        # 複製 out_proj.weight 和 out_proj.bias
+        mha_custom.W_o.weight.copy_(mha_builtin.out_proj.weight)
+        mha_custom.W_o.bias.copy_(mha_builtin.out_proj.bias)
+
+    # 計算手動實現的輸出
+    output_custom, attn_weights_custom = mha_custom(query, key, value)
+
+    # 比較結果
+    print("手動實現的 MultiheadAttention 輸出:", output_custom)
+    print("PyTorch 內建的 MultiheadAttention 輸出:", output_builtin)
+    print("結果是否一致:", torch.allclose(output_custom, output_builtin, atol=1e-5))
+    assert torch.allclose(output_custom, output_builtin, atol=1e-5), "輸出不一致"
