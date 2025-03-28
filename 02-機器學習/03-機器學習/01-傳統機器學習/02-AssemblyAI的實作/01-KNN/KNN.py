@@ -36,5 +36,6 @@ class KNN:
 
         # 多數表決，統計 k 個最近鄰中出現最多的標籤
         most_common = Counter(k_nearest_labels).most_common()
+        # print('most_common:', most_common)
         # 返回出現次數最多的標籤
         return most_common[0][0]

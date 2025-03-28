@@ -4,7 +4,7 @@ import numpy as np
 from sklearn import datasets
 n = 300
 X, y = datasets.make_blobs(n_samples=n, centers=4, cluster_std=0.60, random_state=0)
-#X, y = datasets.make_moons(n_samples=n, noise=0.1)
+# X, y = datasets.make_moons(n_samples=n, noise=0.1)
 #X, y = datasets.make_circles(n_samples=n, noise=0.1, factor=0.5)
 #X, y = datasets.make_circles(n_samples=n, noise=0.01, factor=0.5)
 #X, y = np.random.rand(n, 2), None
