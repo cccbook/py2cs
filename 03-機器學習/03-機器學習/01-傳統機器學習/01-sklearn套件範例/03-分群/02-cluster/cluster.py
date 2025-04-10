@@ -5,8 +5,8 @@ from sklearn import datasets, cluster
 
 # n=300
 n = 500
-# X, y = datasets.make_blobs(n_samples=n, centers=3, cluster_std=0.60, random_state=0)
-X, y = datasets.make_moons(n_samples=n, noise=0.05)
+X, y = datasets.make_blobs(n_samples=n, centers=3, cluster_std=0.60, random_state=0)
+# X, y = datasets.make_moons(n_samples=n, noise=0.05)
 # X, y = datasets.make_circles(n_samples=n, factor=0.5, noise=0.05)
 # X, y = np.random.rand(n, 2), None
 # y 代表該點屬於哪一群，分群時沒用到
@@ -16,8 +16,8 @@ plt.scatter(X[:, 0], X[:, 1]) # , s=50
 plt.show()
 
 # 假設我們希望將資料分成 3 個 cluster
-# model = cluster.KMeans(n_clusters=3)
-model = cluster.KMeans(n_clusters=2)
+model = cluster.KMeans(n_clusters=3)
+# model = cluster.KMeans(n_clusters=2)
 # model = cluster.AgglomerativeClustering(n_clusters=3, linkage="ward", connectivity=)
 #        n_clusters=params["n_clusters"], linkage="ward") # connectivity=??
 
