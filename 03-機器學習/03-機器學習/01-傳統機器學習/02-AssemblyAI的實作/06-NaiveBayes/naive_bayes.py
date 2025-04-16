@@ -54,6 +54,9 @@ if __name__ == "__main__":
         accuracy = np.sum(y_true == y_pred) / len(y_true)
         return accuracy
 
+    # make_classification 參考 
+    #   https://www.cnblogs.com/hider/p/15978785.html
+    #   https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html
     X, y = datasets.make_classification(
         n_samples=1000, n_features=10, n_classes=2, random_state=123
     )
