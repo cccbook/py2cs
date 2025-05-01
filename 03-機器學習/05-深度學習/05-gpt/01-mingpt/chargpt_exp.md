@@ -1,7 +1,7 @@
 ## exp.txt
 
 ```
-$ python chargpt.py exp.txt
+$ python chargpt.py exp
 system:
     seed: 3407
     work_dir: ./out/chargpt

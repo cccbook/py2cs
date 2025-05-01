@@ -2,7 +2,7 @@
 原版沒有改過的 chargpt.py 之執行結果
 
 ```
-$ python chargpt.py
+$ python chargpt.py shakespeare
 system:
     seed: 3407
     work_dir: ./out/chargpt
