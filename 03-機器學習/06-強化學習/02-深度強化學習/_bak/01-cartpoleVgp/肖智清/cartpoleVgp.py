@@ -6,7 +6,7 @@ import itertools
 import numpy as np
 np.random.seed(0)
 import pandas as pd
-import gymnasium as gym  # 改用 gymnasium
+import gym
 import matplotlib.pyplot as plt
 import torch
 torch.manual_seed(0)
@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO,
                     stream=sys.stdout, datefmt='%H:%M:%S')
 
 # 創建 CartPole 環境
-env = gym.make('CartPole-v1')  # 在 gymnasium 中使用 v1 版本
+env = gym.make('CartPole-v0')
 for key in vars(env):
     logging.info('%s: %s', key, vars(env)[key])
 for key in vars(env.spec):
@@ -60,7 +60,7 @@ class VPGAgent:
         state_tensor = torch.as_tensor(observation, dtype=torch.float).unsqueeze(0)
         prob_tensor = self.policy_net(state_tensor)
         action_tensor = distributions.Categorical(prob_tensor).sample()
-        action = action_tensor.numpy().item()  # 使用 .item() 確保獲取的是 Python 的標準數據類型
+        action = action_tensor.numpy()[0]
         if self.mode == 'train':
             self.trajectory += [observation, reward, terminated, action]
         return action
@@ -90,18 +90,17 @@ agent = VPGAgent(env)
 
 # 定義遊玩一個回合的函數
 def play_episode(env, agent, seed=None, mode=None, render=False):
-    observation, info = env.reset(seed=seed)  # gymnasium 返回 (observation, info)
+    observation, _ = env.reset(seed=seed)
     reward, terminated, truncated = 0., False, False
     agent.reset(mode=mode)
     episode_reward, elapsed_steps = 0., 0
     while True:
         action = agent.step(observation, reward, terminated)
         if render:
-            # 在 gymnasium 中，render 方法已經在創建環境時設置
             env.render()
         if terminated or truncated:
             break
-        observation, reward, terminated, truncated, info = env.step(action)  # gymnasium 返回 5 個值
+        observation, reward, terminated, truncated, _ = env.step(action)
         episode_reward += reward
         elapsed_steps += 1
     agent.close()
@@ -138,6 +137,6 @@ logging.info('average episode reward = %.2f ± %.2f',
              np.mean(episode_rewards), np.std(episode_rewards))
 
 # 使用 render (for human) 動畫播放玩一次
-env = gym.make('CartPole-v1', render_mode="human")  # 在 gymnasium 中使用 render_mode 參數
+env = gym.make('CartPole-v0', render_mode="human")
 episode_reward, elapsed_steps = play_episode(env, agent, render=True)
 env.close()

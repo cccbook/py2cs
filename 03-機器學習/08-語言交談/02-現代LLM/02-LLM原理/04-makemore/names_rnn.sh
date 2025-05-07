@@ -1,1 +1,1 @@
-python makemore.py -i names.txt -o names --type rnn
+python makemore.py -i names.txt -o names --type rnns

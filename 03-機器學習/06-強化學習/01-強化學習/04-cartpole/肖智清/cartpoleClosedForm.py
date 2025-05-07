@@ -4,13 +4,13 @@ import itertools
 
 import numpy as np
 np.random.seed(0)
-import gym
+import gymnasium as gym  # 改用 gymnasium
 
 logging.basicConfig(level=logging.INFO,
         format='%(asctime)s [%(levelname)s] %(message)s',
         stream=sys.stdout, datefmt='%H:%M:%S')
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')  # 在 gymnasium 中使用 v1 版本，v0 已經過時
 for key in vars(env.spec):
     logging.info('%s: %s', key, vars(env.spec)[key])
 for key in vars(env.unwrapped):
@@ -35,17 +35,17 @@ class ClosedFormAgent:
 agent = ClosedFormAgent(env)
 
 def play_episode(env, agent, seed=None, mode=None, render=False):
-    observation, _ = env.reset(seed=seed)
+    observation, info = env.reset(seed=seed)  # gymnasium 返回 (observation, info)
     reward, terminated, truncated = 0., False, False
     agent.reset(mode=mode)
     episode_reward, elapsed_steps = 0., 0
     while True:
         action = agent.step(observation, reward, terminated)
         if render:
-            env.render()
+            env.render()  # 在 gymnasium 中，render 方法已經在創建環境時設置
         if terminated or truncated:
             break
-        observation, reward, terminated, truncated, _ = env.step(action)
+        observation, reward, terminated, truncated, info = env.step(action)  # gymnasium 返回 5 個值
         episode_reward += reward
         elapsed_steps += 1
     agent.close()
@@ -64,7 +64,6 @@ logging.info('average episode reward = %.2f ± %.2f',
 env.close()
 
 # 使用 render (for human) 動畫播放玩一次
-env = gym.make('CartPole-v0', render_mode="human")
+env = gym.make('CartPole-v1', render_mode="human")  # 在 gymnasium 中使用 render_mode 參數
 episode_reward, elapsed_steps = play_episode(env, agent, render=True)
 env.close()
-
