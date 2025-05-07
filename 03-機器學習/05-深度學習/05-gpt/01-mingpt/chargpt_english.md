@@ -1,7 +1,7 @@
 ## english.txt
 
 ```
-$ python chargpt.py english.txt
+$ python chargpt.py english
 system:
     seed: 3407
     work_dir: ./out/chargpt
