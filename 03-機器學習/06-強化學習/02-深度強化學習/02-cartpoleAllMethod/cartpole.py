@@ -34,8 +34,8 @@ from ActorCriticAgent import ActorCriticAgent
 # agent = VPGAgent(env)
 # agent = VPGwBaselineAgent(env)
 # agent = DQNAgent(env)
-# agent = SARSAAgent(env) # agent = SARSALambdaAgent(env) # fail
-agent = ActorCriticAgent(env)
+agent = SARSAAgent(env) # agent = SARSALambdaAgent(env) # fail
+# agent = ActorCriticAgent(env)
 
 # 定義遊玩一個回合的函數
 def play_episode(env, agent, seed=None, mode=None, render=False):

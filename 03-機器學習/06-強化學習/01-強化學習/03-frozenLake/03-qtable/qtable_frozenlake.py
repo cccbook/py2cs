@@ -16,8 +16,8 @@ num_episodes = 2000  # 迭代次數
 Q = np.zeros([env.observation_space.n,env.action_space.n]) # Q-table 初始化
 
 # method = "Q"
-# method = "SARSA"
-method = "TD_LAMBDA"
+method = "SARSA"
+# method = "TD_LAMBDA"
 if method == "TD_LAMBDA":
     # lambda_ = 0.8         # 慢慢衰減 (會掉下去)
     # lambda_ = 1.0         # 不衰減 (會掉下去)
@@ -62,7 +62,9 @@ for i in range(num_episodes): # 學習循環
 
 print('Q=', Q)
 
-print('E=', E)
+if method == "TD_LAMBDA":
+    print('E=', E)
+
 print('完成迭代，展示學習成果 ...')
 
 env = gym.make('FrozenLake-v1', render_mode="human")
