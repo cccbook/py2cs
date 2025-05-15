@@ -1,5 +1,8 @@
 
 
+https://github.com/suragnair/alpha-zero-general （通用框架）
+
+
 https://github.com/berbuf/Deep-Learning-Gomoku
 
 https://github.com/slcz/gomoku-deep-learning
