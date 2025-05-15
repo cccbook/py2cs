@@ -2,9 +2,9 @@
 簡化的五子棋遊戲 - 命令列版本
 
 使用方法：
-人對人下  ：python simple_gomoku.py P P
-人對電腦  ：python simple_gomoku.py P C
-電腦對電腦：python simple_gomoku.py C C
+人對人下  ：python gomoku_claude.py P P
+人對電腦  ：python gomoku_claude.py P C
+電腦對電腦：python gomoku_claude.py C C
 '''
 
 import sys
