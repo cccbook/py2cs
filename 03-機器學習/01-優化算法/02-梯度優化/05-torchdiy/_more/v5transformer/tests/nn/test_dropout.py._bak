@@ -1,0 +1,18 @@
+import pytest
+import torch
+import dtorch
+
+# 以下程式不一致，因為有個隨機的 mask 遮罩，所以兩者不會一樣
+def test_dropout():
+    # 測試數據
+    x = torch.randn(1, 1, 4, 4)  # 輸入張量
+
+    # 使用手動實現的 Dropout
+    custom = dtorch.nn.Dropout(p=0.5)
+    output_custom = custom(x)
+
+    # 使用 PyTorch 內建的 Dropout
+    builtin = torch.nn.Dropout(p=0.5)
+    output_builtin = builtin(x)
+
+    assert torch.allclose(output_custom, output_builtin), "輸出不一致"
